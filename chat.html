@@ -199,7 +199,19 @@
     }
   });
 
-  // Load brand config from the chatbot API, THEN let the user pick a language.
+  // Language buttons work IMMEDIATELY. If the brand config hasn't arrived yet,
+  // remember the choice and apply it as soon as the config lands — so a fast
+  // click is never lost while the page talks to the bot server.
+  let pendingLang = null;
+  document.querySelectorAll('#picker button, .pill').forEach(el =>
+    el.addEventListener('click', () => {
+      const code = el.dataset.lang;
+      if (T) { setLang(code); return; }
+      pendingLang = code;                       // config still loading — queue it
+      el.textContent = '載入中… Loading…';
+    }));
+
+  // Load brand config from the chatbot API in the background.
   async function init() {
     try {
       const res = await fetch(BACKEND_URL + '/config');
@@ -212,9 +224,7 @@
         BACKEND_URL + '</span></h2>';
       return;
     }
-    // Wire up the language picker + header pills now that brand text is loaded.
-    document.querySelectorAll('#picker button, .pill').forEach(el =>
-      el.addEventListener('click', () => setLang(el.dataset.lang)));
+    if (pendingLang) setLang(pendingLang);      // apply the click made while loading
   }
 
   init();
