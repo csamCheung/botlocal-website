@@ -339,58 +339,24 @@
         <h2 id="pricing-h" data-i18n="priceTitle">價錢透明，一次過畀</h2>
         <p data-i18n="priceSub">買斷終身使用，包一年免費更新內容。冇月費、冇暗藏收費。</p>
       </div>
-      <div class="pricing">
-        <article class="price">
-          <h3 data-i18n="p1Name">Starter</h3>
-          <p class="desc" data-i18n="p1Desc">適合單一舖頭，剛剛起步。</p>
+      <div class="pricing" style="grid-template-columns:1fr;">
+        <article class="price popular" style="max-width:440px;margin:0 auto;" aria-label="Launch offer">
+          <span class="price-badge" data-i18n="pBadge">限時優惠 · 首批客戶</span>
+          <h3 data-i18n="pName">全套 AI 客服機械人</h3>
+          <p class="desc" data-i18n="pDesc">一個價錢，全部功能。買斷終身使用。</p>
           <div class="price-amount">
-            <span class="cur">HK$</span><span class="now">2,000</span>
+            <span class="cur">HK$</span><span class="now">500</span><span class="was">HK$10,000</span>
           </div>
-          <p class="term" data-i18n="p1Term">一次過收費 · 終身使用</p>
+          <p class="term" data-i18n="pTerm">一次過收費 · 終身使用 · 包 1 年免費更新</p>
           <ul>
-            <li data-i18n="p1F1">1 個 AI 客服機械人</li>
-            <li data-i18n="p1F2">接駁 WhatsApp 或網站</li>
-            <li data-i18n="p1F3">答常見問題</li>
-            <li data-i18n="p1F4">1 年免費更新內容</li>
-            <li data-i18n="p1F5">電郵支援</li>
+            <li data-i18n="pF1">1 個 AI 客服機械人（放喺 WhatsApp 或你個網站）</li>
+            <li data-i18n="pF2">24 小時自動答常見問題</li>
+            <li data-i18n="pF3">自動接受預約 / 試堂查詢</li>
+            <li data-i18n="pF4">多語言：廣東話 / 英文 / 普通話</li>
+            <li data-i18n="pF5">幫你收集客戶資料（leads）</li>
+            <li data-i18n="pF6">由我哋 done-for-you 建立同調校</li>
           </ul>
-          <a class="btn btn-ghost btn-block wa-link" href="#" target="_blank" rel="noopener" data-i18n="p1Cta">WhatsApp 查詢</a>
-        </article>
-
-        <article class="price popular" aria-label="Most popular plan">
-          <span class="price-badge" data-i18n="p2Badge">限時測試優惠</span>
-          <h3 data-i18n="p2Name">Pro</h3>
-          <p class="desc" data-i18n="p2Desc">最受歡迎，包齊接受預約 + 多語言。</p>
-          <div class="price-amount">
-            <span class="cur">HK$</span><span class="now">500</span><span class="was">HK$8,000</span>
-          </div>
-          <p class="term" data-i18n="p2Term">一次過收費 · 終身使用 · 包 1 年免費更新</p>
-          <ul>
-            <li data-i18n="p2F1">包 Starter 全部功能</li>
-            <li data-i18n="p2F2">自動接受預約 / 訂位</li>
-            <li data-i18n="p2F3">多語言：廣東話 / 英文 / 普通話</li>
-            <li data-i18n="p2F4">接駁 Google 日曆</li>
-            <li data-i18n="p2F5">優先 WhatsApp 支援</li>
-            <li data-i18n="p2F6">1 年內無限次更新內容</li>
-          </ul>
-          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="p2Cta">WhatsApp 鎖定優惠</span></a>
-        </article>
-
-        <article class="price">
-          <h3 data-i18n="p3Name">Custom</h3>
-          <p class="desc" data-i18n="p3Desc">多間分店、或者要接駁自家系統。</p>
-          <div class="price-amount">
-            <span class="now" data-i18n="p3Price">報價</span>
-          </div>
-          <p class="term" data-i18n="p3Term">按需求報價 · 包專人跟進</p>
-          <ul>
-            <li data-i18n="p3F1">包 Pro 全部功能</li>
-            <li data-i18n="p3F2">多間分店 / 多 bot</li>
-            <li data-i18n="p3F3">接駁 POS / CRM / API</li>
-            <li data-i18n="p3F4">專人客戶經理</li>
-            <li data-i18n="p3F5">客製化訓練</li>
-          </ul>
-          <a class="btn btn-ghost btn-block wa-link" href="#" target="_blank" rel="noopener" data-i18n="p3Cta">WhatsApp 索取報價</a>
+          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="pCta">WhatsApp 鎖定優惠</span></a>
         </article>
       </div>
     </div>
@@ -553,7 +519,12 @@ var I18N = {
     demoTitle:"睇下實際運作", demoSub:"一分鐘示範片，睇下 AI 客服點樣即時幫你應對客人。",
     videoPlay:"播放示範片", videoHint:"一分鐘睇曬點樣運作",
 
-    priceTitle:"價錢透明，一次過畀", priceSub:"買斷終身使用，包一年免費更新內容。冇月費、冇暗藏收費。",
+    priceTitle:"價錢透明，一次過畀", priceSub:"一個價錢，全部功能。買斷終身使用，冇月費、冇暗藏收費。",
+    pBadge:"限時優惠 · 首批客戶", pName:"全套 AI 客服機械人", pDesc:"一個價錢，全部功能。買斷終身使用。",
+    pTerm:"一次過收費 · 終身使用 · 包 1 年免費更新",
+    pF1:"1 個 AI 客服機械人（放喺 WhatsApp 或你個網站）", pF2:"24 小時自動答常見問題", pF3:"自動接受預約 / 試堂查詢",
+    pF4:"多語言：廣東話 / 英文 / 普通話", pF5:"幫你收集客戶資料（leads）", pF6:"由我哋 done-for-you 建立同調校",
+    pCta:"WhatsApp 鎖定優惠",
     p1Name:"Starter", p1Desc:"適合單一舖頭，剛剛起步。",
     p1Term:"一次過收費 · 終身使用",
     p1F1:"1 個 AI 客服機械人", p1F2:"接駁 WhatsApp 或網站", p1F3:"答常見問題",
@@ -631,7 +602,12 @@ var I18N = {
     demoTitle:"See it in action", demoSub:"A one-minute demo showing how the AI handles real customers.",
     videoPlay:"Play demo video", videoHint:"One minute, end to end",
 
-    priceTitle:"Transparent, one-time pricing", priceSub:"Pay once, use forever. Includes 1 year of free content updates. No monthly fees, no surprises.",
+    priceTitle:"Transparent, one-time pricing", priceSub:"One price, every feature. Pay once, use forever — no monthly fees, no surprises.",
+    pBadge:"Limited offer · first clients", pName:"Full AI customer-service bot", pDesc:"One price, every feature. Own it for life.",
+    pTerm:"One-time payment · lifetime use · 1 year of free updates",
+    pF1:"1 AI chatbot (on WhatsApp or your website)", pF2:"Answers common questions 24/7", pF3:"Takes bookings / trial-lesson enquiries",
+    pF4:"Multilingual: Cantonese / English / Mandarin", pF5:"Collects customer details (leads)", pF6:"Built & tuned for you, done-for-you",
+    pCta:"Lock in the offer on WhatsApp",
     p1Name:"Starter", p1Desc:"For a single shop just getting started.",
     p1Term:"One-time fee · Lifetime use",
     p1F1:"1 AI chatbot", p1F2:"WhatsApp or website channel", p1F3:"Answers FAQs",
