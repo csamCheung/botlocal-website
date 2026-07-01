@@ -19,6 +19,7 @@
   .msg { max-width:75%; padding:10px 14px; border-radius:14px; line-height:1.45; white-space:pre-wrap; word-wrap:break-word; }
   .me  { align-self:flex-end; background:var(--me); color:#fff; border-bottom-right-radius:4px; }
   .bot { align-self:flex-start; background:var(--bot); border:1px solid var(--line); border-bottom-left-radius:4px; }
+  .bot a { color:var(--me); font-weight:600; text-decoration:underline; word-break:break-all; }
   .typing { color:#9aa1ab; font-style:italic; }
   /* Product cards shown under a recommendation */
   .cards { align-self:flex-start; max-width:85%; display:flex; flex-wrap:wrap; gap:10px; }
@@ -85,10 +86,35 @@
   const picker = document.getElementById('picker');
   let lang = null;
 
+  // Render a bot reply safely: escape HTML first, then turn markdown links,
+  // bare URLs and **bold** into real formatting so links are clickable.
+  function renderBotHTML(text) {
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    let t = esc(text);
+    const stash = [];
+    const keep = html => { stash.push(html); return '\u0000' + (stash.length - 1) + '\u0000'; };
+    // markdown links [label](url) -> neat clickable label
+    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, label, url) =>
+      keep('<a href="' + url + '" target="_blank" rel="noopener">' + label + '</a>'));
+    // bare URLs -> clickable (trim trailing punctuation incl. Chinese full-width)
+    t = t.replace(/https?:\/\/[^\s<)。，；、）]+/g, m => {
+      let url = m, trail = '';
+      while (/[.,;:!?]$/.test(url)) { trail = url.slice(-1) + trail; url = url.slice(0, -1); }
+      return keep('<a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>') + trail;
+    });
+    // **bold**
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+    return t.replace(/\u0000(\d+)\u0000/g, (m, i) => stash[i]);
+  }
+
   function add(text, cls) {
     const d = document.createElement('div');
     d.className = 'msg ' + cls;
-    d.textContent = text;
+    if (cls.indexOf('bot') === 0 && cls.indexOf('typing') === -1) {
+      d.innerHTML = renderBotHTML(text);   // bot replies: clickable links + bold
+    } else {
+      d.textContent = text;                // user text stays plain (safety)
+    }
     log.appendChild(d);
     log.scrollTop = log.scrollHeight;
     return d;
