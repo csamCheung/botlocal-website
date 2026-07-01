@@ -74,10 +74,34 @@
 <!-- BACKEND_URL lives in config.js — the one file you edit after deploying the bot. -->
 <script src="config.js?v=2"></script>
 <script>
-  // This is a STATIC site. Unlike the bundled version, it has no server to inject
-  // brand text, so it fetches it from the chatbot API's /config endpoint on load.
-  let T = null;            // UI strings per language (loaded from the API)
-  let WA_NUMBER = "";      // WhatsApp number for product-card links (from the API)
+  // This is a STATIC site. Brand text is BUILT IN below so the page always works
+  // instantly; the /config fetch merely refreshes it from the bot server. The
+  // server is only truly required for answering questions (/chat).
+  const FALLBACK_T = {
+    "en": {
+      "title": "AI Customer-Service Assistant",
+      "subtitle": "Ask about our services, pricing, and how it works.",
+      "greeting": "Hi! I'm BotLocal. I build WhatsApp and website AI customer-service bots for Hong Kong small businesses — answering common questions 24/7, handling booking enquiries, and introducing your services. I'm an independent developer, so I can tailor features to your business needs. Ask me anything about features, pricing, or booking a free demo.",
+      "placeholder": "Type your question…",
+      "send": "Send"
+    },
+    "yue": {
+      "title": "AI 客服助手",
+      "subtitle": "有關我哋嘅服務、收費同運作，隨時問我。",
+      "greeting": "你好！我係 BotLocal，專幫香港小店同中小企建立 WhatsApp 或網站 AI 客服機械人，24 小時自動回答常見問題、處理預約查詢同介紹服務。我係個人開發者，可以按你嘅業務需要度身訂造功能。想了解功能、收費，或者預約免費示範，都可以直接問我。",
+      "placeholder": "請輸入你嘅問題…",
+      "send": "傳送"
+    },
+    "zh": {
+      "title": "AI 客服助手",
+      "subtitle": "关于我们的服务、收费和运作，欢迎咨询。",
+      "greeting": "您好！我是 BotLocal，专为香港小店和中小企建立 WhatsApp 或网站 AI 客服机械人，24 小时自动回答常见问题、处理预约查询并介绍服务。我是个人开发者，可以按你的业务需要度身订造功能。想了解功能、收费，或预约免费示范，都可以直接问我。",
+      "placeholder": "请输入您的问题…",
+      "send": "发送"
+    }
+  };
+  let T = null;                       // set from /config when it arrives
+  let WA_NUMBER = "447442478441";     // fallback; refreshed from /config
 
   const log = document.getElementById('log');
   const form = document.getElementById('form');
@@ -199,32 +223,26 @@
     }
   });
 
-  // Language buttons work IMMEDIATELY. If the brand config hasn't arrived yet,
-  // remember the choice and apply it as soon as the config lands — so a fast
-  // click is never lost while the page talks to the bot server.
-  let pendingLang = null;
+  // Language buttons work IMMEDIATELY, no server needed: if /config hasn't
+  // arrived yet we use the built-in brand text and never block the user.
   document.querySelectorAll('#picker button, .pill').forEach(el =>
     el.addEventListener('click', () => {
-      const code = el.dataset.lang;
-      if (T) { setLang(code); return; }
-      pendingLang = code;                       // config still loading — queue it
-      el.textContent = '載入中… Loading…';
+      if (!T) T = FALLBACK_T;
+      setLang(el.dataset.lang);
     }));
 
-  // Load brand config from the chatbot API in the background.
+  // Refresh brand text from the chatbot API in the background (non-blocking).
   async function init() {
     try {
       const res = await fetch(BACKEND_URL + '/config');
       const cfg = await res.json();
-      T = cfg.ui;
-      WA_NUMBER = cfg.whatsapp;
+      WA_NUMBER = cfg.whatsapp || WA_NUMBER;
+      T = cfg.ui || T;
     } catch (err) {
-      picker.innerHTML = '<h2>未能連接聊天機械人伺服器<br>Cannot reach the chatbot server.<br>' +
-        '<span style="font-size:14px;font-weight:400;color:#6b7280">請確認 chatbot 已啟動／已部署，並喺 config.js 設定咗正確網址：<br>' +
-        BACKEND_URL + '</span></h2>';
-      return;
+      // Server unreachable: the built-in text keeps the page usable; actual
+      // answers will show a connection error only if the user sends a message.
+      console.warn('config fetch failed; using built-in brand text', err);
     }
-    if (pendingLang) setLang(pendingLang);      // apply the click made while loading
   }
 
   init();
