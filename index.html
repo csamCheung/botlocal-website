@@ -401,7 +401,7 @@
         <h2 id="contact-h" data-i18n="contactTitle">聯絡我哋</h2>
         <p data-i18n="contactSub">WhatsApp 最快回覆，平日通常 1 小時內覆。</p>
       </div>
-      <div class="contact-grid">
+      <div class="contact-grid" style="grid-template-columns:1fr; max-width:460px; margin:0 auto;">
         <div class="contact-info">
           <div class="ci-row">
             <div class="ci-ico" aria-hidden="true">🟢</div>
@@ -433,22 +433,6 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm" onsubmit="return sendContact(event)" novalidate>
-          <div class="form-row">
-            <label for="cf-name" data-i18n="cfNameLabel">你嘅名</label>
-            <input id="cf-name" name="name" type="text" required autocomplete="name" />
-          </div>
-          <div class="form-row">
-            <label for="cf-biz" data-i18n="cfBizLabel">舖頭/公司名</label>
-            <input id="cf-biz" name="business" type="text" autocomplete="organization" />
-          </div>
-          <div class="form-row">
-            <label for="cf-msg" data-i18n="cfMsgLabel">想問啲咩？</label>
-            <textarea id="cf-msg" name="message" required></textarea>
-          </div>
-          <button class="btn btn-brand btn-block" type="submit" data-i18n="cfSubmit">發送訊息</button>
-          <p class="form-note" data-i18n="cfNote">㩒「發送」會用你預設嘅 email app 打開一封訊息畀我哋。</p>
-        </form>
       </div>
     </div>
   </section>
