@@ -35,12 +35,6 @@
   input { flex:1; padding:11px 14px; border:1px solid var(--line); border-radius:10px; font-size:15px; }
   button { padding:11px 18px; border:0; border-radius:10px; background:var(--me); color:#fff; font-size:15px; cursor:pointer; }
   button:disabled { opacity:.5; cursor:default; }
-  /* Language picker overlay shown at the start */
-  #picker { position:fixed; inset:0; background:rgba(244,245,247,.97); display:flex; flex-direction:column;
-            align-items:center; justify-content:center; gap:18px; z-index:10; padding:20px; text-align:center; }
-  #picker h2 { margin:0; font-size:18px; font-weight:600; line-height:1.6; }
-  .choices { display:flex; flex-direction:column; gap:12px; width:240px; }
-  .choices button { font-size:16px; padding:14px; }
 </style>
 </head>
 <body>
@@ -62,15 +56,6 @@
     <input id="box" autocomplete="off" autofocus>
     <button id="send" type="submit">Send</button>
   </form>
-
-  <div id="picker">
-    <h2>Choose your language<br>請選擇語言<br>请选择语言</h2>
-    <div class="choices">
-      <button data-lang="en">English</button>
-      <button data-lang="yue">廣東話 (Cantonese)</button>
-      <button data-lang="zh">普通话 (Mandarin)</button>
-    </div>
-  </div>
 
 <!-- BACKEND_URL lives in config.js — the one file you edit after deploying the bot. -->
 <script src="config.js?v=2"></script>
@@ -108,8 +93,9 @@
   const form = document.getElementById('form');
   const box = document.getElementById('box');
   const send = document.getElementById('send');
-  const picker = document.getElementById('picker');
-  let lang = null;
+  let lang = 'yue';         // UI language (greeting, labels); Cantonese default
+  let langForced = false;   // true only when the user taps a pill — otherwise
+                            // each message's reply language is auto-detected
 
   // Render a bot reply safely: escape HTML first, then turn markdown links,
   // bare URLs and **bold** into real formatting so links are clickable.
@@ -139,7 +125,7 @@
 
   function saveChat() {
     if (restoring) return;
-    try { localStorage.setItem(STORE_KEY, JSON.stringify({ lang: lang, msgs: msgs.slice(-50) })); } catch (e) {}
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ lang: lang, forced: langForced, msgs: msgs.slice(-50) })); } catch (e) {}
   }
 
   function add(text, cls) {
@@ -208,19 +194,20 @@
     log.innerHTML = '';
     msgs = [];
     add(t.greeting, 'bot');
-    picker.style.display = 'none';
     box.focus();
   }
 
   // Bring back the previous conversation after a refresh (same browser).
+  // Returns true if something was restored.
   function restoreChat() {
     let saved = null;
     try { saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch (e) {}
-    if (!saved || !saved.lang || !Array.isArray(saved.msgs) || !saved.msgs.length) return;
+    if (!saved || !saved.lang || !Array.isArray(saved.msgs) || !saved.msgs.length) return false;
     if (!T) T = FALLBACK_T;
     const t = T[saved.lang] || T.yue;
     restoring = true;
     lang = saved.lang;
+    langForced = !!saved.forced;
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
     box.placeholder = t.placeholder;
@@ -230,7 +217,7 @@
     saved.msgs.forEach(m => add(m.t, m.c));
     restoring = false;
     msgs = saved.msgs;
-    picker.style.display = 'none';
+    return true;
   }
 
   form.addEventListener('submit', async (e) => {
@@ -245,7 +232,7 @@
       const res = await fetch(BACKEND_URL + '/chat', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ message: text, lang: lang })
+        body: JSON.stringify({ message: text, lang: langForced ? lang : null })
       });
       const data = await res.json();
       typing.remove();
@@ -259,11 +246,12 @@
     }
   });
 
-  // Language buttons work IMMEDIATELY, no server needed: if /config hasn't
-  // arrived yet we use the built-in brand text and never block the user.
-  document.querySelectorAll('#picker button, .pill').forEach(el =>
+  // Header pills switch the UI language AND pin the reply language. Without a
+  // tap, replies auto-detect the customer's language message by message.
+  document.querySelectorAll('.pill').forEach(el =>
     el.addEventListener('click', () => {
       if (!T) T = FALLBACK_T;
+      langForced = true;
       setLang(el.dataset.lang);
     }));
 
@@ -281,7 +269,12 @@
     }
   }
 
-  restoreChat();   // resume the previous conversation if there is one
+  // No language picker: greet in Cantonese immediately (HK default); the
+  // reply language auto-detects per message unless a pill is tapped.
+  if (!restoreChat()) {
+    if (!T) T = FALLBACK_T;
+    setLang('yue');
+  }
   init();
 </script>
 </body>
