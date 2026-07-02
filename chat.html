@@ -132,6 +132,16 @@
     return t.replace(/\u0000(\d+)\u0000/g, (m, i) => stash[i]);
   }
 
+  // Persist the conversation in the browser so a refresh doesn't wipe it.
+  const STORE_KEY = 'botlocal_chat_v1';
+  let msgs = [];
+  let restoring = false;
+
+  function saveChat() {
+    if (restoring) return;
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ lang: lang, msgs: msgs.slice(-50) })); } catch (e) {}
+  }
+
   function add(text, cls) {
     const d = document.createElement('div');
     d.className = 'msg ' + cls;
@@ -142,6 +152,9 @@
     }
     log.appendChild(d);
     log.scrollTop = log.scrollHeight;
+    if (cls === 'me' || cls === 'bot') {   // real messages only (not typing dots)
+      if (!restoring) { msgs.push({ t: text, c: cls }); saveChat(); }
+    }
     return d;
   }
 
@@ -191,11 +204,33 @@
     send.textContent = t.send;
     document.querySelectorAll('.pill').forEach(p =>
       p.classList.toggle('active', p.dataset.lang === code));
-    // Fresh start: clear chat and greet in the chosen language.
+    // Fresh start: clear chat (incl. saved history) and greet in the new language.
     log.innerHTML = '';
+    msgs = [];
     add(t.greeting, 'bot');
     picker.style.display = 'none';
     box.focus();
+  }
+
+  // Bring back the previous conversation after a refresh (same browser).
+  function restoreChat() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch (e) {}
+    if (!saved || !saved.lang || !Array.isArray(saved.msgs) || !saved.msgs.length) return;
+    if (!T) T = FALLBACK_T;
+    const t = T[saved.lang] || T.yue;
+    restoring = true;
+    lang = saved.lang;
+    document.getElementById('title').textContent = t.title;
+    document.getElementById('subtitle').textContent = t.subtitle;
+    box.placeholder = t.placeholder;
+    send.textContent = t.send;
+    document.querySelectorAll('.pill').forEach(p =>
+      p.classList.toggle('active', p.dataset.lang === lang));
+    saved.msgs.forEach(m => add(m.t, m.c));
+    restoring = false;
+    msgs = saved.msgs;
+    picker.style.display = 'none';
   }
 
   form.addEventListener('submit', async (e) => {
@@ -246,6 +281,7 @@
     }
   }
 
+  restoreChat();   // resume the previous conversation if there is one
   init();
 </script>
 </body>
