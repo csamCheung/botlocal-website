@@ -223,13 +223,13 @@
         <h1 id="hero-h" data-i18n="headline">為你間舖頭度身訂造嘅 AI 客服機械人</h1>
         <p class="sub" data-i18n="sub">全日 24 小時幫你答客人問題、接受預約，一單生意都唔會走漏 —— 仲識講客人平時講嘅話。</p>
         <div class="cta-row">
-          <a class="btn btn-brand" href="chat.html" onclick="return blOpenChat()"><span aria-hidden="true">💬</span><span data-i18n="ctaChat">試下同 AI 傾偈</span></a>
+          <a class="btn btn-brand" href="chat.html?v=3" onclick="return blOpenChat()"><span aria-hidden="true">💬</span><span data-i18n="ctaChat">試下同 AI 傾偈</span></a>
           <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="cta1">WhatsApp 預約免費示範</span></a>
         </div>
         <div class="trust"><span class="star" aria-hidden="true">★</span><span data-i18n="trust">中小企值得信賴</span><span aria-hidden="true">·</span><span data-i18n="poweredBy">⚡ 由 ChatGPT 技術驅動</span></div>
       </div>
 
-      <a class="chatcard" href="chat.html" onclick="return blOpenChat()" style="display:block;cursor:pointer" aria-label="開始同我哋 AI 傾偈 · Chat with our AI">
+      <a class="chatcard" href="chat.html?v=3" onclick="return blOpenChat()" style="display:block;cursor:pointer" aria-label="開始同我哋 AI 傾偈 · Chat with our AI">
         <div class="chat-head">
           <span class="bot">🤖</span>
           <span class="name" data-i18n="chatTitle">BotLocal · 即時對話</span>
@@ -702,7 +702,7 @@ setLang("zh"); /* Cantonese first */
   #bl-chat-panel iframe{width:100%; height:100%; border:0;}
 </style>
 <button id="bl-chat-btn" aria-label="Chat with us">💬</button>
-<div id="bl-chat-panel"><iframe title="Chat" data-src="chat.html"></iframe></div>
+<div id="bl-chat-panel"><iframe title="Chat" data-src="chat.html?v=3"></iframe></div>
 <script>
   (function(){
     var btn=document.getElementById('bl-chat-btn');
