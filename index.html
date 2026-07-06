@@ -115,16 +115,6 @@
   .price li{font-size:14.5px; padding:7px 0 7px 26px; position:relative; color:var(--ink);}
   .price li::before{content:"✓"; position:absolute; left:0; top:7px; color:var(--wa-dark); font-weight:700;}
 
-  /* video */
-  .video-frame{max-width:860px; margin:0 auto; background:#0c1018; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line);}
-  .video-ar{position:relative; width:100%; aspect-ratio:16/9; background:#0c1018;}
-  .video-ar iframe, .video-ar video{position:absolute; inset:0; width:100%; height:100%; border:0;}
-  .video-ph{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:#fff; background:radial-gradient(120% 120% at 50% 0%, #25324a 0%, #0c1018 70%); cursor:pointer; text-align:center; padding:20px; border:0; font:inherit; width:100%;}
-  .play{width:74px; height:74px; border-radius:50%; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.35); display:grid; place-items:center; font-size:30px; transition:transform .12s ease, background .15s ease;}
-  .video-ph:hover .play, .video-ph:focus-visible .play{transform:scale(1.06); background:rgba(255,255,255,.22);}
-  .video-ph small{color:rgba(255,255,255,.7); font-size:13px;}
-  .video-note{text-align:center; font-size:13px; color:var(--ink-faint); margin-top:14px;}
-
   /* FAQ */
   .faq{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
   .faq details{background:#fff; border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden; transition:box-shadow .15s ease;}
@@ -221,7 +211,7 @@
       <div>
         <span class="eyebrow" data-i18n="eyebrow">專為小店打造嘅 AI 客服</span>
         <h1 id="hero-h" data-i18n="headline">為你間舖頭度身訂造嘅 AI 客服機械人</h1>
-        <p class="sub" data-i18n="sub">全日 24 小時幫你答客人問題、接受預約，一單生意都唔會走漏 —— 仲識講客人平時講嘅話。</p>
+        <p class="sub" data-i18n="sub">全日 24 小時幫你答客人問題、接受預約，一單生意都唔會走漏 —— 仲識講客人平時講嘅話。WhatsApp、WeChat、Facebook、IG 都接駁到；有咩需要，隨時搵我哋傾下。</p>
         <div class="cta-row">
           <a class="btn btn-brand" href="chat.html?v=3" onclick="return blOpenChat()"><span aria-hidden="true">💬</span><span data-i18n="ctaChat">試下同 AI 傾偈</span></a>
           <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="cta1">WhatsApp 預約免費示範</span></a>
@@ -276,8 +266,8 @@
         </article>
         <article class="feat">
           <div class="ico" aria-hidden="true">💬</div>
-          <h3 data-i18n="feat5T">WhatsApp + 網頁</h3>
-          <p data-i18n="feat5D">同一個 bot 可以同時喺 WhatsApp、IG、你個官網度回應客人。</p>
+          <h3 data-i18n="feat5T">接駁你常用嘅平台</h3>
+          <p data-i18n="feat5D">同一個 bot 可以同時喺 WhatsApp、WeChat、Facebook、IG 同你個官網度回應客人。</p>
         </article>
         <article class="feat">
           <div class="ico" aria-hidden="true">⚡</div>
@@ -405,7 +395,7 @@
         </details>
         <details>
           <summary data-i18n="faq5Q">可以接駁邊啲平台？</summary>
-          <div class="ans" data-i18n="faq5A">WhatsApp Business、Facebook Messenger、Instagram DM、你個官網嘅 chat widget，全部都得。Pro 仲可以接 Google 日曆。</div>
+          <div class="ans" data-i18n="faq5A">WhatsApp Business、WeChat、Facebook Messenger、Instagram DM、你個官網嘅 chat widget，全部都得。Pro 仲可以接 Google 日曆。有其他平台需求？隨時同我哋傾下。</div>
         </details>
       </div>
     </div>
@@ -424,7 +414,7 @@
             <div class="ci-ico" aria-hidden="true">🟢</div>
             <div>
               <p class="ci-label" data-i18n="ciWaLabel">WhatsApp</p>
-              <p class="ci-value"><a class="wa-link" href="#" target="_blank" rel="noopener">+44 7442 478441</a></p>
+              <p class="ci-value"><a class="wa-link" href="#" target="_blank" rel="noopener">+44 7472 323783</a></p>
             </div>
           </div>
           <div class="ci-row">
@@ -480,8 +470,7 @@
 
 <script>
 /* ====== EDIT THESE ====== */
-var WHATSAPP_NUMBER = "447442478441";                                   // International format, no '+' (44 = UK)
-var VIDEO_URL = "https://www.youtube.com/embed/dQw4w9WgXcQ";            // TODO: replace with real demo YouTube embed URL
+var WHATSAPP_NUMBER = "447472323783";                                   // International format, no '+' (44 = UK)
 var CONTACT_EMAIL = "samkiengineer@gmail.com";
 /* ======================== */
 
@@ -494,8 +483,8 @@ var I18N = {
     navCta:"WhatsApp",
     eyebrow:"專為小店打造嘅 AI 客服",
     headline:"為你間舖頭度身訂造嘅 AI 客服機械人",
-    sub:"全日 24 小時幫你答客人問題、接受預約，一單生意都唔會走漏 —— 仲識講客人平時講嘅話。",
-    cta1:"WhatsApp 預約免費示範", cta2:"睇示範片", ctaChat:"試下同 AI 傾偈",
+    sub:"全日 24 小時幫你答客人問題、接受預約，一單生意都唔會走漏 —— 仲識講客人平時講嘅話。WhatsApp、WeChat、Facebook、IG 都接駁到；有咩需要，隨時搵我哋傾下。",
+    cta1:"WhatsApp 預約免費示範", ctaChat:"試下同 AI 傾偈",
     trust:"中小企值得信賴", poweredBy:"⚡ 由 ChatGPT 技術驅動",
     chatTitle:"BotLocal · 即時對話", online:"在線",
     msgUser:"你哋中三數學班幾錢？",
@@ -509,7 +498,7 @@ var I18N = {
     feat2T:"自動接受預約", feat2D:"直接喺對話入面幫客人訂位、訂枱、book 服務 —— 同步去你嘅日曆。",
     feat3T:"識講廣東話", feat3D:"用 ChatGPT 技術，客人點打都聽得明，唔似嗰啲生硬嘅 AI 答嘢。",
     feat4T:"識曬你間舖嘅嘢", feat4D:"我哋會用你嘅 menu、價錢、地址訓練 bot，答案百份百貼你間舖。",
-    feat5T:"WhatsApp + 網頁", feat5D:"同一個 bot 可以同時喺 WhatsApp、IG、你個官網度回應客人。",
+    feat5T:"接駁你常用嘅平台", feat5D:"同一個 bot 可以同時喺 WhatsApp、WeChat、Facebook、IG 同你個官網度回應客人。",
     feat6T:"無需技術知識", feat6D:"你完全唔需要識 coding。將資料畀我哋，幾日後就用得。",
 
     howTitle:"點樣開始？", howSub:"三步就搞掂，最快一個禮拜上線。",
@@ -523,8 +512,6 @@ var I18N = {
     step2T:"我哋訓練個 bot", step2D:"用你嘅資料客製化訓練，我哋幫你執到識答你間舖嘅嘢為止。",
     step3T:"上線收客", step3D:"接駁去你嘅 WhatsApp / 網站，即刻開始 24 小時幫你做生意。",
 
-    demoTitle:"睇下實際運作", demoSub:"一分鐘示範片，睇下 AI 客服點樣即時幫你應對客人。",
-    videoPlay:"播放示範片", videoHint:"一分鐘睇曬點樣運作",
 
     priceTitle:"價錢透明，一次過畀", priceSub:"一個價錢，全部功能。買斷終身使用，冇月費、冇暗藏收費。",
     pBadge:"限時優惠 · 首批客戶", pName:"全套 AI 客服機械人", pDesc:"一個價錢，全部功能。買斷終身使用。",
@@ -559,7 +546,7 @@ var I18N = {
     faq4Q:"要簽長約嗎？有冇月費？",
     faq4A:"完全冇月費，冇長約。一次過畀，終身用，包 1 年內無限次更新內容。一年後想繼續更新先有少量年費。",
     faq5Q:"可以接駁邊啲平台？",
-    faq5A:"WhatsApp Business、Facebook Messenger、Instagram DM、你個官網嘅 chat widget，全部都得。Pro 仲可以接 Google 日曆。",
+    faq5A:"WhatsApp Business、WeChat、Facebook Messenger、Instagram DM、你個官網嘅 chat widget，全部都得。Pro 仲可以接 Google 日曆。有其他平台需求？隨時同我哋傾下。",
 
     contactTitle:"聯絡我哋", contactSub:"WhatsApp 最快回覆，平日通常 1 小時內覆。",
     ciWaLabel:"WhatsApp", ciMailLabel:"電郵",
@@ -583,8 +570,8 @@ var I18N = {
     navCta:"WhatsApp",
     eyebrow:"AI chatbot for local shops",
     headline:"Custom AI chatbots for your local business",
-    sub:"Answer customer questions 24/7, take bookings, and never miss a sale — in the language your customers actually speak.",
-    cta1:"Book a free demo on WhatsApp", cta2:"Watch the demo", ctaChat:"Try the live AI chat",
+    sub:"Answer customer questions 24/7, take bookings, and never miss a sale — in the language your customers actually speak. Connects to WhatsApp, WeChat, Facebook and Instagram — and if you have something specific in mind, just talk to us.",
+    cta1:"Book a free demo on WhatsApp", ctaChat:"Try the live AI chat",
     trust:"Trusted by small businesses across Hong Kong", poweredBy:"⚡ Powered by ChatGPT",
     chatTitle:"BotLocal · live chat", online:"online",
     msgUser:"How much is your S3 Maths class?",
@@ -598,7 +585,7 @@ var I18N = {
     feat2T:"Takes bookings automatically", feat2D:"Books tables, appointments and services right inside the chat — synced to your calendar.",
     feat3T:"Speaks proper Cantonese", feat3D:"Powered by ChatGPT — understands how locals actually talk, not the stiff, generic AI replies you usually get.",
     feat4T:"Knows your business inside out", feat4D:"We train it on your menu, prices and policies, so every answer matches your shop.",
-    feat5T:"WhatsApp + your website", feat5D:"One bot, every channel — WhatsApp, Instagram DM and a widget on your site.",
+    feat5T:"Every channel you use", feat5D:"One bot, every channel — WhatsApp, WeChat, Facebook, Instagram DM and a widget on your site.",
     feat6T:"Zero technical setup", feat6D:"No coding needed on your end. Send us your info and we go live in days.",
 
     howTitle:"How to get started", howSub:"Three steps, live in as little as a week.",
@@ -612,8 +599,6 @@ var I18N = {
     step2T:"We train your bot", step2D:"We customise and tune it on your data until it answers like part of your team.",
     step3T:"Go live and take customers", step3D:"Plug it into WhatsApp or your site and start serving customers 24/7.",
 
-    demoTitle:"See it in action", demoSub:"A one-minute demo showing how the AI handles real customers.",
-    videoPlay:"Play demo video", videoHint:"One minute, end to end",
 
     priceTitle:"Transparent, one-time pricing", priceSub:"One price, every feature. Pay once, use forever — no monthly fees, no surprises.",
     pBadge:"Limited offer · first clients", pName:"Full AI customer-service bot", pDesc:"One price, every feature. Own it for life.",
@@ -648,7 +633,7 @@ var I18N = {
     faq4Q:"Are there long contracts or monthly fees?",
     faq4A:"No contracts and no monthly fees. Pay once, use forever, with unlimited content updates for the first year. A small annual fee covers updates after that.",
     faq5Q:"Which platforms can it connect to?",
-    faq5A:"WhatsApp Business, Facebook Messenger, Instagram DM, and a chat widget on your website. Pro adds Google Calendar.",
+    faq5A:"WhatsApp Business, WeChat, Facebook Messenger, Instagram DM, and a chat widget on your website. Pro adds Google Calendar. Need another platform? Just talk to us.",
 
     contactTitle:"Get in touch", contactSub:"WhatsApp is fastest — usually replied to within an hour on weekdays.",
     ciWaLabel:"WhatsApp", ciMailLabel:"Email",
@@ -693,23 +678,6 @@ function setLang(lang){
   zhBtn.setAttribute("aria-pressed", lang==="zh" ? "true" : "false");
   enBtn.setAttribute("aria-pressed", lang==="en" ? "true" : "false");
   document.querySelectorAll(".wa-link").forEach(function(a){ a.setAttribute("href", waLink(lang)); });
-}
-
-function playVideo(){
-  var ar = document.getElementById("videoAr");
-  if(!VIDEO_URL){
-    alert(currentLang==="zh"
-      ? "重未設定示範片。"
-      : "No demo video set yet.");
-    return;
-  }
-  var url = VIDEO_URL;
-  if(url.indexOf("youtube") > -1 || url.indexOf("vimeo") > -1){
-    var sep = url.indexOf("?") > -1 ? "&" : "?";
-    ar.innerHTML = '<iframe src="'+url+sep+'autoplay=1" title="Demo video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-  } else {
-    ar.innerHTML = '<video src="'+url+'" controls autoplay></video>';
-  }
 }
 
 function sendContact(e){
