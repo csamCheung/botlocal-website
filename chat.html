@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Customer Service</title>
+<title>BotLocal AI 客服示範 · Live Demo</title>
 <style>
   :root { --bg:#f4f5f7; --bot:#fff; --me:#0b5fff; --line:#e3e6ea; }
   * { box-sizing: border-box; }
@@ -15,6 +15,7 @@
   .pills { display:inline-flex; gap:2px; padding:3px; background:#eef1f5; border:1px solid var(--line); border-radius:999px; }
   .pill { font-size:13px; font-weight:500; line-height:1; padding:7px 14px; border:0; border-radius:999px; background:transparent; cursor:pointer; color:#5a6473; white-space:nowrap; transition:background .15s ease, color .15s ease; }
   .pill:hover { color:#1b2330; }
+  .pill:focus-visible { outline:2px solid var(--me); outline-offset:2px; }
   .pill.active { background:var(--me); color:#fff; box-shadow:0 1px 3px rgba(11,95,255,.35); }
   #log { flex:1; overflow-y:auto; padding:18px; display:flex; flex-direction:column; gap:10px; }
   .msg { max-width:75%; padding:10px 14px; border-radius:14px; line-height:1.45; white-space:pre-wrap; word-wrap:break-word; }
@@ -43,17 +44,17 @@
       <h1 id="title">Customer Service</h1>
       <p id="subtitle"></p>
     </div>
-    <div class="pills">
-      <span class="pill" data-lang="en">EN</span>
-      <span class="pill" data-lang="yue">廣東話</span>
-      <span class="pill" data-lang="zh">普通话</span>
+    <div class="pills" role="group" aria-label="Chat language">
+      <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button class="pill" type="button" data-lang="yue" aria-pressed="true">廣東話</button>
+      <button class="pill" type="button" data-lang="zh" aria-pressed="false">普通话</button>
     </div>
   </header>
 
-  <div id="log"></div>
+  <div id="log" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation"></div>
 
-  <form id="form">
-    <input id="box" autocomplete="off" autofocus>
+  <form id="form" aria-label="Chat message">
+    <input id="box" autocomplete="off" aria-label="Chat message" autofocus>
     <button id="send" type="submit">Send</button>
   </form>
 
@@ -210,12 +211,19 @@
   function setLang(code) {
     lang = code;
     const t = T[code];
+    document.documentElement.lang = code === 'yue' ? 'zh-HK' : code === 'zh' ? 'zh-Hans' : 'en';
+    document.title = t.title + ' · BotLocal';
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
     box.placeholder = t.placeholder;
+    box.setAttribute('aria-label', t.placeholder);
     send.textContent = t.send;
-    document.querySelectorAll('.pill').forEach(p =>
-      p.classList.toggle('active', p.dataset.lang === code));
+    send.setAttribute('aria-label', t.send);
+    document.querySelectorAll('.pill').forEach(p => {
+      const active = p.dataset.lang === code;
+      p.classList.toggle('active', active);
+      p.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
     // Fresh start: clear chat (incl. saved history), begin a NEW conversation
     // (so the backend forgets prior turns too), and greet in the new language.
     log.innerHTML = '';
@@ -237,12 +245,19 @@
     restoring = true;
     lang = saved.lang;
     langForced = !!saved.forced;
+    document.documentElement.lang = lang === 'yue' ? 'zh-HK' : lang === 'zh' ? 'zh-Hans' : 'en';
+    document.title = t.title + ' · BotLocal';
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
     box.placeholder = t.placeholder;
+    box.setAttribute('aria-label', t.placeholder);
     send.textContent = t.send;
-    document.querySelectorAll('.pill').forEach(p =>
-      p.classList.toggle('active', p.dataset.lang === lang));
+    send.setAttribute('aria-label', t.send);
+    document.querySelectorAll('.pill').forEach(p => {
+      const active = p.dataset.lang === lang;
+      p.classList.toggle('active', active);
+      p.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
     saved.msgs.forEach(m => add(m.t, m.c));
     restoring = false;
     msgs = saved.msgs;
