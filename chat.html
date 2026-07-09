@@ -135,6 +135,17 @@
 
   // Persist the conversation in the browser so a refresh doesn't wipe it.
   const STORE_KEY = 'botlocal_chat_v1';
+  // Stable id so the backend can remember prior turns across page reloads.
+  const SID_KEY = 'botlocal_sid_v1';
+  const newSid = () => (crypto.randomUUID ? crypto.randomUUID()
+    : String(Date.now()) + Math.random().toString(16).slice(2));
+  let sessionId = (function () {
+    try {
+      let s = localStorage.getItem(SID_KEY);
+      if (!s) { s = newSid(); localStorage.setItem(SID_KEY, s); }
+      return s;
+    } catch (e) { return newSid(); }
+  })();
   let msgs = [];
   let restoring = false;
 
@@ -205,9 +216,12 @@
     send.textContent = t.send;
     document.querySelectorAll('.pill').forEach(p =>
       p.classList.toggle('active', p.dataset.lang === code));
-    // Fresh start: clear chat (incl. saved history) and greet in the new language.
+    // Fresh start: clear chat (incl. saved history), begin a NEW conversation
+    // (so the backend forgets prior turns too), and greet in the new language.
     log.innerHTML = '';
     msgs = [];
+    sessionId = newSid();
+    try { localStorage.setItem(SID_KEY, sessionId); } catch (e) {}
     add(t.greeting, 'bot');
     box.focus();
   }
@@ -247,7 +261,7 @@
       const res = await fetch(BACKEND_URL + '/chat', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ message: text, lang: langForced ? lang : null })
+        body: JSON.stringify({ message: text, lang: langForced ? lang : null, session_id: sessionId })
       });
       const data = await res.json();
       typing.remove();
