@@ -12,6 +12,8 @@
   header { background:#fff; border-bottom:1px solid var(--line); padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
   header h1 { margin:0; font-size:16px; }
   header p { margin:4px 0 0; font-size:12px; color:#6b7280; }
+  .privacy-link { display:inline-block; margin-top:4px; color:#5a6473; font-size:11px; text-decoration:underline; }
+  .privacy-link:hover { color:#1b2330; }
   .pills { display:inline-flex; gap:2px; padding:3px; background:#eef1f5; border:1px solid var(--line); border-radius:999px; }
   .pill { font-size:13px; font-weight:500; line-height:1; padding:7px 14px; border:0; border-radius:999px; background:transparent; cursor:pointer; color:#5a6473; white-space:nowrap; transition:background .15s ease, color .15s ease; }
   .pill:hover { color:#1b2330; }
@@ -43,6 +45,7 @@
     <div>
       <h1 id="title">Customer Service</h1>
       <p id="subtitle"></p>
+      <a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">私隱政策 · Privacy</a>
     </div>
     <div class="pills" role="group" aria-label="Chat language">
       <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
