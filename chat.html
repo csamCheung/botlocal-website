@@ -97,6 +97,11 @@
   let langForced = false;   // true only when the user taps a pill — otherwise
                             // each message's reply language is auto-detected
 
+  // Pretty-print an international phone number (digits only) for display.
+  function fmtPhone(d) {
+    if (d === "447472323783") return "+44 7472 323783";   // BotLocal WhatsApp
+    return "+" + d;
+  }
   // Render a bot reply safely: escape HTML first, then turn markdown links,
   // bare URLs and **bold** into real formatting so links are clickable.
   function renderBotHTML(text) {
@@ -104,15 +109,25 @@
     let t = esc(text);
     const stash = [];
     const keep = html => { stash.push(html); return '\u0000' + (stash.length - 1) + '\u0000'; };
-    // markdown links [label](url) -> neat clickable label
-    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, label, url) =>
-      keep('<a href="' + url + '" target="_blank" rel="noopener">' + label + '</a>'));
+    // markdown links [label](url) -> neat clickable label (http(s) + mailto)
+    t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (m, label, url) => {
+      const isMail = url.slice(0, 7) === 'mailto:';
+      const attrs = isMail ? '' : ' target="_blank" rel="noopener"';
+      // show the phone number after WhatsApp links so people see it's tappable
+      const wa = url.match(/wa\.me\/(\d+)/);
+      const shown = wa && label.replace(/\D/g, '').indexOf(wa[1]) === -1
+        ? label + '（' + fmtPhone(wa[1]) + '）' : label;
+      return keep('<a href="' + url + '"' + attrs + '>' + shown + '</a>');
+    });
     // bare URLs -> clickable (trim trailing punctuation incl. Chinese full-width)
     t = t.replace(/https?:\/\/[^\s<)。，；、）]+/g, m => {
       let url = m, trail = '';
       while (/[.,;:!?]$/.test(url)) { trail = url.slice(-1) + trail; url = url.slice(0, -1); }
       return keep('<a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>') + trail;
     });
+    // bare email addresses -> clickable mailto
+    t = t.replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, m =>
+      keep('<a href="mailto:' + m + '">' + m + '</a>'));
     // **bold**
     t = t.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
     return t.replace(/\u0000(\d+)\u0000/g, (m, i) => stash[i]);
