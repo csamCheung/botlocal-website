@@ -60,6 +60,19 @@
   .social-ic{width:34px; height:34px; padding:0; border-radius:50%;}
   .social-ic .brand-ic{width:16px; height:16px;}
   .nav-right{gap:10px;}
+  /* about me */
+  .about-card{max-width:880px; margin:0 auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:36px; display:grid; grid-template-columns:200px 1fr; gap:36px; align-items:center;}
+  .about-avatar{width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg,var(--brand),#7c3aed); color:#fff; display:grid; place-items:center; font-size:64px; font-weight:700; margin:0 auto; overflow:hidden;}
+  .about-avatar img{width:100%; height:100%; object-fit:cover;}
+  .about-name{font-size:24px; font-weight:700; margin:0 0 2px;}
+  .about-role{font-size:14.5px; color:var(--ink-soft); margin:0 0 14px;}
+  .about-bio{font-size:15px; color:var(--ink); margin:0 0 16px; line-height:1.75;}
+  .about-chips{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; padding:0; list-style:none;}
+  .about-chips li{font-size:13px; font-weight:600; background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius-pill); padding:6px 13px; color:var(--ink-soft);}
+  .btn-li{background:#0a66c2; color:#fff;}
+  .btn-li:hover{background:#084d92;}
+  .about-find{font-size:13px; color:var(--ink-faint); margin:12px 0 0;}
+  @media (max-width:720px){ .about-card{grid-template-columns:1fr; text-align:center; padding:28px 20px;} .about-chips{justify-content:center;} }
 
   /* hero */
   .hero{padding:64px 0 48px;}
@@ -198,6 +211,7 @@
       <a href="#how" data-i18n="navHow">點運作</a>
       <a href="#pricing" data-i18n="navPricing">價錢</a>
       <a href="#faq" data-i18n="navFaq">常見問題</a>
+      <a href="#about" data-i18n="navAbout">關於我</a>
       <a href="#contact" data-i18n="navContact">聯絡</a>
     </nav>
     <div class="nav-right">
@@ -416,8 +430,34 @@
     </div>
   </section>
 
+  <!-- ABOUT ME -->
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="about-h" data-i18n="aboutTitle">邊個做㗎？</h2>
+        <p data-i18n="aboutSub">唔係匿名公司——係一個你搵得到、查得到嘅香港人工程師。</p>
+      </div>
+      <div class="about-card">
+        <div class="about-avatar" aria-hidden="true">S</div>
+        <div>
+          <p class="about-name">Sam Cheung</p>
+          <p class="about-role" data-i18n="aboutRole">軟件工程師 · 香港中文大學畢業 · 現於英國參與 NHS 醫療系統開發</p>
+          <p class="about-bio" data-i18n="aboutBio">我係 Sam，香港長大、中大畢業嘅軟件工程師，而家喺英國參與 NHS（英國國民保健署）醫療系統嘅開發——呢類系統對穩定性同私隱要求極高，我亦用同一套標準嚟做 BotLocal。由起機械人、調校廣東話語氣，到上線之後嘅跟進，全部我親自負責。落訂之前，歡迎你上 LinkedIn 查下我係邊個。</p>
+          <ul class="about-chips">
+            <li data-i18n="aboutChip1">🎓 香港中文大學</li>
+            <li data-i18n="aboutChip2">🏥 英國 NHS 醫療系統工程師</li>
+            <li data-i18n="aboutChip3">🤖 Microsoft・Hugging Face AI 認證</li>
+            <li data-i18n="aboutChip4">🇭🇰 香港人・親自跟進</li>
+          </ul>
+          <a class="btn btn-li" href="https://www.linkedin.com/in/sam-ki-cheung/" target="_blank" rel="noopener"><svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg><span data-i18n="aboutCta">上 LinkedIn 認識我</span></a>
+          <p class="about-find" data-i18n="aboutFind">Instagram、Facebook、WhatsApp 都搵到我——一個真人，唔會突然消失。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
-  <section class="section" id="contact" aria-labelledby="contact-h">
+  <section class="section alt" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="sec-head">
         <h2 id="contact-h" data-i18n="contactTitle">聯絡我哋</h2>
@@ -508,7 +548,13 @@ var I18N = {
     pageTitle:"BotLocal · 為小店打造嘅 AI 客服機械人",
     metaDesc:"為你間舖頭度身訂造嘅 AI 客服機械人，全日 24 小時答客人、接受預約。",
     skipLink:"跳到內容",
-    navFeatures:"功能", navHow:"點運作", navPricing:"價錢", navFaq:"常見問題", navContact:"聯絡",
+    navFeatures:"功能", navHow:"點運作", navPricing:"價錢", navFaq:"常見問題", navAbout:"關於我", navContact:"聯絡",
+    aboutTitle:"邊個做㗎？", aboutSub:"唔係匿名公司——係一個你搵得到、查得到嘅香港人工程師。",
+    aboutRole:"軟件工程師 · 香港中文大學畢業 · 現於英國參與 NHS 醫療系統開發",
+    aboutBio:"我係 Sam，香港長大、中大畢業嘅軟件工程師，而家喺英國參與 NHS（英國國民保健署）醫療系統嘅開發——呢類系統對穩定性同私隱要求極高，我亦用同一套標準嚟做 BotLocal。由起機械人、調校廣東話語氣，到上線之後嘅跟進，全部我親自負責。落訂之前，歡迎你上 LinkedIn 查下我係邊個。",
+    aboutChip1:"🎓 香港中文大學", aboutChip2:"🏥 英國 NHS 醫療系統工程師", aboutChip3:"🤖 Microsoft・Hugging Face AI 認證", aboutChip4:"🇭🇰 香港人・親自跟進",
+    aboutCta:"上 LinkedIn 認識我",
+    aboutFind:"Instagram、Facebook、WhatsApp 都搵到我——一個真人，唔會突然消失。",
     navCta:"WhatsApp",
     eyebrow:"專為小店打造嘅 AI 客服",
     headline:"為你間舖頭度身訂造嘅 AI 客服機械人",
@@ -601,7 +647,13 @@ var I18N = {
     pageTitle:"BotLocal · Custom AI chatbots for local businesses",
     metaDesc:"Custom AI chatbots for your local business — answer customers and take bookings 24/7.",
     skipLink:"Skip to content",
-    navFeatures:"Features", navHow:"How it works", navPricing:"Pricing", navFaq:"FAQ", navContact:"Contact",
+    navFeatures:"Features", navHow:"How it works", navPricing:"Pricing", navFaq:"FAQ", navAbout:"About me", navContact:"Contact",
+    aboutTitle:"Who's behind this?", aboutSub:"Not an anonymous company — a real Hong Kong engineer you can look up.",
+    aboutRole:"Software Engineer · CUHK graduate · currently building NHS healthcare systems in the UK",
+    aboutBio:"I'm Sam — born and raised in Hong Kong, graduated from The Chinese University of Hong Kong, and now working in the UK on NHS healthcare systems, where reliability and privacy standards are extremely high. I bring the same standards to BotLocal. From building your bot and tuning its Cantonese to after-launch support, I handle everything personally. Before you commit, feel free to look me up on LinkedIn.",
+    aboutChip1:"🎓 The Chinese University of Hong Kong", aboutChip2:"🏥 UK NHS healthcare systems engineer", aboutChip3:"🤖 Microsoft · Hugging Face AI certified", aboutChip4:"🇭🇰 Hongkonger · personal service",
+    aboutCta:"Find me on LinkedIn",
+    aboutFind:"You can also find me on Instagram, Facebook and WhatsApp — a real person who won't disappear.",
     navCta:"WhatsApp",
     eyebrow:"AI chatbot for local shops",
     headline:"Custom AI chatbots for your local business",
