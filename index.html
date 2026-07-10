@@ -98,18 +98,8 @@
   .b.bot{align-self:flex-start; background:#fff; border:1px solid var(--line); border-bottom-left-radius:5px;}
   .chat-input{margin-top:14px; display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:var(--radius-pill); padding:9px 14px; font-size:13px; color:var(--ink-faint);}
   .chat-input .send{margin-left:auto; color:var(--brand); font-size:17px;}
+  .chat-caption{font-size:12.5px; font-weight:600; color:var(--brand-dark); background:var(--brand-soft); border-radius:var(--radius-pill); padding:7px 14px; margin-bottom:12px; text-align:center; line-height:1.5;}
   .b-src{align-self:flex-start; font-size:11px; color:var(--ink-faint); background:var(--bg-soft2); border:1px solid var(--line); border-radius:var(--radius-pill); padding:2px 9px; margin-top:-4px; margin-left:4px;}
-  /* hero "how it's built" story */
-  .hb-inputs{background:#fff; border:1px dashed var(--line2); border-radius:var(--radius-sm); padding:12px 14px 13px; text-align:center;}
-  .hb-label{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:9px;}
-  .hb-chips{display:flex; flex-wrap:wrap; justify-content:center; gap:7px;}
-  .hb-chip{font-size:12.5px; font-weight:600; color:var(--ink-soft); background:var(--bg-soft2); border:1px solid var(--line); border-radius:var(--radius-pill); padding:4px 11px; white-space:nowrap; animation:hbIn .5s ease backwards;}
-  .hb-chip:nth-child(2){animation-delay:.1s;} .hb-chip:nth-child(3){animation-delay:.2s;} .hb-chip:nth-child(4){animation-delay:.3s;}
-  .hb-flow{display:flex; align-items:center; justify-content:center; gap:8px; padding:9px 0; flex-wrap:wrap;}
-  .hb-tag{font-size:11.5px; font-weight:600; color:var(--brand-dark); background:var(--brand-soft); border-radius:var(--radius-pill); padding:3px 10px; white-space:nowrap;}
-  .hb-arrow{color:var(--brand); font-size:15px; line-height:1; animation:hbPulse 2s ease-in-out infinite;}
-  @keyframes hbIn{from{opacity:0; transform:translateY(5px);}}
-  @keyframes hbPulse{0%,100%{transform:translateY(-1px); opacity:.55;} 50%{transform:translateY(2px); opacity:1;}}
 
   /* section */
   .section{padding:72px 0;}
@@ -274,20 +264,7 @@
       </div>
 
       <a class="chatcard" href="chat.html?v=3" onclick="return blOpenChat()" style="display:block;cursor:pointer" aria-label="開始同我哋 AI 傾偈 · Chat with our AI">
-        <div class="hb-inputs">
-          <div class="hb-label" data-i18n="hbInputLabel">你間舖嘅資料</div>
-          <div class="hb-chips">
-            <span class="hb-chip" data-i18n="hbChip1">📋 Menu</span>
-            <span class="hb-chip" data-i18n="hbChip2">💰 價錢</span>
-            <span class="hb-chip" data-i18n="hbChip3">❓ FAQ</span>
-            <span class="hb-chip" data-i18n="hbChip4">📄 政策</span>
-          </div>
-        </div>
-        <div class="hb-flow">
-          <span class="hb-tag" data-i18n="hbFlowTrain">訓練</span>
-          <span class="hb-arrow" aria-hidden="true">↓</span>
-          <span class="hb-tag" data-i18n="hbFlowTone">調校你嘅語氣</span>
-        </div>
+        <div class="chat-caption" data-i18n="chatCaption">📚 用你間舖嘅資料訓練 → 🗣️ 用你嘅口吻答客</div>
         <div class="chat-head">
           <span class="bot">🤖</span>
           <span class="name" data-i18n="chatTitle">BotLocal · 即時對話</span>
@@ -297,6 +274,8 @@
           <div class="b user" data-i18n="msgUser">你哋中三數學班幾錢？</div>
           <div class="b bot" data-i18n="msgBot">中三數學班每月 HK$1,200，星期六下午 2-4 點。要唔要幫你 book 個試堂？</div>
           <span class="b-src" data-i18n="srcChip">嚟自你間舖嘅資料</span>
+          <div class="b user" data-i18n="msgUser2">好呀，今個星期六。</div>
+          <div class="b bot" data-i18n="msgBot2">收到 ✅ 已經幫你 book 咗星期六 2:00 試堂。到時見！</div>
           <div class="b user" data-i18n="msgUser3">小六有冇班？</div>
           <div class="b bot" data-i18n="msgBot3">唔好意思，我哋暫時冇小六班，中一至中六先有。留低你電話，有新班我哋第一時間通知你？</div>
         </div>
@@ -653,9 +632,7 @@ var I18N = {
     cta1:"WhatsApp 預約免費示範", ctaChat:"試下同 AI 傾偈",
     trust:"專為香港小店同中小企而設", poweredBy:"⚡ 只答你間舖嘅資料，唔會亂噏",
     chatTitle:"BotLocal · 即時對話", online:"在線",
-    hbInputLabel:"你間舖嘅資料",
-    hbChip1:"📋 Menu", hbChip2:"💰 價錢", hbChip3:"❓ FAQ", hbChip4:"📄 政策",
-    hbFlowTrain:"訓練", hbFlowTone:"調校你嘅語氣",
+    chatCaption:"📚 用你間舖嘅資料訓練 → 🗣️ 用你嘅口吻答客",
     srcChip:"嚟自你間舖嘅資料",
     msgUser:"你哋中三數學班幾錢？",
     msgBot:"中三數學班每月 HK$1,200，星期六下午 2-4 點。要唔要幫你 book 個試堂？",
@@ -772,9 +749,7 @@ var I18N = {
     cta1:"Book a free demo on WhatsApp", ctaChat:"Try the live AI chat",
     trust:"Built for Hong Kong's small businesses", poweredBy:"⚡ Answers only from your shop's info — never makes things up",
     chatTitle:"BotLocal · live chat", online:"online",
-    hbInputLabel:"Your shop's info",
-    hbChip1:"📋 Menu", hbChip2:"💰 Prices", hbChip3:"❓ FAQ", hbChip4:"📄 Policies",
-    hbFlowTrain:"trained on it", hbFlowTone:"tuned to your tone",
+    chatCaption:"📚 Trained on your shop's info → 🗣️ Replies in your voice",
     srcChip:"from your shop's info",
     msgUser:"How much is your S3 Maths class?",
     msgBot:"S3 Maths is HK$1,200/month, Sat 2–4pm. Want me to book a trial lesson?",
