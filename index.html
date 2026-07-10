@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E" />
-<title data-i18n="pageTitle">BotLocal · 為小店打造嘅 AI 客服機械人</title>
-<meta name="description" data-i18n="metaDesc" content="為你間舖頭度身訂造嘅 AI 客服機械人，全日 24 小時答客人、接受預約。" />
+<title data-i18n="pageTitle">BotLocal · 用你間舖自己嘅資料打造嘅 AI 客服</title>
+<meta name="description" data-i18n="metaDesc" content="用你間舖自己嘅資料整嘅 AI 客服機械人，用你嘅口吻 24 小時答客人、接受預約，唔會亂噏。" />
 <style>
   :root{
     --bg:#ffffff; --bg-soft:#f6f7f9; --bg-soft2:#eef1f5;
@@ -98,6 +98,8 @@
   .b.bot{align-self:flex-start; background:#fff; border:1px solid var(--line); border-bottom-left-radius:5px;}
   .chat-input{margin-top:14px; display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:var(--radius-pill); padding:9px 14px; font-size:13px; color:var(--ink-faint);}
   .chat-input .send{margin-left:auto; color:var(--brand); font-size:17px;}
+  .chat-caption{font-size:12.5px; font-weight:600; color:var(--brand-dark); background:var(--brand-soft); border-radius:var(--radius-pill); padding:7px 14px; margin-bottom:12px; text-align:center; line-height:1.5;}
+  .b-src{align-self:flex-start; font-size:11px; color:var(--ink-faint); background:var(--bg-soft2); border:1px solid var(--line); border-radius:var(--radius-pill); padding:2px 9px; margin-top:-4px; margin-left:4px;}
 
   /* section */
   .section{padding:72px 0;}
@@ -251,17 +253,18 @@
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow" data-i18n="eyebrow">專為小店打造嘅 AI 客服</span>
-        <h1 id="hero-h" data-i18n="headline">為你間舖頭度身訂造嘅 AI 客服機械人</h1>
-        <p class="sub" data-i18n="sub">全日 24 小時幫你答客人問題、接受預約，一單生意都唔會走漏 —— 仲識講客人平時講嘅話。WhatsApp、Facebook、IG 都接駁到；有咩需要，隨時搵我哋傾下。</p>
+        <span class="eyebrow" data-i18n="eyebrow">用你間舖自己嘅資料打造嘅 AI 客服</span>
+        <h1 id="hero-h" data-i18n="headline">識曬你間舖、用你把口吻答客人嘅 AI 客服</h1>
+        <p class="sub" data-i18n="sub">我哋會用你間舖自己嘅資料——menu、價錢、FAQ、政策——嚟整個 bot，佢答嘅每一句都係嚟自你間舖，唔係網上求其抄。仲會學返你平時同客人講嘢嘅語氣，24 小時幫你答問題、接預約。有咩特別要求，都可以幫你度身整。</p>
         <div class="cta-row">
           <a class="btn btn-brand" href="chat.html?v=3" onclick="return blOpenChat()"><span aria-hidden="true">💬</span><span data-i18n="ctaChat">試下同 AI 傾偈</span></a>
           <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="cta1">WhatsApp 預約免費示範</span></a>
         </div>
-        <div class="trust"><span class="star" aria-hidden="true">★</span><span data-i18n="trust">專為香港小店同中小企而設</span><span aria-hidden="true">·</span><span data-i18n="poweredBy">⚡ 採用 ChatGPT／AI 技術</span></div>
+        <div class="trust"><span class="star" aria-hidden="true">★</span><span data-i18n="trust">專為香港小店同中小企而設</span><span aria-hidden="true">·</span><span data-i18n="poweredBy">⚡ 只答你間舖嘅資料，唔會亂噏</span></div>
       </div>
 
       <a class="chatcard" href="chat.html?v=3" onclick="return blOpenChat()" style="display:block;cursor:pointer" aria-label="開始同我哋 AI 傾偈 · Chat with our AI">
+        <div class="chat-caption" data-i18n="chatCaption">📚 用你間舖嘅資料訓練 → 🗣️ 用你嘅口吻答客</div>
         <div class="chat-head">
           <span class="bot">🤖</span>
           <span class="name" data-i18n="chatTitle">BotLocal · 即時對話</span>
@@ -270,8 +273,11 @@
         <div class="bubbles">
           <div class="b user" data-i18n="msgUser">你哋中三數學班幾錢？</div>
           <div class="b bot" data-i18n="msgBot">中三數學班每月 HK$1,200，星期六下午 2-4 點。要唔要幫你 book 個試堂？</div>
+          <span class="b-src" data-i18n="srcChip">嚟自你間舖嘅資料</span>
           <div class="b user" data-i18n="msgUser2">好呀，今個星期六。</div>
           <div class="b bot" data-i18n="msgBot2">收到 ✅ 已經幫你 book 咗星期六 2:00 試堂。到時見！</div>
+          <div class="b user" data-i18n="msgUser3">小六有冇班？</div>
+          <div class="b bot" data-i18n="msgBot3">唔好意思，我哋暫時冇小六班，中一至中六先有。留低你電話，有新班我哋第一時間通知你？</div>
         </div>
         <div class="chat-input"><span>💬 撳我試下同 AI 傾偈 · Chat with our AI</span><span class="send">➤</span></div>
       </a>
@@ -329,13 +335,13 @@
         </article>
         <article class="feat">
           <div class="ico" aria-hidden="true">🗣️</div>
-          <h3 data-i18n="feat3T">識講廣東話</h3>
-          <p data-i18n="feat3D">用 ChatGPT 技術，客人點打都聽得明，唔似嗰啲生硬嘅 AI 答嘢。</p>
+          <h3 data-i18n="feat3T">用你間舖嘅口吻答客</h3>
+          <p data-i18n="feat3D">唔單止識講地道廣東話，仲會跟返你平時同客人嘅語氣——想客氣專業啲，定親切啲，都可以照你間舖嘅風格答，似你自己員工多過似機械人。</p>
         </article>
         <article class="feat">
           <div class="ico" aria-hidden="true">📚</div>
           <h3 data-i18n="feat4T">識曬你間舖嘅嘢</h3>
-          <p data-i18n="feat4D">我哋會用你嘅 menu、價錢、地址訓練 bot，答案會根據你間舖嘅實際資料，盡量貼近真實情況。</p>
+          <p data-i18n="feat4D">我哋會用你嘅 menu、價錢、政策、FAQ 嚟整個 bot，佢答嘅每一句都係嚟自你間舖嘅真實資料——唔會上網求其抄，唔會亂作。</p>
         </article>
         <article class="feat">
           <div class="ico" aria-hidden="true">💬</div>
@@ -346,6 +352,11 @@
           <div class="ico" aria-hidden="true">⚡</div>
           <h3 data-i18n="feat6T">無需技術知識</h3>
           <p data-i18n="feat6D">你完全唔需要識 coding。將資料畀我哋，幾日後就用得。</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">🛠️</div>
+          <h3 data-i18n="feat7T">有咩特別要求都整到</h3>
+          <p data-i18n="feat7D">想個 bot 淨係喺營業時間覆？想佢問客人攞電話先？想接你自己嘅預約系統？同我哋講聲，全部可以幫你度身整。</p>
         </article>
       </div>
     </div>
@@ -383,7 +394,7 @@
         </article>
         <article class="step">
           <h3 data-i18n="step2T">我哋訓練個 bot</h3>
-          <p data-i18n="step2D">用你嘅資料客製化訓練，我哋幫你執到識答你間舖嘅嘢為止。</p>
+          <p data-i18n="step2D">用你嘅資料訓練，仲會調到用返你間舖嘅語氣，執到佢識答你間舖嘅嘢為止。</p>
         </article>
         <article class="step">
           <h3 data-i18n="step3T">上線收客</h3>
@@ -398,7 +409,7 @@
     <div class="wrap">
       <div class="sec-head">
         <h2 id="provide-h" data-i18n="provTitle">你需要提供咩資料？</h2>
-        <p data-i18n="provSub">你只需要提供現有資料，其餘由我哋整理、訓練、測試同上線。</p>
+        <p data-i18n="provSub">你畀嘅真實資料愈多，個 bot 就答得愈似你間舖——其餘由我哋整理、訓練、測試同上線。</p>
       </div>
       <p style="text-align:center; max-width:720px; margin:0 auto; font-size:15.5px; color:var(--ink); line-height:1.9;" data-i18n="provList">價目表 · 服務／課程介紹 · 營業時間同地址 · 常見問題 · 預約流程</p>
     </div>
@@ -461,6 +472,10 @@
       </div>
       <div class="faq">
         <details>
+          <summary data-i18n="faq0Q">係咪即係 ChatGPT？會唔會亂噏、答錯嘢？</summary>
+          <div class="ans" data-i18n="faq0A">唔係一個淨係識吹水嘅 ChatGPT。我哋會用你間舖自己嘅資料（menu、價錢、政策、FAQ）嚟整個 bot，佢只會根據你畀嘅資料答客人，唔會自己作料。遇到唔肯定嘅嘢，會叫客人直接搵你或者留低聯絡，唔會亂噏誤導客人。而且我哋會幫你調到用返你間舖嘅語氣去答。</div>
+        </details>
+        <details>
           <summary data-i18n="faq1Q">要幾耐先整好個 bot？</summary>
           <div class="ans" data-i18n="faq1A">一般 14 至 21 日完成。資料齊全、需求簡單嘅 bot，最快 7 日就上線。你只需要畀啲基本資料我哋（課程、時間表、收費、地址等），我哋負責訓練同測試。</div>
         </details>
@@ -496,7 +511,7 @@
         <div>
           <p class="about-name">Sam Cheung</p>
           <p class="about-role" data-i18n="aboutRole">軟件工程師 · 香港中文大學畢業 · 常往返香港同英國</p>
-          <p class="about-bio" data-i18n="aboutBio">我係 Sam，香港長大、中大畢業嘅軟件工程師，日常往返香港同英國兩地。由起機械人、調校廣東話語氣，到上線之後嘅跟進，全部我親自負責——落訂之前，歡迎你喺 LinkedIn 或 WhatsApp 隨時搵我。</p>
+          <p class="about-bio" data-i18n="aboutBio">我係 Sam，香港長大、中大畢業嘅軟件工程師，日常往返香港同英國兩地。由起機械人、調校到用你間舖嘅語氣，到上線之後嘅跟進，全部我親自負責——落訂之前，歡迎你喺 LinkedIn 或 WhatsApp 隨時搵我。</p>
           <ul class="about-chips">
             <li data-i18n="aboutChip1">🎓 香港中文大學</li>
             <li data-i18n="aboutChip2">🌍 香港・英國兩地</li>
@@ -600,36 +615,41 @@ var CONTACT_EMAIL = "samkiengineer@gmail.com";
 
 var I18N = {
   zh:{
-    pageTitle:"BotLocal · 為小店打造嘅 AI 客服機械人",
-    metaDesc:"為你間舖頭度身訂造嘅 AI 客服機械人，全日 24 小時答客人、接受預約。",
+    pageTitle:"BotLocal · 用你間舖自己嘅資料打造嘅 AI 客服",
+    metaDesc:"用你間舖自己嘅資料整嘅 AI 客服機械人，用你嘅口吻 24 小時答客人、接受預約，唔會亂噏。",
     skipLink:"跳到內容",
     navFeatures:"功能", navHow:"點運作", navPricing:"價錢", navFaq:"常見問題", navAbout:"關於我", navContact:"聯絡",
     aboutTitle:"邊個做㗎？", aboutSub:"唔係匿名公司——係一個你搵得到、查得到嘅香港人工程師。",
     aboutRole:"軟件工程師 · 香港中文大學畢業 · 常往返香港同英國",
-    aboutBio:"我係 Sam，香港長大、中大畢業嘅軟件工程師，日常往返香港同英國兩地。由起機械人、調校廣東話語氣，到上線之後嘅跟進，全部我親自負責——落訂之前，歡迎你喺 LinkedIn 或 WhatsApp 隨時搵我。",
+    aboutBio:"我係 Sam，香港長大、中大畢業嘅軟件工程師，日常往返香港同英國兩地。由起機械人、調校到用你間舖嘅語氣，到上線之後嘅跟進，全部我親自負責——落訂之前，歡迎你喺 LinkedIn 或 WhatsApp 隨時搵我。",
     aboutChip1:"🎓 香港中文大學", aboutChip2:"🌍 香港・英國兩地", aboutChip3:"🤖 Microsoft・Hugging Face AI 認證", aboutChip4:"🇭🇰 香港人・親自跟進",
     aboutCta:"上 LinkedIn 認識我",
     aboutFind:"Instagram、Facebook、WhatsApp 都搵到我——一個真人，隨時搵得到，唔會突然消失。",
     navCta:"WhatsApp",
-    eyebrow:"專為小店打造嘅 AI 客服",
-    headline:"為你間舖頭度身訂造嘅 AI 客服機械人",
-    sub:"全日 24 小時幫你答客人問題、接受預約，一單生意都唔會走漏 —— 仲識講客人平時講嘅話。WhatsApp、Facebook、IG 都接駁到；有咩需要，隨時搵我哋傾下。",
+    eyebrow:"用你間舖自己嘅資料打造嘅 AI 客服",
+    headline:"識曬你間舖、用你把口吻答客人嘅 AI 客服",
+    sub:"我哋會用你間舖自己嘅資料——menu、價錢、FAQ、政策——嚟整個 bot，佢答嘅每一句都係嚟自你間舖，唔係網上求其抄。仲會學返你平時同客人講嘢嘅語氣，24 小時幫你答問題、接預約。有咩特別要求，都可以幫你度身整。",
     cta1:"WhatsApp 預約免費示範", ctaChat:"試下同 AI 傾偈",
-    trust:"專為香港小店同中小企而設", poweredBy:"⚡ 採用 ChatGPT／AI 技術",
+    trust:"專為香港小店同中小企而設", poweredBy:"⚡ 只答你間舖嘅資料，唔會亂噏",
     chatTitle:"BotLocal · 即時對話", online:"在線",
+    chatCaption:"📚 用你間舖嘅資料訓練 → 🗣️ 用你嘅口吻答客",
+    srcChip:"嚟自你間舖嘅資料",
     msgUser:"你哋中三數學班幾錢？",
     msgBot:"中三數學班每月 HK$1,200，星期六下午 2-4 點。要唔要幫你 book 個試堂？",
     msgUser2:"好呀，今個星期六。",
     msgBot2:"收到 ✅ 已經幫你 book 咗星期六 2:00 試堂。到時見！",
+    msgUser3:"小六有冇班？",
+    msgBot3:"唔好意思，我哋暫時冇小六班，中一至中六先有。留低你電話，有新班我哋第一時間通知你？",
     chatInput:"輸入訊息…",
 
     featTitle:"幫你間舖頭做嘅事", featSub:"由接客到落單，全部一個 bot 搞掂。",
     feat1T:"24 小時答客人", feat1D:"凌晨三點都有人問營業時間？放心，bot 即刻覆，唔使你開夜車。",
     feat2T:"自動接受預約", feat2D:"直接喺對話入面幫客人訂位、訂枱、book 服務 —— 同步去你嘅日曆。",
-    feat3T:"識講廣東話", feat3D:"用 ChatGPT 技術，客人點打都聽得明，唔似嗰啲生硬嘅 AI 答嘢。",
-    feat4T:"識曬你間舖嘅嘢", feat4D:"我哋會用你嘅 menu、價錢、地址訓練 bot，答案會根據你間舖嘅實際資料，盡量貼近真實情況。",
+    feat3T:"用你間舖嘅口吻答客", feat3D:"唔單止識講地道廣東話，仲會跟返你平時同客人嘅語氣——想客氣專業啲，定親切啲，都可以照你間舖嘅風格答，似你自己員工多過似機械人。",
+    feat4T:"識曬你間舖嘅嘢", feat4D:"我哋會用你嘅 menu、價錢、政策、FAQ 嚟整個 bot，佢答嘅每一句都係嚟自你間舖嘅真實資料——唔會上網求其抄，唔會亂作。",
     feat5T:"接駁你常用嘅平台", feat5D:"同一個 bot 可以同時喺 WhatsApp、Facebook、IG 同你個官網度回應客人。",
     feat6T:"無需技術知識", feat6D:"你完全唔需要識 coding。將資料畀我哋，幾日後就用得。",
+    feat7T:"有咩特別要求都整到", feat7D:"想個 bot 淨係喺營業時間覆？想佢問客人攞電話先？想接你自己嘅預約系統？同我哋講聲，全部可以幫你度身整。",
 
     howTitle:"點樣開始？", howSub:"三步就搞掂，一般 14–21 日上線；資料齊全嘅簡單 bot，最快 7 日。",
     fitTitle:"適合邊啲生意？", fitSub:"尤其係每日都有大量 WhatsApp / IG 查詢嘅生意。",
@@ -639,7 +659,7 @@ var I18N = {
     fit4T:"寵物美容・寵物店", fit4D:"答收費、可預約時間同基本 FAQ。",
     fit5T:"診所・本地服務", fit5D:"答地址、收費、預約，減少電話查詢。",
     fit6T:"網店・零售", fit6D:"答送貨、退換，推薦啱客人嘅產品。",
-    provTitle:"你需要提供咩資料？", provSub:"你只需要提供現有資料，其餘由我哋整理、訓練、測試同上線。",
+    provTitle:"你需要提供咩資料？", provSub:"你畀嘅真實資料愈多，個 bot 就答得愈似你間舖——其餘由我哋整理、訓練、測試同上線。",
     provList:"價目表 · 服務／課程介紹 · 營業時間同地址 · 常見問題 · 預約流程",
     roi:"每月幫你接多一兩單，基本上已經回本 —— 少啲漏覆 WhatsApp，多啲時間做生意。",
     platTitle:"一個 bot，接到邊啲平台？", platSub:"同一個 AI 客服，放喺你客人最常用嘅地方。",
@@ -649,7 +669,7 @@ var I18N = {
     plat4T:"Facebook Messenger", plat4D:"Facebook 專頁嘅訊息都可以交畀同一個 bot 處理。",
     platIncl1:"✓ 包喺套餐內", platIncl2:"✓ 包喺套餐內", platOpt1:"可加購 · 另議", platOpt2:"可加購 · 另議",
     step1T:"傾下你盤生意", step1D:"WhatsApp 我哋傾 15 分鐘，了解你間舖頭做咩、客人經常問咩。",
-    step2T:"我哋訓練個 bot", step2D:"用你嘅資料客製化訓練，我哋幫你執到識答你間舖嘅嘢為止。",
+    step2T:"我哋訓練個 bot", step2D:"用你嘅資料訓練，仲會調到用返你間舖嘅語氣，執到佢識答你間舖嘅嘢為止。",
     step3T:"上線收客", step3D:"接駁去你嘅 WhatsApp / 網站，即刻開始 24 小時幫你做生意。",
 
 
@@ -684,6 +704,8 @@ var I18N = {
     p3Cta:"WhatsApp 索取報價",
 
     faqTitle:"常見問題", faqSub:"最多人問嘅幾條問題。如果仲有疑問，WhatsApp 我哋。",
+    faq0Q:"係咪即係 ChatGPT？會唔會亂噏、答錯嘢？",
+    faq0A:"唔係一個淨係識吹水嘅 ChatGPT。我哋會用你間舖自己嘅資料（menu、價錢、政策、FAQ）嚟整個 bot，佢只會根據你畀嘅資料答客人，唔會自己作料。遇到唔肯定嘅嘢，會叫客人直接搵你或者留低聯絡，唔會亂噏誤導客人。而且我哋會幫你調到用返你間舖嘅語氣去答。",
     faq1Q:"要幾耐先整好個 bot？",
     faq1A:"一般 14 至 21 日完成。資料齊全、需求簡單嘅 bot，最快 7 日就上線。你只需要畀啲基本資料我哋（課程、時間表、收費、地址等），我哋負責訓練同測試。",
     faq2Q:"支援咩語言？",
@@ -710,36 +732,41 @@ var I18N = {
     mailSubject:"BotLocal 查詢"
   },
   en:{
-    pageTitle:"BotLocal · Custom AI chatbots for local businesses",
-    metaDesc:"Custom AI chatbots for your local business — answer customers and take bookings 24/7.",
+    pageTitle:"BotLocal · AI assistants built from your own business info",
+    metaDesc:"An AI assistant built from your own business info — answers in your voice, takes bookings 24/7, and never makes things up.",
     skipLink:"Skip to content",
     navFeatures:"Features", navHow:"How it works", navPricing:"Pricing", navFaq:"FAQ", navAbout:"About me", navContact:"Contact",
     aboutTitle:"Who's behind this?", aboutSub:"Not an anonymous company — a real Hong Kong engineer you can look up.",
     aboutRole:"Software Engineer · CUHK graduate · based between Hong Kong & the UK",
-    aboutBio:"I'm Sam — born and raised in Hong Kong, a CUHK-graduate software engineer splitting my time between Hong Kong and the UK. From building your bot and tuning its Cantonese to after-launch support, I handle everything personally. Before you commit, reach me anytime on LinkedIn or WhatsApp.",
+    aboutBio:"I'm Sam — born and raised in Hong Kong, a CUHK-graduate software engineer splitting my time between Hong Kong and the UK. From building your bot and tuning it to your shop's own voice to after-launch support, I handle everything personally. Before you commit, reach me anytime on LinkedIn or WhatsApp.",
     aboutChip1:"🎓 The Chinese University of Hong Kong", aboutChip2:"🌍 Based in Hong Kong & the UK", aboutChip3:"🤖 Microsoft · Hugging Face AI certified", aboutChip4:"🇭🇰 Hongkonger · personal service",
     aboutCta:"Find me on LinkedIn",
     aboutFind:"Reach me anytime on Instagram, Facebook and WhatsApp — a real person who won't disappear.",
     navCta:"WhatsApp",
-    eyebrow:"AI chatbot for local shops",
-    headline:"Custom AI chatbots for your local business",
-    sub:"Answer customer questions 24/7, take bookings, and never miss a sale — in the language your customers actually speak. Connects to WhatsApp, Facebook and Instagram — and if you have something specific in mind, just talk to us.",
+    eyebrow:"An AI assistant built from your own shop's info",
+    headline:"An AI assistant that knows your shop — and answers in your voice",
+    sub:"We build it from your own shop's info — your menu, prices, FAQs and policies — so every answer comes from your business, not generic AI guesses. It even picks up the way you talk to customers, and handles questions and bookings 24/7. Got a special requirement? We'll tune it to fit.",
     cta1:"Book a free demo on WhatsApp", ctaChat:"Try the live AI chat",
-    trust:"Built for Hong Kong's small businesses", poweredBy:"⚡ Runs on ChatGPT / AI",
+    trust:"Built for Hong Kong's small businesses", poweredBy:"⚡ Answers only from your shop's info — never makes things up",
     chatTitle:"BotLocal · live chat", online:"online",
+    chatCaption:"📚 Trained on your shop's info → 🗣️ Replies in your voice",
+    srcChip:"from your shop's info",
     msgUser:"How much is your S3 Maths class?",
     msgBot:"S3 Maths is HK$1,200/month, Sat 2–4pm. Want me to book a trial lesson?",
     msgUser2:"Sure — this Saturday.",
     msgBot2:"Done ✅ Booked your trial this Saturday 2:00pm. See you then!",
+    msgUser3:"Do you have P6 classes?",
+    msgBot3:"Sorry — we don't run P6 classes at the moment, only S1–S6. Leave your number and we'll let you know first when one opens?",
     chatInput:"Type a message…",
 
     featTitle:"What it does for your shop", featSub:"From greeting customers to taking bookings — one bot handles it all.",
     feat1T:"24/7 customer replies", feat1D:"Someone asking your hours at 3am? The bot replies instantly so you don't have to.",
     feat2T:"Takes bookings automatically", feat2D:"Books tables, appointments and services right inside the chat — synced to your calendar.",
-    feat3T:"Speaks proper Cantonese", feat3D:"Powered by ChatGPT — understands how locals actually talk, not the stiff, generic AI replies you usually get.",
-    feat4T:"Knows your business inside out", feat4D:"We train it on your menu, prices and policies, so answers stay close to your shop's real details.",
+    feat3T:"Answers in your shop's voice", feat3D:"More than fluent Cantonese — it matches how your shop actually talks to customers. Formal or friendly, it replies in your style, so it feels like your own staff, not a robot.",
+    feat4T:"Knows your business inside out", feat4D:"It's trained on your own menu, prices, policies and FAQs — so every answer comes straight from your business, not generic AI guesses. No made-up info.",
     feat5T:"Every channel you use", feat5D:"One bot, every channel — WhatsApp, Facebook, Instagram DM and a widget on your site.",
     feat6T:"Zero technical setup", feat6D:"No coding needed on your end. Send us your info and we go live in days.",
+    feat7T:"We tune it to whatever you need", feat7D:"Want it to reply only during opening hours? Ask every customer for a phone number first? Connect to your own booking system? Just tell us — we'll tailor it to your business.",
 
     howTitle:"How to get started", howSub:"Three steps — usually live in 14–21 days (as fast as 7 for a simple bot).",
     fitTitle:"Who is it for?", fitSub:"Especially businesses fielding lots of WhatsApp / IG enquiries every day.",
@@ -749,7 +776,7 @@ var I18N = {
     fit4T:"Pet grooming · pet shops", fit4D:"Answers pricing, available slots and basic FAQs.",
     fit5T:"Clinics · local services", fit5D:"Answers location, fees and bookings — fewer phone enquiries.",
     fit6T:"Online shops · retail", fit6D:"Answers delivery and returns, and recommends the right products.",
-    provTitle:"What do you need to provide?", provSub:"Just send your existing info — we organise, train, test and launch it.",
+    provTitle:"What do you need to provide?", provSub:"The more of your real info you give us, the more the bot sounds and answers exactly like your shop — we handle organising, training, testing and launch.",
     provList:"Price list · services / courses · hours & location · FAQs · booking flow",
     roi:"If it wins you just one or two extra jobs a month, it's already paid for itself — fewer missed WhatsApps, more time for business.",
     platTitle:"One bot — which platforms can it connect to?", platSub:"The same AI assistant, wherever your customers already are.",
@@ -759,7 +786,7 @@ var I18N = {
     plat4T:"Facebook Messenger", plat4D:"Messages to your Facebook Page can be handled by the same bot.",
     platIncl1:"✓ Included in the package", platIncl2:"✓ Included in the package", platOpt1:"Add-on · quoted separately", platOpt2:"Add-on · quoted separately",
     step1T:"Tell us about your business", step1D:"A 15-min WhatsApp chat — what you sell, what customers usually ask.",
-    step2T:"We train your bot", step2D:"We customise and tune it on your data until it answers like part of your team.",
+    step2T:"We train your bot", step2D:"We train it on your data and tune it to your shop's tone, until it answers like part of your team.",
     step3T:"Go live and serve customers", step3D:"Plug it into WhatsApp or your site and start serving customers 24/7.",
 
 
@@ -794,6 +821,8 @@ var I18N = {
     p3Cta:"Request a quote on WhatsApp",
 
     faqTitle:"Frequently asked questions", faqSub:"The questions we hear most. Anything else — WhatsApp us.",
+    faq0Q:"Is this just ChatGPT? Will it make things up?",
+    faq0A:"No — it's not a chatbot that just makes conversation. We build it from your own business info (menu, prices, policies, FAQs), so it only answers from what you give it — it won't invent details. When it's unsure, it points the customer to you or takes their contact instead of guessing. And we tune it to reply in your shop's own tone.",
     faq1Q:"How long does setup take?",
     faq1A:"Usually 14–21 days; a simple bot with everything ready can go live in as little as 7. You just send the basics (courses, timetable, fees, location) and we handle training and testing.",
     faq2Q:"Which languages does it support?",
