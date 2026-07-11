@@ -85,49 +85,15 @@
   .trust{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink-faint);}
   .trust .star{color:var(--star);}
 
-  /* chat preview card — 「唔係普通 AI」two-phones comparison */
+  /* chat preview card — animated demo video in a phone frame */
   .chatcard{background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
   .chat-input{margin-top:16px; display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:var(--radius-pill); padding:9px 14px; font-size:13px; color:var(--ink-faint);}
   .chat-input .send{margin-left:auto; color:var(--brand); font-size:17px;}
   .duo-title{text-align:center; font-size:19px; font-weight:700; letter-spacing:-.01em; margin:2px 0 16px; color:var(--ink);}
-  .duo{display:flex; justify-content:center; gap:16px;}
-  .phone-col{display:flex; flex-direction:column; align-items:center; flex:1; min-width:0; max-width:225px;}
-  .phone{position:relative; width:100%; border-radius:26px; background:#1b2330; padding:7px; box-shadow:var(--shadow-lg);}
-  .screen{border-radius:20px; overflow:hidden; display:flex; flex-direction:column; min-height:296px;}
+  .video-wrap{display:flex; justify-content:center;}
+  .phone{position:relative; width:100%; max-width:240px; border-radius:26px; background:#1b2330; padding:7px; box-shadow:var(--shadow-lg);}
   .notch{position:absolute; top:7px; left:50%; transform:translateX(-50%); width:62px; height:14px; background:#1b2330; border-radius:0 0 9px 9px; z-index:3;}
-  .p-head{padding:19px 10px 8px; display:flex; align-items:center; gap:7px; flex-shrink:0;}
-  .p-avatar{width:24px; height:24px; border-radius:50%; display:grid; place-items:center; font-size:13px; flex-shrink:0;}
-  .p-name{font-size:11.5px; font-weight:700; line-height:1.3;}
-  .p-status{font-size:9px; line-height:1.35;}
-  .p-chat{flex:1; padding:9px 8px 12px; display:flex; flex-direction:column; gap:6px;}
-  .pb{max-width:92%; font-size:10.5px; line-height:1.6; padding:6px 9px; border-radius:9px; box-shadow:0 1px 1px rgba(20,30,50,.10);}
-  .pb-time{font-size:8px; text-align:right; margin-top:1px; opacity:.65;}
-  .phone.generic .screen{background:#ececef;}
-  .phone.generic .p-head{background:#dcdde2; border-bottom:1px solid rgba(20,30,50,.08);}
-  .phone.generic .p-avatar{background:#c7c9d1; filter:grayscale(1);}
-  .phone.generic .p-name{color:#3c4250;}
-  .phone.generic .p-status{color:var(--ink-faint);}
-  .phone.generic .pb.q{align-self:flex-end; background:#c9ccd6; color:#2a3040; border-bottom-right-radius:3px;}
-  .phone.generic .pb.a{align-self:flex-start; background:#fff; color:var(--ink-faint); border-bottom-left-radius:3px; border:1px dashed var(--line2);}
-  .phone.whatsapp .screen{background:#e5ddd5;}
-  .phone.whatsapp .p-head{background:#075e54;}
-  .phone.whatsapp .p-avatar{background:var(--brand-soft);}
-  .phone.whatsapp .p-name{color:#fff;}
-  .phone.whatsapp .p-status{color:#b7e4d8;}
-  .phone.whatsapp .pb.q{align-self:flex-end; background:#dcf8c6; color:var(--ink); border-bottom-right-radius:3px;}
-  .phone.whatsapp .pb.a{align-self:flex-start; background:#fff; color:var(--ink); border-bottom-left-radius:3px;}
-  .ticks{color:#53bdeb; font-size:8.5px; letter-spacing:-1px;}
-  .src-banner{background:var(--brand); color:#fff; font-size:10.5px; font-weight:700; letter-spacing:.01em; text-align:center; padding:5px 8px; flex-shrink:0;}
-  .badge{position:absolute; bottom:-13px; left:50%; transform:translateX(-50%); width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-size:14px; font-weight:800; color:#fff; border:3px solid #fff; box-shadow:var(--shadow-lg); z-index:4;}
-  .badge.no{background:var(--accent);}
-  .badge.yes{background:var(--wa);}
-  .p-label{margin-top:21px; font-size:12.5px; font-weight:700;}
-  .p-label.grey{color:var(--ink-faint);}
-  .p-label.blue{color:var(--brand-dark);}
-  @media(max-width:479px){
-    .duo{flex-direction:column; align-items:center; gap:24px;}
-    .phone-col{width:100%; max-width:236px;}
-  }
+  .phone video{display:block; width:100%; border-radius:20px; background:#000; pointer-events:none;}
 
   /* section */
   .section{padding:72px 0;}
@@ -293,47 +259,12 @@
 
       <a class="chatcard" href="chat.html?v=3" onclick="return blOpenChat()" style="display:block;cursor:pointer" aria-label="開始同我哋 AI 傾偈 · Chat with our AI">
         <div class="duo-title" data-i18n="duoTitle">用你間舖自己嘅資料，唔會靠估</div>
-        <div class="duo">
-          <div class="phone-col">
-            <div class="phone generic">
-              <span class="notch" aria-hidden="true"></span>
-              <div class="screen">
-                <div class="p-head">
-                  <span class="p-avatar" aria-hidden="true">🤖</span>
-                  <div>
-                    <div class="p-name" data-i18n="phGenName">普通 AI</div>
-                    <div class="p-status" data-i18n="phGenStatus">乜舖都唔識</div>
-                  </div>
-                </div>
-                <div class="p-chat">
-                  <div class="pb q"><span data-i18n="msgUser">你哋中三數學班幾錢？</span><div class="pb-time">02:14</div></div>
-                  <div class="pb a"><span data-i18n="phGenAns">一般補習班大約 $200–$500 一堂，視乎地區同年級，建議你直接聯絡相關機構查詢…</span><div class="pb-time">02:14</div></div>
-                </div>
-              </div>
-              <span class="badge no" aria-hidden="true">✗</span>
-            </div>
-            <div class="p-label grey" data-i18n="phGenVerdict">靠估</div>
-          </div>
-          <div class="phone-col">
-            <div class="phone whatsapp">
-              <span class="notch" aria-hidden="true"></span>
-              <div class="screen">
-                <div class="p-head">
-                  <span class="p-avatar" aria-hidden="true">🤖</span>
-                  <div>
-                    <div class="p-name">BotLocal</div>
-                    <div class="p-status" data-i18n="phBotStatus">你間舖嘅 AI 客服 · 在線</div>
-                  </div>
-                </div>
-                <div class="src-banner"><span aria-hidden="true">📋</span> <span data-i18n="srcChip">嚟自你間舖嘅資料</span></div>
-                <div class="p-chat">
-                  <div class="pb q"><span data-i18n="msgUser">你哋中三數學班幾錢？</span><div class="pb-time">02:14 <span class="ticks">✓✓</span></div></div>
-                  <div class="pb a"><span data-i18n="msgBot">中三數學班每月 HK$1,200，星期六下午 2-4 點。要唔要幫你 book 個試堂？</span><div class="pb-time">02:14</div></div>
-                </div>
-              </div>
-              <span class="badge yes" aria-hidden="true">✓</span>
-            </div>
-            <div class="p-label blue" data-i18n="phBotVerdict">答啱</div>
+        <div class="video-wrap">
+          <div class="phone">
+            <span class="notch" aria-hidden="true"></span>
+            <video autoplay muted loop playsinline preload="metadata" poster="demo-poster.jpg" aria-hidden="true">
+              <source src="botlocal-demo-animated.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
         <div class="chat-input"><span>💬 撳我試下同 AI 傾偈 · Chat with our AI</span><span class="send">➤</span></div>
