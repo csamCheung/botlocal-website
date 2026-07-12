@@ -71,6 +71,16 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
 .mb:nth-child(1){animation-delay:.2s}.mb:nth-child(2){animation-delay:.9s}.mb:nth-child(3){animation-delay:1.7s}.mb:nth-child(4){animation-delay:2.5s}
 @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .m-note{font-size:11px;color:#667;text-align:center;padding:9px 12px 13px;background:#fff}
+
+/* ── 製作人信任卡 ── */
+.maker{max-width:560px;margin:26px auto 90px;background:#171927;border:1px solid #2c2f45;border-radius:18px;
+  padding:18px;display:flex;gap:14px;align-items:flex-start;color:#e8e9f2}
+.maker img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none;border:2px solid #3a3d55}
+.maker b{font-size:14.5px;display:block;margin-bottom:5px}
+.maker p{font-size:12.5px;line-height:1.65;color:#b9bccf;margin-bottom:10px}
+.maker-links{display:flex;flex-wrap:wrap;gap:8px}
+.maker-links a{font-size:12px;font-weight:700;color:#0e0f16;background:#25d366;border-radius:999px;padding:7px 12px;text-decoration:none}
+.maker-links a.site-link{background:#b9a4ff}
 </style>
 </head>
 <body>
@@ -82,6 +92,18 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
   <img class="desk" src="assets/dedicated-desktop.png" alt="學銳教育官網預覽">
   <img class="mob" src="assets/dedicated-mobile.png" alt="學銳教育官網預覽（手機）">
 </div>
+<div class="maker">
+  <img src="../sam.png" alt="Sam Cheung">
+  <div>
+    <b>👋 呢個示範由 Sam Cheung 製作</b>
+    <p>BotLocal 創辦人，香港長大、中大畢業嘅軟件工程師。呢一頁純粹係整咗個示範俾你睇效果——你哋冇任何義務，資料全部嚟自貴中心公開網站，有錯即改、想落架即刻落。有咩疑問直接搵我本人：</p>
+    <div class="maker-links">
+      <a href="https://wa.me/447472323783" target="_blank" rel="noopener">💬 WhatsApp +44 7472 323783</a>
+      <a class="site-link" href="https://csamcheung.github.io/botlocal-website/" target="_blank" rel="noopener">🌐 BotLocal 網站・關於我</a>
+    </div>
+  </div>
+</div>
+
 
 <div id="hint">👋 試下問我：<br>「有幾間分校？」</div>
 <button id="fab" aria-label="開啟 AI 客服">💬</button>
