@@ -14,7 +14,10 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
 .demo-banner{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(14,15,22,.94);backdrop-filter:blur(8px);
   color:#e8e9f2;font-size:12.5px;padding:9px 14px;display:flex;align-items:center;gap:8px;line-height:1.4}
 .demo-banner b{color:#ffd479}
-.demo-banner a{margin-left:auto;color:#b9a4ff;font-weight:700;text-decoration:none;white-space:nowrap}
+.demo-banner{flex-wrap:wrap}
+.banner-links{margin-left:auto;display:flex;gap:12px;align-items:center}
+.demo-banner a{color:#b9a4ff;font-weight:700;text-decoration:none;white-space:nowrap}
+.demo-banner a.wa-lnk{color:#4be080}
 
 /* ── 官網截圖預覽 ── */
 .site{padding-top:38px;padding-bottom:64px}
@@ -86,7 +89,7 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
 <body>
 
 <div class="demo-banner">🤖 <span><b>BotLocal 示範</b>：Meta Learning 官網＋AI 客服會係咁樣（非官方網站，背景為官網截圖）</span>
-  <a href="https://csamcheung.github.io/botlocal-website/" target="_blank" rel="noopener">BotLocal →</a></div>
+  <span class="banner-links"><a href="https://wa.me/447472323783" target="_blank" rel="noopener" class="wa-lnk">💬 Sam +44 7472 323783</a><a href="https://csamcheung.github.io/botlocal-website/#about" target="_blank" rel="noopener">BotLocal →</a></span></div>
 
 <div class="site">
   <img class="desk" src="assets/metalearning-desktop.jpg" alt="Meta Learning 官網預覽">
@@ -115,7 +118,7 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
     <button id="p-close" aria-label="收埋">✕</button>
   </div>
   <iframe src="https://rag-chatbot-production-5fcc.up.railway.app/c/metalearning-demo" title="Meta Learning AI 查詢助手示範" loading="lazy"></iframe>
-  <div class="p-foot">由 BotLocal 提供 · 一行 code 就可以放喺你網站</div>
+  <div class="p-foot">由 BotLocal 提供 · Sam Cheung · <a href="https://wa.me/447472323783" target="_blank" rel="noopener" style="color:#0a7d3b;font-weight:700">+44 7472 323783</a></div>
 </div>
 
 <div class="chan">
@@ -123,7 +126,7 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
   <button class="chip" data-mock="wa">💬 WhatsApp 版</button>
   <button class="chip" data-mock="ig">📸 Instagram 版</button>
   <span class="chip" style="cursor:default">📘 Facebook</span>
-  <span class="chip cta"><a href="https://wa.me/447472323783?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E8%A6%8B%E5%92%97%20Meta%20Learning%20%E5%80%8B%20AI%20%E5%AE%A2%E6%9C%8D%E7%A4%BA%E7%AF%84%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B" target="_blank" rel="noopener">想放落你網站？WhatsApp 我哋 →</a></span>
+  <span class="chip cta"><a href="https://wa.me/447472323783?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E8%A6%8B%E5%92%97%20Meta%20Learning%20%E5%80%8B%20AI%20%E5%AE%A2%E6%9C%8D%E7%A4%BA%E7%AF%84%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B" target="_blank" rel="noopener">想放落你網站？WhatsApp Sam +44 7472 323783 →</a></span>
 </div>
 
 <div id="modal">
