@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>進研教育 × BotLocal · AI 客服示範</title>
+<title>學銳教育 Dedicated Education × BotLocal · AI 客服示範</title>
 <style>
-:root{--acc:#ef8f00;--ink:#1c1e26;--wa:#25d366}
+:root{--acc:#1b3a8b;--ink:#1c1e26;--wa:#25d366}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;background:#0e0f16;color:var(--ink)}
 
@@ -75,24 +75,24 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
 </head>
 <body>
 
-<div class="demo-banner">🤖 <span><b>BotLocal 示範</b>：進研教育官網＋AI 客服會係咁樣（非官方網站，背景為官網截圖）</span>
+<div class="demo-banner">🤖 <span><b>BotLocal 示範</b>：學銳教育官網＋AI 客服會係咁樣（非官方網站，背景為官網截圖）</span>
   <a href="https://csamcheung.github.io/botlocal-website/" target="_blank" rel="noopener">BotLocal →</a></div>
 
 <div class="site">
-  <img class="desk" src="assets/joinin-desktop.png" alt="進研教育官網預覽">
-  <img class="mob" src="assets/joinin-mobile.png" alt="進研教育官網預覽（手機）">
+  <img class="desk" src="assets/dedicated-desktop.png" alt="學銳教育官網預覽">
+  <img class="mob" src="assets/dedicated-mobile.png" alt="學銳教育官網預覽（手機）">
 </div>
 
-<div id="hint">👋 試下問我：<br>「小五英文幾錢？」</div>
+<div id="hint">👋 試下問我：<br>「有幾間分校？」</div>
 <button id="fab" aria-label="開啟 AI 客服">💬</button>
 
 <div id="panel" role="dialog" aria-label="AI 客服示範">
   <div class="p-head">
     <span class="ava">🤖</span>
-    <div><b>進研教育 · AI 查詢助手</b><small>用官網資料訓練 · 唔會作嘢</small></div>
+    <div><b>學銳教育 · AI 查詢助手</b><small>用官網資料訓練 · 唔會作嘢</small></div>
     <button id="p-close" aria-label="收埋">✕</button>
   </div>
-  <iframe src="https://rag-chatbot-production-5fcc.up.railway.app/c/joinin-demo" title="進研教育 AI 查詢助手示範" loading="lazy"></iframe>
+  <iframe src="https://rag-chatbot-production-5fcc.up.railway.app/c/dedicated-demo" title="學銳教育 AI 查詢助手示範" loading="lazy"></iframe>
   <div class="p-foot">由 BotLocal 提供 · 一行 code 就可以放喺你網站</div>
 </div>
 
@@ -101,31 +101,31 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
   <button class="chip" data-mock="wa">💬 WhatsApp 版</button>
   <button class="chip" data-mock="ig">📸 Instagram 版</button>
   <span class="chip" style="cursor:default">📘 Facebook</span>
-  <span class="chip cta"><a href="https://wa.me/447472323783?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E8%A6%8B%E5%92%97%E9%80%B2%E7%A0%94%E5%80%8B%20AI%20%E5%AE%A2%E6%9C%8D%E7%A4%BA%E7%AF%84%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B" target="_blank" rel="noopener">想放落你網站？WhatsApp 我哋 →</a></span>
+  <span class="chip cta"><a href="https://wa.me/447472323783?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E8%A6%8B%E5%92%97%E5%AD%B8%E9%8A%B3%E6%95%99%E8%82%B2%E5%80%8B%20AI%20%E5%AE%A2%E6%9C%8D%E7%A4%BA%E7%AF%84%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B" target="_blank" rel="noopener">想放落你網站？WhatsApp 我哋 →</a></span>
 </div>
 
 <div id="modal">
   <div class="mock" id="mock-wa" hidden>
     <button class="m-close" aria-label="關閉">✕</button>
-    <div class="m-head wa"><span class="ava">🏫</span><div><b>進研教育</b><small>WhatsApp · 通常幾秒內回覆</small></div></div>
+    <div class="m-head wa"><span class="ava">🏫</span><div><b>學銳教育</b><small>WhatsApp · 通常幾秒內回覆</small></div></div>
     <div class="m-body">
-      <div class="mb me">小五英文幾錢？</div>
-      <div class="mb bot">家長你好 😊 小五英文每期 4 堂 HK$1,120，每堂約 $280。想報名或者查詢時間，隨時話我知！</div>
-      <div class="mb me">太子返有冇位？</div>
-      <div class="mb bot">太子總校喺旺角太子道西 162 號華邦商業中心 10 樓。實際空位等我幫你登記，中心職員會盡快覆實你 👍</div>
+      <div class="mb me">小組班學費幾多？</div>
+      <div class="mb bot">中心冇喺網上公開完整價目表，學費按課程同年級而定 😊 想知確實收費同最新優惠，可以直接 WhatsApp 9638 8240，或者留低你電話同小朋友年級，我哋盡快覆你！</div>
+      <div class="mb me">咁太子分校喺邊？</div>
+      <div class="mb bot">太子分校喺太子砵蘭街 450-454 號 HQ 大廈 7 樓 B 室（太子站 D 出口），服務太子、旺角、大角咀、九龍塘一帶學生。</div>
     </div>
-    <div class="m-note">同一個 AI、同一套官網資料——家長喺 WhatsApp 問，答案一模一樣。</div>
+    <div class="m-note">學費要保密？AI 唔會亂報價——照足官網政策，禮貌帶去 WhatsApp。</div>
   </div>
   <div class="mock" id="mock-ig" hidden>
     <button class="m-close" aria-label="關閉">✕</button>
-    <div class="m-head ig"><span class="ava">🏫</span><div><b>joinin.education</b><small>Instagram · 訊息</small></div></div>
+    <div class="m-head ig"><span class="ava">🏫</span><div><b>dedicated_education</b><small>Instagram · 訊息</small></div></div>
     <div class="m-body ig-bg">
-      <div class="mb me">見到你哋 post，暑期班仲收唔收生？</div>
-      <div class="mb bot">你好呀 😊 暑期課程每科 6 堂，小學約 $1,680–1,740、中學約 $1,860–1,920。留低小朋友年級，我幫你睇下！</div>
-      <div class="mb me">小四</div>
-      <div class="mb bot">小四（小學）暑期每科 6 堂約 $1,680–1,740 😊 想我幫你留位就話我知，或者直接 WhatsApp 5440 0855！</div>
+      <div class="mb me">見到你哋 post，小朋友有 SEN，你哋收唔收？</div>
+      <div class="mb bot">你好呀 😊 學銳教育有 SEN 全方位學習班，專為有特殊教育需要嘅學生而設。詳情同編班可以直接聯絡中心，我哋幫你跟進！</div>
+      <div class="mb me">咁要 WhatsApp 邊個號碼？</div>
+      <div class="mb bot">WhatsApp 9638 8240 就得 😊 留低小朋友年級同需要，職員會盡快覆實你。</div>
     </div>
-    <div class="m-note">IG DM 一樣答到——半夜 post 落廣告，AI 幫你即刻接查詢。</div>
+    <div class="m-note">IG DM 一樣答到——半夜 post 落廣告，SEN 查詢即刻有「人」接。</div>
   </div>
 </div>
 
