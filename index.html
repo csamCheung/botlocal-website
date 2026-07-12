@@ -868,6 +868,20 @@ function setLang(lang){
   zhBtn.setAttribute("aria-pressed", lang==="zh" ? "true" : "false");
   enBtn.setAttribute("aria-pressed", lang==="en" ? "true" : "false");
   document.querySelectorAll(".wa-link").forEach(function(a){ a.setAttribute("href", waLink(lang)); });
+  // Hero demo video follows the language: Cantonese / English cut.
+  var hv = document.querySelector(".hero-video");
+  if(hv){
+    var vidSrc = lang === "en" ? "botlocal-demo-animated-en.mp4" : "botlocal-demo-animated.mp4";
+    var poster = lang === "en" ? "demo-poster-en.jpg" : "demo-poster.jpg";
+    var srcEl = hv.querySelector("source");
+    if(srcEl && srcEl.getAttribute("src") !== vidSrc){
+      srcEl.setAttribute("src", vidSrc);
+      hv.setAttribute("poster", poster);
+      hv.load();
+      var p = hv.play();
+      if(p && p.catch) p.catch(function(){});
+    }
+  }
 }
 
 function sendContact(e){
