@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E">
+<title>BotLocal AI 客服示範 · Live Demo</title>
+<style>
+  :root { --bg:#f4f5f7; --bot:#fff; --me:#0b5fff; --line:#e3e6ea; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+         background:var(--bg); height:100vh; display:flex; flex-direction:column; }
+  header { background:#fff; border-bottom:1px solid var(--line); padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  header h1 { margin:0; font-size:16px; }
+  header p { margin:4px 0 0; font-size:12px; color:#6b7280; }
+  .privacy-link { display:inline-block; margin-top:4px; color:#5a6473; font-size:11px; text-decoration:underline; }
+  .privacy-link:hover { color:#1b2330; }
+  .pills { display:inline-flex; gap:2px; padding:3px; background:#eef1f5; border:1px solid var(--line); border-radius:999px; }
+  .pill { font-size:13px; font-weight:500; line-height:1; padding:7px 14px; border:0; border-radius:999px; background:transparent; cursor:pointer; color:#5a6473; white-space:nowrap; transition:background .15s ease, color .15s ease; }
+  .pill:hover { color:#1b2330; }
+  .pill:focus-visible { outline:2px solid var(--me); outline-offset:2px; }
+  .pill.active { background:var(--me); color:#fff; box-shadow:0 1px 3px rgba(11,95,255,.35); }
+  .sugg { display:flex; flex-wrap:wrap; gap:8px; margin:2px 0 10px; }
+  .sugg button { font-size:13.5px; line-height:1.2; padding:9px 14px; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--me); cursor:pointer; transition:background .15s ease, border-color .15s ease; }
+  .sugg button:hover { background:#eef3ff; border-color:var(--me); }
+  #log { flex:1; overflow-y:auto; padding:18px; display:flex; flex-direction:column; gap:10px; }
+  .msg { max-width:75%; padding:10px 14px; border-radius:14px; line-height:1.45; white-space:pre-wrap; word-wrap:break-word; }
+  .me  { align-self:flex-end; background:var(--me); color:#fff; border-bottom-right-radius:4px; }
+  .bot { align-self:flex-start; background:var(--bot); border:1px solid var(--line); border-bottom-left-radius:4px; }
+  .bot a { color:var(--me); font-weight:600; text-decoration:underline; word-break:break-all; }
+  .typing { color:#9aa1ab; font-style:italic; }
+  /* Product cards shown under a recommendation */
+  .cards { align-self:flex-start; max-width:85%; display:flex; flex-wrap:wrap; gap:10px; }
+  .card { width:150px; background:#fff; border:1px solid var(--line); border-radius:12px;
+          overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+  .card img { width:100%; height:120px; object-fit:contain; background:#fafafa; display:block; }
+  .cinfo { padding:8px 10px; display:flex; flex-direction:column; gap:2px; }
+  .cname { font-size:12px; color:#111827; line-height:1.3; }
+  .ccode { font-size:11px; color:#6b7280; }
+  .cprice { font-size:13px; font-weight:600; color:var(--me); margin-top:2px; }
+  form { display:flex; gap:8px; padding:12px; background:#fff; border-top:1px solid var(--line); }
+  input { flex:1; padding:11px 14px; border:1px solid var(--line); border-radius:10px; font-size:15px; }
+  button { padding:11px 18px; border:0; border-radius:10px; background:var(--me); color:#fff; font-size:15px; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 id="title">Customer Service</h1>
+      <p id="subtitle"></p>
+      <a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">私隱政策 · Privacy</a>
+    </div>
+    <div class="pills" role="group" aria-label="Chat language">
+      <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button class="pill" type="button" data-lang="yue" aria-pressed="true">廣東話</button>
+      <button class="pill" type="button" data-lang="zh" aria-pressed="false">普通话</button>
+    </div>
+  </header>
+
+  <div id="log" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation"></div>
+
+  <form id="form" aria-label="Chat message">
+    <input id="box" autocomplete="off" aria-label="Chat message" autofocus>
+    <button id="send" type="submit">Send</button>
+  </form>
+
+<!-- BACKEND_URL lives in config.js — the one file you edit after deploying the bot. -->
+<script src="config.js?v=2"></script>
+<script>
+  // This is a STATIC site. Brand text is BUILT IN below so the page always works
+  // instantly; the /config fetch merely refreshes it from the bot server. The
+  // server is only truly required for answering questions (/chat).
+  const FALLBACK_T = {
+    "en": {
+      "title": "AI Customer Service Assistant",
+      "subtitle": "Ask about our services, pricing, and how it works.",
+      "greeting": "Hi! I'm BotLocal. I build WhatsApp and website AI customer-service bots for Hong Kong small businesses — answering common questions 24/7, handling booking enquiries, and introducing your services. I'm an independent developer, so I can tailor features to your business needs. Ask me anything about features, pricing, or booking a free demo.",
+      "placeholder": "Type your question…",
+      "send": "Send",
+      "suggestions": ["How much does it cost?", "What can your bot do?", "How do I book a free demo?"]
+    },
+    "yue": {
+      "title": "AI 客服助手",
+      "subtitle": "有關我哋嘅服務、收費同運作，隨時問我。",
+      "greeting": "你好！我係 BotLocal，專幫香港小店同中小企建立 WhatsApp 或網站 AI 客服機械人，24 小時自動回答常見問題、處理預約查詢同介紹服務。我係個人開發者，可以按你嘅業務需要度身訂造功能。想了解功能、收費，或者預約免費示範，都可以直接問我。",
+      "placeholder": "請輸入你嘅問題…",
+      "send": "傳送",
+      "suggestions": ["收費點計？", "有咩功能？", "點樣預約免費示範？"]
+    },
+    "zh": {
+      "title": "AI 客服助手",
+      "subtitle": "关于我们的服务、收费和运作，欢迎咨询。",
+      "greeting": "您好！我是 BotLocal，专为香港小店和中小企业打造 WhatsApp 或网站 AI 客服机器人，24 小时自动回答常见问题、处理预约咨询并介绍服务。我是个人开发者，可以按照您的业务需要定制功能。想了解功能、费用，或预约免费演示，都可以直接问我。",
+      "placeholder": "请输入您的问题…",
+      "send": "发送",
+      "suggestions": ["收费怎么算？", "有什么功能？", "怎样预约免费演示？"]
+    }
+  };
+  let T = null;                       // set from /config when it arrives
+  let WA_NUMBER = "447472323783";     // fallback; refreshed from /config
+
+  const log = document.getElementById('log');
+  const form = document.getElementById('form');
+  const box = document.getElementById('box');
+  const send = document.getElementById('send');
+  let lang = 'yue';         // UI language (greeting, labels); Cantonese default
+  let langForced = false;   // true only when the user taps a pill — otherwise
+                            // each message's reply language is auto-detected
+
+  // Pretty-print an international phone number (digits only) for display.
+  function fmtPhone(d) {
+    if (d === "447472323783") return "+44 7472 323783";   // BotLocal WhatsApp
+    return "+" + d;
+  }
+  // Render a bot reply safely: escape HTML first, then turn markdown links,
+  // bare URLs and **bold** into real formatting so links are clickable.
+  function renderBotHTML(text) {
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    let t = esc(text);
+    const stash = [];
+    const keep = html => { stash.push(html); return '\u0000' + (stash.length - 1) + '\u0000'; };
+    // markdown links [label](url) -> neat clickable label (http(s) + mailto)
+    t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (m, label, url) => {
+      const isMail = url.slice(0, 7) === 'mailto:';
+      const attrs = isMail ? '' : ' target="_blank" rel="noopener"';
+      // show the phone number after WhatsApp links so people see it's tappable
+      const wa = url.match(/wa\.me\/(\d+)/);
+      const shown = wa && label.replace(/\D/g, '').indexOf(wa[1]) === -1
+        ? label + '（' + fmtPhone(wa[1]) + '）' : label;
+      return keep('<a href="' + url + '"' + attrs + '>' + shown + '</a>');
+    });
+    // bare URLs -> clickable (trim trailing punctuation incl. Chinese full-width)
+    t = t.replace(/https?:\/\/[^\s<)。，；、）]+/g, m => {
+      let url = m, trail = '';
+      while (/[.,;:!?]$/.test(url)) { trail = url.slice(-1) + trail; url = url.slice(0, -1); }
+      return keep('<a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>') + trail;
+    });
+    // bare email addresses -> clickable mailto
+    t = t.replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, m =>
+      keep('<a href="mailto:' + m + '">' + m + '</a>'));
+    // **bold**
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+    return t.replace(/\u0000(\d+)\u0000/g, (m, i) => stash[i]);
+  }
+
+  // Persist the conversation in the browser so a refresh doesn't wipe it.
+  const STORE_KEY = 'botlocal_chat_v1';
+  // Stable id so the backend can remember prior turns across page reloads.
+  const SID_KEY = 'botlocal_sid_v1';
+  const newSid = () => (crypto.randomUUID ? crypto.randomUUID()
+    : String(Date.now()) + Math.random().toString(16).slice(2));
+  let sessionId = (function () {
+    try {
+      let s = localStorage.getItem(SID_KEY);
+      if (!s) { s = newSid(); localStorage.setItem(SID_KEY, s); }
+      return s;
+    } catch (e) { return newSid(); }
+  })();
+  let msgs = [];
+  let restoring = false;
+
+  function saveChat() {
+    if (restoring) return;
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ lang: lang, forced: langForced, msgs: msgs.slice(-50) })); } catch (e) {}
+  }
+
+  function add(text, cls) {
+    const d = document.createElement('div');
+    d.className = 'msg ' + cls;
+    if (cls.indexOf('bot') === 0 && cls.indexOf('typing') === -1) {
+      d.innerHTML = renderBotHTML(text);   // bot replies: clickable links + bold
+    } else {
+      d.textContent = text;                // user text stays plain (safety)
+    }
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    if (cls === 'me' || cls === 'bot') {   // real messages only (not typing dots)
+      if (!restoring) { msgs.push({ t: text, c: cls }); saveChat(); }
+    }
+    return d;
+  }
+
+  // A bot reply, plus an optional row of product photo/price cards beneath it.
+  function addBot(reply, products) {
+    add(reply, 'bot');
+    if (!products || !products.length) return;
+    const cards = document.createElement('div');
+    cards.className = 'cards';
+    products.forEach(p => {
+      const card = document.createElement('a');
+      card.className = 'card';
+      const enquiryName = p.name_zh || p.name_en;
+      const enquiry = lang === 'en'
+        ? "Hi, I'm interested in " + p.code + " " + (p.name_en || p.name_zh) + ". Could you tell me more?"
+        : lang === 'zh'
+        ? "您好，我想咨询 " + p.code + " " + enquiryName + "，可以告诉我更多吗？"
+        : "你好，我想查詢 " + p.code + " " + enquiryName + "，可以話我知多啲嗎？";
+      card.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(enquiry);
+      card.target = '_blank'; card.rel = 'noopener';
+      const img = document.createElement('img');
+      img.src = p.image_url; img.alt = p.code; img.loading = 'lazy';
+      img.onerror = () => { card.style.display = 'none'; };  // hide if photo 404s
+      const info = document.createElement('div');
+      info.className = 'cinfo';
+      const nm = lang === 'en' ? (p.name_en || p.name_zh) : (p.name_zh || p.name_en);
+      const name = document.createElement('div'); name.className = 'cname'; name.textContent = nm;
+      const code = document.createElement('div'); code.className = 'ccode'; code.textContent = p.code;
+      info.appendChild(name); info.appendChild(code);
+      if (p.price_hkd) {
+        const pr = document.createElement('div'); pr.className = 'cprice';
+        pr.textContent = 'HK$' + p.price_hkd; info.appendChild(pr);
+      }
+      card.appendChild(img); card.appendChild(info);
+      cards.appendChild(card);
+    });
+    log.appendChild(cards);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  // Tappable starter questions — every one is verified answerable by the bot's
+  // knowledge base before it ships here. Shown until the visitor sends a message.
+  function clearSuggestions() {
+    const el = document.getElementById('sugg');
+    if (el) el.remove();
+  }
+  function renderSuggestions() {
+    clearSuggestions();
+    if (msgs.some(m => m.c === 'me')) return;   // conversation already started
+    const list = (T && T[lang] && T[lang].suggestions) || [];
+    if (!list.length) return;
+    const row = document.createElement('div');
+    row.className = 'sugg'; row.id = 'sugg';
+    list.forEach(q => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = q;
+      b.addEventListener('click', () => {
+        box.value = q;
+        if (form.requestSubmit) form.requestSubmit();
+        else form.dispatchEvent(new Event('submit', { cancelable: true }));
+      });
+      row.appendChild(b);
+    });
+    log.appendChild(row);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function setLang(code) {
+    lang = code;
+    const t = T[code];
+    document.documentElement.lang = code === 'yue' ? 'zh-HK' : code === 'zh' ? 'zh-Hans' : 'en';
+    document.title = t.title + ' · BotLocal';
+    document.getElementById('title').textContent = t.title;
+    document.getElementById('subtitle').textContent = t.subtitle;
+    box.placeholder = t.placeholder;
+    box.setAttribute('aria-label', t.placeholder);
+    send.textContent = t.send;
+    send.setAttribute('aria-label', t.send);
+    document.querySelectorAll('.pill').forEach(p => {
+      const active = p.dataset.lang === code;
+      p.classList.toggle('active', active);
+      p.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    // Fresh start: clear chat (incl. saved history), begin a NEW conversation
+    // (so the backend forgets prior turns too), and greet in the new language.
+    log.innerHTML = '';
+    msgs = [];
+    sessionId = newSid();
+    try { localStorage.setItem(SID_KEY, sessionId); } catch (e) {}
+    add(t.greeting, 'bot');
+    renderSuggestions();
+    box.focus();
+  }
+
+  // Bring back the previous conversation after a refresh (same browser).
+  // Returns true if something was restored.
+  function restoreChat() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch (e) {}
+    if (!saved || !saved.lang || !Array.isArray(saved.msgs) || !saved.msgs.length) return false;
+    if (!T) T = FALLBACK_T;
+    const t = T[saved.lang] || T.yue;
+    restoring = true;
+    lang = saved.lang;
+    langForced = !!saved.forced;
+    document.documentElement.lang = lang === 'yue' ? 'zh-HK' : lang === 'zh' ? 'zh-Hans' : 'en';
+    document.title = t.title + ' · BotLocal';
+    document.getElementById('title').textContent = t.title;
+    document.getElementById('subtitle').textContent = t.subtitle;
+    box.placeholder = t.placeholder;
+    box.setAttribute('aria-label', t.placeholder);
+    send.textContent = t.send;
+    send.setAttribute('aria-label', t.send);
+    document.querySelectorAll('.pill').forEach(p => {
+      const active = p.dataset.lang === lang;
+      p.classList.toggle('active', active);
+      p.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    saved.msgs.forEach(m => add(m.t, m.c));
+    restoring = false;
+    msgs = saved.msgs;
+    renderSuggestions();   // self-guards: only shows if no user message yet
+    return true;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = box.value.trim();
+    if (!text || !lang) return;
+    clearSuggestions();
+    add(text, 'me');
+    box.value = '';
+    send.disabled = true;
+    const typing = add('…', 'bot typing');
+    try {
+      const res = await fetch(BACKEND_URL + '/chat', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ message: text, lang: langForced ? lang : null, session_id: sessionId })
+      });
+      const data = await res.json();
+      typing.remove();
+      addBot(data.reply || '(no reply)', data.products);
+    } catch (err) {
+      typing.remove();
+      add('Error contacting the server.', 'bot');
+    } finally {
+      send.disabled = false;
+      box.focus();
+    }
+  });
+
+  // Header pills switch the UI language AND pin the reply language. Without a
+  // tap, replies auto-detect the customer's language message by message.
+  document.querySelectorAll('.pill').forEach(el =>
+    el.addEventListener('click', () => {
+      if (!T) T = FALLBACK_T;
+      langForced = true;
+      setLang(el.dataset.lang);
+    }));
+
+  // Refresh brand text from the chatbot API in the background (non-blocking).
+  async function init() {
+    try {
+      const res = await fetch(BACKEND_URL + '/config');
+      const cfg = await res.json();
+      WA_NUMBER = cfg.whatsapp || WA_NUMBER;
+      T = cfg.ui || T;
+      renderSuggestions();   // refresh chips from server config (no-op mid-chat)
+    } catch (err) {
+      // Server unreachable: the built-in text keeps the page usable; actual
+      // answers will show a connection error only if the user sends a message.
+      console.warn('config fetch failed; using built-in brand text', err);
+    }
+  }
+
+  // No language picker: greet in Cantonese immediately (HK default); the
+  // reply language auto-detects per message unless a pill is tapped.
+  if (!restoreChat()) {
+    if (!T) T = FALLBACK_T;
+    setLang('yue');
+  }
+  init();
+</script>
+</body>
+</html>
