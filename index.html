@@ -225,7 +225,7 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="#features" data-i18n="navFeatures">功能</a>
       <a href="#how" data-i18n="navHow">點運作</a>
-      <a href="#pricing" data-i18n="navPricing">價錢</a>
+      <a href="pricing.html" data-i18n="navPricing">價錢</a>
       <a href="#faq" data-i18n="navFaq">常見問題</a>
       <a href="#about" data-i18n="navAbout">關於我</a>
       <a href="#contact" data-i18n="navContact">聯絡</a>
@@ -287,25 +287,25 @@ AI 客服可以配合你公司的溝通語氣，24 小時回答問題、處理�
           <div class="ico" aria-hidden="true">💬</div>
           <h3 data-i18n="plat1T">你嘅網站</h3>
           <p data-i18n="plat1D">加入一小段 code，就可以直接嵌入你現有的網站——Wix、WordPress、自家網站均可。</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8f6ec;color:#128c4a;" data-i18n="platIncl1">✓ 套餐已包含</span>
+          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8f6ec;color:#128c4a;" data-i18n="platIncl1">✓ 所有方案包含</span>
         </div>
         <div class="feat">
           <div class="ico" aria-hidden="true">🟢</div>
           <h3 data-i18n="plat2T">WhatsApp Business</h3>
           <p data-i18n="plat2D">客人可在 WhatsApp 直接與你的 bot 對話——這是香港客人最常用的聯絡渠道。</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#eef1f5;color:#5a6473;" data-i18n="platIncl2">由 HK$1,388 套餐起</span>
+          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8f6ec;color:#128c4a;" data-i18n="platIncl2">✓ 所有方案包含</span>
         </div>
         <div class="feat">
           <div class="ico" aria-hidden="true">📸</div>
           <h3 data-i18n="plat3T">Instagram DM</h3>
           <p data-i18n="plat3D">客人透過 IG DM 查詢，bot 會自動回覆——特別適合主要透過 IG 接觸客人的小店。</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#eef1f5;color:#5a6473;" data-i18n="platOpt1">由 HK$1,888 套餐起</span>
+          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8f6ec;color:#128c4a;" data-i18n="platOpt1">✓ 所有方案包含</span>
         </div>
         <div class="feat">
           <div class="ico" aria-hidden="true">💠</div>
           <h3 data-i18n="plat4T">Facebook Messenger</h3>
           <p data-i18n="plat4D">Facebook 專頁的訊息也可以交由同一個 bot 處理。</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#eef1f5;color:#5a6473;" data-i18n="platOpt2">全渠道套餐包含</span>
+          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8f6ec;color:#128c4a;" data-i18n="platOpt2">✓ 所有方案包含</span>
         </div>
       </div>
     </div>
@@ -406,60 +406,64 @@ AI 客服可以配合你公司的溝通語氣，24 小時回答問題、處理�
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- PRICING (teaser — full details on pricing.html) -->
+  <style>
+    .pricing.teaser{grid-template-columns:repeat(3,1fr); max-width:940px; margin:0 auto;}
+    @media(max-width:820px){ .pricing.teaser{grid-template-columns:1fr; max-width:420px;} }
+    .see-full{display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--brand); font-size:16px;}
+    .see-full:hover{color:var(--brand-dark);}
+  </style>
   <section class="section" id="pricing" aria-labelledby="pricing-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="pricing-h" data-i18n="priceTitle">價錢透明，冇長約</h2>
-        <p data-i18n="priceSub">選擇你需要的渠道 —— 沒有長約，隨時可以停止。</p>
+        <h2 id="pricing-h" data-i18n="priceTitle">簡單透明嘅價錢</h2>
+        <p data-i18n="priceSub">14 天免費試用，免信用卡，冇長約。所有價錢另加 VAT。</p>
       </div>
-      <div style="max-width:600px; margin:0 auto 30px; background:var(--brand-soft); border:1px solid var(--brand); border-radius:var(--radius); padding:22px 26px; text-align:center;">
-        <div style="font-size:13px; font-weight:700; color:var(--brand); letter-spacing:.04em; margin-bottom:12px;" data-i18n="offerTag">🎉 限時首批客戶優惠</div>
-        <div style="font-size:15px; color:var(--ink-faint); text-decoration:line-through; margin-bottom:2px;" data-i18n="offerWas">正常設定費 HK$8,888</div>
-        <div style="font-size:20px; font-weight:700; color:var(--ink); line-height:1.5;" data-i18n="offerNow">現時限時全免 ＋ 首兩星期免費試用</div>
-        <div style="font-size:14px; color:var(--ink-soft); margin-top:8px;" data-i18n="offerAfter">你無需即時支付設定費 · 試用期後月費 HK$888 起 · 沒有長約，隨時可停</div>
-      </div>
-      <div class="pricing">
-        <article class="price" aria-label="Website plan">
-          <h3 data-i18n="t1N">網站</h3>
-          <p class="desc" data-i18n="t1D">最適合剛起步的小店。</p>
+      <div class="pricing teaser">
+        <article class="price" aria-label="Basic plan">
+          <h3>Basic</h3>
+          <p class="desc" data-i18n="tzBasicD">啱啱起步、想試水溫嘅小店。</p>
           <div class="price-amount">
-            <span class="cur">HK$</span><span class="now">888</span><span class="cur" style="font-size:17px;">/月</span>
+            <span class="cur" style="font-size:18px;">£</span><span class="now">89</span><span class="cur" style="font-size:15px;" data-i18n="perMo">/月</span><span class="cur" style="font-size:13px; color:var(--ink-faint);" data-i18n="plusVat">＋ VAT</span>
           </div>
-          <p class="term" data-i18n="t1Ch">網站 chat widget</p>
-          <a class="btn btn-ghost btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="tCta">WhatsApp 查詢</span></a>
+          <ul>
+            <li data-i18n="tzB1">1 個 WhatsApp 號碼</li>
+            <li data-i18n="tzB2">3 個用戶帳戶（seats）</li>
+            <li data-i18n="tzB3">全渠道全包 · 1 個 AI agent</li>
+          </ul>
+          <a class="btn btn-brand btn-block" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">開始免費試用</a>
         </article>
-        <article class="price popular" aria-label="Website + WhatsApp plan">
-          <span class="price-badge" data-i18n="t2Badge">最受歡迎</span>
-          <h3 data-i18n="t2N">WhatsApp＋網站</h3>
-          <p class="desc" data-i18n="t2D">加入 WhatsApp Business，覆蓋香港客人最常用的渠道。</p>
+        <article class="price popular" aria-label="Professional plan">
+          <span class="price-badge" data-i18n="badgePopular">最受歡迎</span>
+          <h3>Professional</h3>
+          <p class="desc" data-i18n="tzProD">查詢量較多、需要多個號碼同團隊。</p>
           <div class="price-amount">
-            <span class="cur">HK$</span><span class="now">1,388</span><span class="cur" style="font-size:17px;">/月</span>
+            <span class="cur" style="font-size:18px;">£</span><span class="now">129</span><span class="cur" style="font-size:15px;" data-i18n="perMo">/月</span><span class="cur" style="font-size:13px; color:var(--ink-faint);" data-i18n="plusVat">＋ VAT</span>
           </div>
-          <p class="term" data-i18n="t2Ch">WhatsApp Business ＋ 網站</p>
-          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="tCta2">WhatsApp 查詢</span></a>
+          <ul>
+            <li data-i18n="tzP1">3 個 WhatsApp 號碼</li>
+            <li data-i18n="tzP2">10 個用戶帳戶（seats）</li>
+            <li data-i18n="tzP3">每月額外包 10 個對話 bonus</li>
+          </ul>
+          <a class="btn btn-brand btn-block" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">開始免費試用</a>
         </article>
-        <article class="price" aria-label="Website + WhatsApp + Instagram plan">
-          <h3 data-i18n="t3N">網站＋WhatsApp＋Instagram</h3>
-          <p class="desc" data-i18n="t3D">再加上 Instagram DM 查詢。</p>
+        <article class="price" aria-label="Advanced plan">
+          <h3>Advanced</h3>
+          <p class="desc" data-i18n="tzAdvD">規模較大、需要更多號碼同 AI agent。</p>
           <div class="price-amount">
-            <span class="cur">HK$</span><span class="now">1,888</span><span class="cur" style="font-size:17px;">/月</span>
+            <span class="now" style="font-size:26px;" data-i18n="onRequest">按需報價</span>
           </div>
-          <p class="term" data-i18n="t3Ch">網站 ＋ WhatsApp ＋ Instagram DM</p>
-          <a class="btn btn-ghost btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="tCta">WhatsApp 查詢</span></a>
-        </article>
-        <article class="price" aria-label="All channels plan">
-          <h3 data-i18n="t4N">全渠道</h3>
-          <p class="desc" data-i18n="t4D">網站、WhatsApp、Instagram 及 Facebook 一次過整合。</p>
-          <div class="price-amount">
-            <span class="cur">HK$</span><span class="now">2,388</span><span class="cur" style="font-size:17px;">/月</span>
-          </div>
-          <p class="term" data-i18n="t4Ch">再加上 Facebook Messenger</p>
-          <a class="btn btn-ghost btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="tCta">WhatsApp 查詢</span></a>
+          <ul>
+            <li data-i18n="tzA1">5 個 WhatsApp 號碼</li>
+            <li data-i18n="tzA2">25 個用戶帳戶（seats）</li>
+            <li data-i18n="tzA3">2 個 AI agent · 優先設定協助</li>
+          </ul>
+          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="ctaCall">預約傾一傾</span></a>
         </article>
       </div>
-      <p style="text-align:center; max-width:760px; margin:26px auto 0; font-size:14px; color:var(--ink-soft);" data-i18n="tierAll">月費已包括：24 小時自動回覆 · 廣東話／英文／普通話 · 收集客戶資料 · 系統託管、AI 用量、內容更新及技術支援全部包括在內。Google 日曆、WeChat、CRM、預約系統或特別整合可另行報價。</p>
-      <p style="text-align:center; max-width:720px; margin:14px auto 0; font-size:15px; font-weight:600; color:var(--brand);" data-i18n="roi">每月為你多接一兩單，基本上已經回本 —— 減少漏覆 WhatsApp，騰出更多時間做生意。</p>
+      <p style="text-align:center; margin:30px auto 0;">
+        <a class="see-full" href="pricing.html"><span data-i18n="seeFull">睇晒全部價錢同比較</span><span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </section>
 
@@ -489,7 +493,7 @@ AI 客服可以配合你公司的溝通語氣，24 小時回答問題、處理�
         </details>
         <details>
           <summary data-i18n="faq4Q">使唔使簽長約？點收費？</summary>
-          <div class="ans" data-i18n="faq4A">沒有長期合約，逐月收費，覺得不合適可以隨時停止。正常設定費為 HK$8,888，但現時首批客戶限時全免設定費，你無需即時支付。你亦可先享用首兩星期免費試用；試用期後如決定繼續，月費 HK$888 起。月費按渠道分四個套餐：網站 HK$888、網站＋WhatsApp HK$1,388、網站＋WhatsApp＋Instagram HK$1,888、全渠道（再加 Facebook）HK$2,388，全部已包括系統託管、AI 用量、內容更新及基本支援。Google 日曆、WeChat、CRM 或其他特別整合，可按需要另行報價。</div>
+          <div class="ans" data-i18n="faq4A">冇長約，逐月收費，隨時可以停。方案有 Basic £89／月同 Professional £129／月（另加 VAT），Advanced 按需報價。Basic 同 Professional 有 14 天免費試用，免信用卡；試用期後決定繼續先收費。加開 WhatsApp 號碼每個 £25／月，公司主動發起嘅對話每個 £0.04（客人主動搵你嘅對話免費）。詳情可以睇我哋嘅<a href="pricing.html" style="color:var(--brand);font-weight:600;">價錢頁</a>。</div>
         </details>
         <details>
           <summary data-i18n="faq5Q">可以接駁邊啲平台？</summary>
@@ -598,7 +602,7 @@ AI 客服可以配合你公司的溝通語氣，24 小時回答問題、處理�
     <div>© <span id="year"></span> BotLocal</div>
     <div class="foot-links">
       <a href="#features" data-i18n="navFeatures">功能</a>
-      <a href="#pricing" data-i18n="navPricing">價錢</a>
+      <a href="pricing.html" data-i18n="navPricing">價錢</a>
       <a href="#faq" data-i18n="navFaq">常見問題</a>
       <a class="wa-link" href="#" target="_blank" rel="noopener" data-i18n="footWa">WhatsApp</a>
       <a href="mailto:samkiengineer@gmail.com" data-i18n="footMail">電郵</a>
@@ -672,20 +676,21 @@ var I18N = {
     plat2T:"WhatsApp Business", plat2D:"客人可在 WhatsApp 直接與你的 bot 對話——這是香港客人最常用的聯絡渠道。",
     plat3T:"Instagram DM", plat3D:"客人透過 IG DM 查詢，bot 會自動回覆——特別適合主要透過 IG 接觸客人的小店。",
     plat4T:"Facebook Messenger", plat4D:"Facebook 專頁的訊息也可以交由同一個 bot 處理。",
-    platIncl1:"✓ 套餐已包含", platIncl2:"由 HK$1,388 套餐起", platOpt1:"由 HK$1,888 套餐起", platOpt2:"全渠道套餐包含",
+    platIncl1:"✓ 所有方案包含", platIncl2:"✓ 所有方案包含", platOpt1:"✓ 所有方案包含", platOpt2:"✓ 所有方案包含",
     step1T:"傾下你盤生意", step1D:"用 WhatsApp 與我們傾談 15 分鐘，了解你店舖的業務，以及客人最常查詢的問題。",
     step2T:"我哋幫你設定個 bot", step2D:"我們會根據你的業務資料，為你度身設定 bot，並調校至貼近你店舖的語氣，持續測試及調校，直至 bot 能準確回答你的業務問題。",
     step3T:"上線收客", step3D:"接駁至你的 WhatsApp 及網站，正式開始 24 小時自動回覆客人。",
 
 
-    priceTitle:"價錢透明，冇長約", priceSub:"選擇你需要的渠道 —— 沒有長約，隨時可以停止。",
-    offerTag:"🎉 限時首批客戶優惠", offerWas:"正常設定費 HK$8,888", offerNow:"現時限時全免 ＋ 首兩星期免費試用", offerAfter:"你無需即時支付設定費 · 試用期後月費 HK$888 起 · 沒有長約，隨時可停",
-    t1N:"網站", t1D:"最適合剛起步的小店。", t1Ch:"網站 chat widget",
-    t2Badge:"最受歡迎", t2N:"WhatsApp＋網站", t2D:"加入 WhatsApp Business，覆蓋香港客人最常用的渠道。", t2Ch:"WhatsApp Business ＋ 網站",
-    t3N:"網站＋WhatsApp＋Instagram", t3D:"再加上 Instagram DM 查詢。", t3Ch:"網站 ＋ WhatsApp ＋ Instagram DM",
-    t4N:"全渠道", t4D:"網站、WhatsApp、Instagram 及 Facebook 一次過整合。", t4Ch:"再加上 Facebook Messenger",
-    tCta:"WhatsApp 查詢", tCta2:"WhatsApp 查詢",
-    tierAll:"月費已包括：24 小時自動回覆 · 廣東話／英文／普通話 · 收集客戶資料 · 系統託管、AI 用量、內容更新及技術支援全部包括在內。Google 日曆、WeChat、CRM、預約系統或特別整合可另行報價。",
+    priceTitle:"簡單透明嘅價錢", priceSub:"14 天免費試用，免信用卡，冇長約。所有價錢另加 VAT。",
+    perMo:"/月", plusVat:"＋ VAT", onRequest:"按需報價", badgePopular:"最受歡迎",
+    ctaTrial:"開始免費試用", ctaCall:"預約傾一傾", seeFull:"睇晒全部價錢同比較",
+    tzBasicD:"啱啱起步、想試水溫嘅小店。",
+    tzB1:"1 個 WhatsApp 號碼", tzB2:"3 個用戶帳戶（seats）", tzB3:"全渠道全包 · 1 個 AI agent",
+    tzProD:"查詢量較多、需要多個號碼同團隊。",
+    tzP1:"3 個 WhatsApp 號碼", tzP2:"10 個用戶帳戶（seats）", tzP3:"每月額外包 10 個對話 bonus",
+    tzAdvD:"規模較大、需要更多號碼同 AI agent。",
+    tzA1:"5 個 WhatsApp 號碼", tzA2:"25 個用戶帳戶（seats）", tzA3:"2 個 AI agent · 優先設定協助",
 
     faqTitle:"常見問題", faqSub:"最多人查詢的幾條問題。如仍有疑問，歡迎 WhatsApp 我們。",
     faq0Q:"係咪即係 ChatGPT？會唔會亂噏、答錯嘢？",
@@ -697,7 +702,7 @@ var I18N = {
     faq3Q:"我嘅生意資料安唔安全？",
     faq3A:"你的資料只會用於建立及維護你的 bot。我們不會出售，亦不會向無關的第三方分享你的資料。為了提供服務，我們可能會使用 AI、系統託管或通訊平台等可靠供應商，並會以安全方式處理。",
     faq4Q:"使唔使簽長約？點收費？",
-    faq4A:"沒有長期合約，逐月收費，覺得不合適可以隨時停止。正常設定費為 HK$8,888，但現時首批客戶限時全免設定費，你無需即時支付。你亦可先享用首兩星期免費試用；試用期後如決定繼續，月費 HK$888 起。月費按渠道分四個套餐：網站 HK$888、網站＋WhatsApp HK$1,388、網站＋WhatsApp＋Instagram HK$1,888、全渠道（再加 Facebook）HK$2,388，全部已包括系統託管、AI 用量、內容更新及基本支援。Google 日曆、WeChat、CRM 或其他特別整合，可按需要另行報價。",
+    faq4A:"冇長約，逐月收費，隨時可以停。方案有 Basic £89／月同 Professional £129／月（另加 VAT），Advanced 按需報價。Basic 同 Professional 有 14 天免費試用，免信用卡；試用期後決定繼續先收費。加開 WhatsApp 號碼每個 £25／月，公司主動發起嘅對話每個 £0.04（客人主動搵你嘅對話免費）。詳情可以睇我哋嘅價錢頁 pricing.html。",
     faq5Q:"可以接駁邊啲平台？",
     faq5A:"WhatsApp Business、Facebook Messenger、Instagram DM、你網站上的 chat widget，全部均可。WeChat（微信）可按需要另議。指定套餐亦可接駁 Google 日曆。有其他平台需求？歡迎隨時與我們聯絡。",
 
@@ -773,20 +778,21 @@ var I18N = {
     plat2T:"WhatsApp Business", plat2D:"Customers chat with your bot right inside WhatsApp — HK's favourite channel.",
     plat3T:"Instagram DM", plat3D:"Enquiries in your IG inbox get answered automatically — great for IG-driven shops.",
     plat4T:"Facebook Messenger", plat4D:"Messages to your Facebook Page can be handled by the same bot.",
-    platIncl1:"✓ Included in the package", platIncl2:"From the HK$1,388 plan", platOpt1:"From the HK$1,888 plan", platOpt2:"In the all-channels plan",
+    platIncl1:"✓ Included in all plans", platIncl2:"✓ Included in all plans", platOpt1:"✓ Included in all plans", platOpt2:"✓ Included in all plans",
     step1T:"Tell us about your business", step1D:"A 15-min WhatsApp chat — what you sell, what customers usually ask.",
     step2T:"We set up your bot", step2D:"We set it up with your business data and tune it to your shop's tone, testing until it answers your business questions accurately.",
     step3T:"Go live and serve customers", step3D:"Plug it into your WhatsApp and website and start replying to customers automatically, 24/7.",
 
 
-    priceTitle:"Transparent pricing, no lock-in", priceSub:"Pick the channels you need — no contract, cancel anytime.",
-    offerTag:"🎉 Limited first-client offer", offerWas:"Setup normally HK$8,888", offerNow:"Now waived + first two weeks free", offerAfter:"You pay no setup now · from HK$888/month after the trial · no contract, cancel anytime",
-    t1N:"Website", t1D:"For shops just getting started.", t1Ch:"Website chat widget",
-    t2Badge:"Most popular", t2N:"WhatsApp + Website", t2D:"Add WhatsApp Business — Hong Kong's most-used channel.", t2Ch:"WhatsApp Business + Website",
-    t3N:"Website + WhatsApp + Instagram", t3D:"Add Instagram DM enquiries too.", t3Ch:"Website + WhatsApp + Instagram DM",
-    t4N:"All channels", t4D:"Website, WhatsApp, Instagram & Facebook all together.", t4Ch:"Plus Facebook Messenger",
-    tCta:"Ask on WhatsApp", tCta2:"Ask on WhatsApp",
-    tierAll:"Monthly fee includes: 24/7 auto-replies · Cantonese / English / Mandarin · lead capture · hosting + AI + updates + basic support. Google Calendar, WeChat, CRM, booking systems or custom integrations are quoted separately.",
+    priceTitle:"Simple, transparent pricing", priceSub:"14-day free trial, no card required, no lock-in. All prices + VAT.",
+    perMo:"/mo", plusVat:"+ VAT", onRequest:"On request", badgePopular:"Most popular",
+    ctaTrial:"Start free trial", ctaCall:"Book a call", seeFull:"See full pricing & comparison",
+    tzBasicD:"For shops just getting started.",
+    tzB1:"1 integrated WhatsApp number", tzB2:"3 user seats", tzB3:"All channels included · 1 AI agent",
+    tzProD:"For busier businesses needing more numbers and a team.",
+    tzP1:"3 integrated WhatsApp numbers", tzP2:"10 user seats", tzP3:"10 bonus conversations / month",
+    tzAdvD:"For larger teams needing more numbers and AI agents.",
+    tzA1:"5 integrated WhatsApp numbers", tzA2:"25 user seats", tzA3:"2 AI agents · priority setup",
 
     faqTitle:"Frequently asked questions", faqSub:"The questions we hear most. Anything else — WhatsApp us.",
     faq0Q:"Is this just ChatGPT? Will it make things up?",
@@ -798,7 +804,7 @@ var I18N = {
     faq3Q:"Is my business data safe?",
     faq3A:"Your data is used only to build and maintain your bot. We never sell it or share it with unrelated third parties. To run the service we may use trusted AI, hosting and messaging providers, all handled securely.",
     faq4Q:"Any long contracts? How does pricing work?",
-    faq4A:"No contract — month-to-month, cancel anytime. Setup is normally HK$8,888, but for a limited number of early clients it's fully waived, so you don't pay it now. You also get your first two weeks free; after the trial, if you continue, it's from HK$888/month. There are four channel-based plans: Website HK$888, Website + WhatsApp HK$1,388, Website + WhatsApp + Instagram HK$1,888, and all-channels (plus Facebook) HK$2,388 — each covers hosting, AI usage, content updates and basic support. Google Calendar, WeChat, CRM or other custom integrations may be quoted separately.",
+    faq4A:"No contract — month-to-month, cancel anytime. Plans are Basic £89/mo and Professional £129/mo (+ VAT), with Advanced priced on request. Basic and Professional include a 14-day free trial, no card required; you're only billed after the trial if you continue. Additional WhatsApp numbers are £25/mo each, and company-initiated conversations are £0.04 each (conversations customers start with you are free). See our pricing page (pricing.html) for full details.",
     faq5Q:"Which platforms can it connect to?",
     faq5A:"WhatsApp Business, Facebook Messenger, Instagram DM, and a chat widget on your website. WeChat can be arranged on request. Selected plans add Google Calendar. Need another platform? Just talk to us.",
 
