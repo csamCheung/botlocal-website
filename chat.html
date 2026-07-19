@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E">
-<title>BotLocal AI 客服示範 · Live Demo</title>
+<title>BotLocal · Live Demo</title>
 <style>
   :root { --bg:#f4f5f7; --bot:#fff; --me:#0b5fff; --line:#e3e6ea; }
   * { box-sizing: border-box; }
@@ -49,11 +49,12 @@
     <div>
       <h1 id="title">Customer Service</h1>
       <p id="subtitle"></p>
-      <a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">私隱政策 · Privacy</a>
+      <a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">Privacy</a>
     </div>
-    <div class="pills" role="group" aria-label="Chat language">
-      <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
-      <button class="pill" type="button" data-lang="yue" aria-pressed="true">廣東話</button>
+    <!-- Language pills hidden for the UK (English-only) site; kept in the DOM so the multilingual mode can be re-enabled later. -->
+    <div class="pills" role="group" aria-label="Chat language" hidden style="display:none">
+      <button class="pill" type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button class="pill" type="button" data-lang="yue" aria-pressed="false">廣東話</button>
       <button class="pill" type="button" data-lang="zh" aria-pressed="false">普通话</button>
     </div>
   </header>
@@ -75,10 +76,10 @@
     "en": {
       "title": "AI Customer Service Assistant",
       "subtitle": "Ask about our services, pricing, and how it works.",
-      "greeting": "Hi! I'm BotLocal. I build WhatsApp and website AI customer-service bots for Hong Kong small businesses — answering common questions 24/7, handling booking enquiries, and introducing your services. I'm an independent developer, so I can tailor features to your business needs. Ask me anything about features, pricing, or booking a free demo.",
+      "greeting": "Hi! I'm BotLocal. I build WhatsApp and website AI assistants for UK trades — plumbers, electricians, heating engineers and more — answering customers 24/7, taking booking enquiries and capturing leads while you're on the tools. I'm an independent developer, so I can tailor it to how your business works. Ask me anything about features, pricing, or booking a free demo.",
       "placeholder": "Type your question…",
       "send": "Send",
-      "suggestions": ["How much does it cost?", "What can your bot do?", "How do I book a free demo?"]
+      "suggestions": ["How much does it cost?", "What can it do for my trade?", "How do I book a free demo?"]
     },
     "yue": {
       "title": "AI 客服助手",
@@ -104,7 +105,7 @@
   const form = document.getElementById('form');
   const box = document.getElementById('box');
   const send = document.getElementById('send');
-  let lang = 'yue';         // UI language (greeting, labels); Cantonese default
+  let lang = 'en';          // UI language (greeting, labels); English default (UK site)
   let langForced = false;   // true only when the user taps a pill — otherwise
                             // each message's reply language is auto-detected
 
@@ -248,7 +249,7 @@
   function setLang(code) {
     lang = code;
     const t = T[code];
-    document.documentElement.lang = code === 'yue' ? 'zh-HK' : code === 'zh' ? 'zh-Hans' : 'en';
+    document.documentElement.lang = code === 'yue' ? 'zh-HK' : code === 'zh' ? 'zh-Hans' : 'en-GB';
     document.title = t.title + ' · BotLocal';
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
@@ -354,11 +355,11 @@
     }
   }
 
-  // No language picker: greet in Cantonese immediately (HK default); the
-  // reply language auto-detects per message unless a pill is tapped.
+  // Language picker is hidden: greet in English immediately (UK site); the
+  // reply language still auto-detects per message from the customer's own text.
   if (!restoreChat()) {
     if (!T) T = FALLBACK_T;
-    setLang('yue');
+    setLang('en');
   }
   init();
 </script>

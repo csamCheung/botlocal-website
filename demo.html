@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-HK" data-lang="zh">
+<html lang="en-GB" data-lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E" />
-<title data-i18n="pageTitle">預約免費示範 · BotLocal</title>
-<meta name="description" data-i18n="metaDesc" content="預約 15 分鐘免費示範，我哋會用你間舖自己嘅資料整個 AI 客服畀你睇。14 日免費試用，免信用卡，設定同上線我哋包辦。" />
+<title data-i18n="pageTitle">Book a free demo · BotLocal</title>
+<meta name="description" data-i18n="metaDesc" content="Book a 15-minute free demo — we build a sample AI assistant from your own business info so you can see it answer customers. 14-day free trial, no card required, setup and onboarding included." />
 <style>
   :root{
     --bg:#ffffff; --bg-soft:#f6f7f9; --bg-soft2:#eef1f5;
@@ -119,12 +119,8 @@
   <div class="wrap nav-inner">
     <a class="logo" href="index.html" aria-label="BotLocal"><span class="mark" aria-hidden="true">🤖</span><span>BotLocal</span></a>
     <div class="nav-right">
-      <a class="back" href="pricing.html" data-i18n="navPricing">價錢</a>
-      <a class="back" href="index.html" data-i18n="back">← 返回主頁</a>
-      <div class="langtog" role="group" aria-label="Language">
-        <button id="lang-zh" class="active" onclick="setLang('zh')" aria-pressed="true">廣東話</button>
-        <button id="lang-en" onclick="setLang('en')" aria-pressed="false">EN</button>
-      </div>
+      <a class="back" href="pricing.html" data-i18n="navPricing">Pricing</a>
+      <a class="back" href="index.html" data-i18n="back">← Back to home</a>
     </div>
   </div>
 </header>
@@ -134,26 +130,26 @@
 
     <!-- PITCH -->
     <section class="pitch">
-      <span class="eyebrow" data-i18n="eyebrow">🎁 首批客戶限時優惠</span>
-      <h1 data-i18n="headline">預約 15 分鐘免費示範，睇下個 AI 客服有幾識答你間舖嘅嘢</h1>
-      <p class="lead" data-i18n="lead">我們會用你店舖自己的資料（產品、服務、價格、常見問題）為你設置一個示範版 AI 客服，讓你親眼看看它如何回答客人——完全免費，無需任何承諾。</p>
+      <span class="eyebrow" data-i18n="eyebrow">🎁 Free, no commitment</span>
+      <h1 data-i18n="headline">Book a 15-minute free demo and see how well the AI answers about your own business</h1>
+      <p class="lead" data-i18n="lead">We'll set up a sample AI assistant with your own info — services, prices, call-out charges and FAQs — so you can see exactly how it answers your customers. Completely free, no commitment.</p>
       <div class="offer">
-        <div class="tag" data-i18n="offerTag">限時優惠</div>
-        <div class="big" data-i18n="offerBig">14 日免費試用 · 免信用卡 · 設定同上線全包</div>
+        <div class="tag" data-i18n="offerTag">What you get</div>
+        <div class="big" data-i18n="offerBig">14-day free trial · no card required · setup & onboarding included</div>
       </div>
       <ul class="plist">
-        <li data-i18n="p1">用你間舖自己嘅真實資料示範，唔係空談</li>
-        <li data-i18n="p2">15 分鐘傾完，冇任何綁約、冇任何承諾</li>
-        <li data-i18n="p3">廣東話、英文、普通話都答到，24小時自動回覆</li>
-        <li data-i18n="p4">由香港軟件工程師親自跟進</li>
+        <li data-i18n="p1">Demoed on your own real info — not just talk</li>
+        <li data-i18n="p2">A 15-minute chat — no contract, no commitment</li>
+        <li data-i18n="p3">Answers customers 24/7 on WhatsApp and your website</li>
+        <li data-i18n="p4">Built and supported personally by the engineer behind BotLocal</li>
       </ul>
     </section>
 
     <!-- FORM CARD -->
     <section class="card">
       <div id="formPane">
-        <h2 data-i18n="formTitle">預約你嘅免費示範</h2>
-        <p class="csub" data-i18n="formSub">填好以下資料，我哋會盡快 WhatsApp 聯絡你安排時間。</p>
+        <h2 data-i18n="formTitle">Book your free demo</h2>
+        <p class="csub" data-i18n="formSub">Fill in the details below and we'll WhatsApp you shortly to arrange a time.</p>
 
         <form id="demoForm" novalidate>
           <!-- honeypot: hidden from real users; bots that fill it are silently dropped -->
@@ -162,64 +158,62 @@
           </div>
 
           <div class="frow">
-            <label for="name" data-i18n="lName">稱呼 <span class="req">*</span></label>
-            <input type="text" id="name" name="name" autocomplete="name" data-i18n-ph="phName" placeholder="點稱呼你好？">
+            <label for="name" data-i18n="lName">Your name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" data-i18n-ph="phName" placeholder="What should we call you?">
           </div>
           <div class="frow">
-            <label for="company" data-i18n="lCompany">公司／舖名 <span class="req">*</span></label>
-            <input type="text" id="company" name="company" autocomplete="organization" data-i18n-ph="phCompany" placeholder="例如：大文補習社">
+            <label for="company" data-i18n="lCompany">Business name <span class="req">*</span></label>
+            <input type="text" id="company" name="company" autocomplete="organization" data-i18n-ph="phCompany" placeholder="e.g. Smith & Sons Plumbing">
           </div>
           <div class="frow">
-            <label for="phone" data-i18n="lPhone">WhatsApp 電話 <span class="req">*</span></label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" data-i18n-ph="phPhone" placeholder="例如：9123 4567">
+            <label for="phone" data-i18n="lPhone">WhatsApp number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" data-i18n-ph="phPhone" placeholder="e.g. 07123 456789">
           </div>
           <div class="frow">
-            <label for="industry" data-i18n="lIndustry">行業</label>
+            <label for="industry" data-i18n="lIndustry">Trade</label>
             <select id="industry" name="industry">
-              <option value="" data-i18n="indPick">請選擇…</option>
-              <option value="教育" data-i18n="indEdu">教育</option>
-              <option value="餐飲" data-i18n="indFnb">餐飲</option>
-              <option value="美容" data-i18n="indBeauty">美容</option>
-              <option value="零售" data-i18n="indRetail">零售</option>
-              <option value="診所" data-i18n="indClinic">診所</option>
-              <option value="其他" data-i18n="indOther">其他</option>
+              <option value="" data-i18n="indPick">Please choose…</option>
+              <option value="Plumbing" data-i18n="indPlumb">Plumbing</option>
+              <option value="Electrical" data-i18n="indElec">Electrical</option>
+              <option value="Heating / gas" data-i18n="indHeat">Heating / gas</option>
+              <option value="Building / renovations" data-i18n="indBuild">Building / renovations</option>
+              <option value="Roofing / maintenance" data-i18n="indRoof">Roofing / property maintenance</option>
+              <option value="Other" data-i18n="indOther">Other trade</option>
             </select>
           </div>
           <div class="frow">
-            <label data-i18n="lChannels">期望接觸的途徑</label>
+            <label data-i18n="lChannels">Where you want it</label>
             <div class="checks">
               <label class="chk"><input type="checkbox" name="channels" value="WhatsApp"><span>WhatsApp</span></label>
-              <label class="chk"><input type="checkbox" name="channels" value="網站"><span data-i18n="chWeb">網站</span></label>
-              <label class="chk"><input type="checkbox" name="channels" value="Instagram"><span>Instagram</span></label>
-              <label class="chk"><input type="checkbox" name="channels" value="Facebook"><span>Facebook</span></label>
+              <label class="chk"><input type="checkbox" name="channels" value="Website"><span data-i18n="chWeb">Website</span></label>
             </div>
           </div>
           <div class="frow">
-            <label for="message" data-i18n="lMessage">留言（可選）</label>
-            <textarea id="message" name="message" data-i18n-ph="phMessage" placeholder="想我哋特別示範啲咩？"></textarea>
+            <label for="message" data-i18n="lMessage">Message (optional)</label>
+            <textarea id="message" name="message" data-i18n-ph="phMessage" placeholder="Anything you'd like us to demo?"></textarea>
           </div>
 
           <p class="err-inline" id="errLine" role="alert"></p>
-          <button class="btn btn-brand btn-block" id="submitBtn" type="submit" data-i18n="submit">預約免費示範</button>
-          <p class="formnote" data-i18n="formNote">㩒「預約」即表示你同意我哋透過 WhatsApp 聯絡你安排示範。我哋只會用你嘅資料聯絡你，唔會出售。</p>
+          <button class="btn btn-brand btn-block" id="submitBtn" type="submit" data-i18n="submit">Book my free demo</button>
+          <p class="formnote" data-i18n="formNote">By booking you agree that we may contact you on WhatsApp to arrange the demo. We only use your details to reach you — never sold.</p>
         </form>
       </div>
 
       <!-- SUCCESS -->
       <div class="state ok" id="okPane">
         <div class="ico" aria-hidden="true">✓</div>
-        <h2 data-i18n="okTitle">多謝！我哋會盡快聯絡你</h2>
-        <p data-i18n="okBody">我哋已經收到你嘅預約，會喺短時間內透過 WhatsApp 聯絡你安排示範。想快啲？直接 WhatsApp 我哋。</p>
-        <a class="btn btn-wa btn-block" id="okWa" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="okWaCta">WhatsApp 我哋</span></a>
+        <h2 data-i18n="okTitle">Thanks! We'll be in touch soon</h2>
+        <p data-i18n="okBody">We've received your booking and will WhatsApp you shortly to arrange the demo. Want it faster? Message us directly.</p>
+        <a class="btn btn-wa btn-block" id="okWa" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="okWaCta">WhatsApp us</span></a>
       </div>
 
       <!-- ERROR -->
       <div class="state bad" id="badPane">
         <div class="ico" aria-hidden="true">!</div>
-        <h2 data-i18n="badTitle">哎呀，暫時傳送唔到</h2>
-        <p data-i18n="badBody">可能係網絡問題。你可以直接 WhatsApp 我哋預約，一樣咁快。</p>
-        <a class="btn btn-wa btn-block" id="badWa" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="badWaCta">WhatsApp 預約示範</span></a>
-        <p style="margin-top:12px"><a href="#" id="retry" data-i18n="retry" style="color:var(--brand);font-size:14px;font-weight:600">← 再試一次</a></p>
+        <h2 data-i18n="badTitle">Oops — couldn't send that</h2>
+        <p data-i18n="badBody">Might be a network issue. You can book directly on WhatsApp instead — just as fast.</p>
+        <a class="btn btn-wa btn-block" id="badWa" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="badWaCta">Book the demo on WhatsApp</span></a>
+        <p style="margin-top:12px"><a href="#" id="retry" data-i18n="retry" style="color:var(--brand);font-size:14px;font-weight:600">← Try again</a></p>
       </div>
     </section>
 
@@ -230,10 +224,10 @@
   <div class="wrap foot-inner">
     <div>© <span id="year"></span> BotLocal</div>
     <div class="foot-links">
-      <a href="terms.html" data-i18n="footTerms" style="margin-right:14px">服務條款</a>
-      <a href="refund.html" data-i18n="footRefund" style="margin-right:14px">退款政策</a>
-      <a href="privacy.html" data-i18n="footPrivacy" style="margin-right:14px">私隱政策</a>
-      <a href="index.html" data-i18n="back">← 返回主頁</a>
+      <a href="terms.html" data-i18n="footTerms" style="margin-right:14px">Terms</a>
+      <a href="refund.html" data-i18n="footRefund" style="margin-right:14px">Refunds</a>
+      <a href="privacy.html" data-i18n="footPrivacy" style="margin-right:14px">Privacy</a>
+      <a href="index.html" data-i18n="back">← Back to home</a>
     </div>
   </div>
 </footer>
@@ -283,31 +277,31 @@ var I18N = {
   },
   en:{
     pageTitle:"Book a free demo · BotLocal",
-    metaDesc:"Book a 15-minute free demo — we build a sample AI assistant from your own shop's info so you can see it answer customers. 14-day free trial, no card required — setup and onboarding included.",
+    metaDesc:"Book a 15-minute free demo — we build a sample AI assistant from your own business info so you can see it answer customers. 14-day free trial, no card required — setup and onboarding included.",
     back:"← Back to home", navPricing:"Pricing",
     footTerms:"Terms", footRefund:"Refunds", footPrivacy:"Privacy",
-    eyebrow:"🎁 Limited first-client offer",
-    headline:"Book a 15-minute free demo and see how well the AI answers about your own shop",
-    lead:"We'll set up a sample AI assistant with your shop's own info — products, services, prices and FAQs — so you can see exactly how it answers your customers. Completely free, no commitment.",
-    offerTag:"Limited offer",
-    offerBig:"14-day free trial · no card required · setup included",
-    p1:"Demoed on your shop's real info — not just talk",
+    eyebrow:"🎁 Free, no commitment",
+    headline:"Book a 15-minute free demo and see how well the AI answers about your own business",
+    lead:"We'll set up a sample AI assistant with your own info — services, prices, call-out charges and FAQs — so you can see exactly how it answers your customers. Completely free, no commitment.",
+    offerTag:"What you get",
+    offerBig:"14-day free trial · no card required · setup & onboarding included",
+    p1:"Demoed on your own real info — not just talk",
     p2:"A 15-minute chat — no contract, no commitment",
-    p3:"Answers in Cantonese, English & Mandarin, 24/7",
-    p4:"Handled personally by a Hong Kong engineer",
+    p3:"Answers customers 24/7 on WhatsApp and your website",
+    p4:"Built and supported personally by the engineer behind BotLocal",
     formTitle:"Book your free demo",
     formSub:"Fill in the details below and we'll WhatsApp you shortly to arrange a time.",
     lName:"Your name", phName:"What should we call you?",
-    lCompany:"Company / shop name", phCompany:"e.g. Tai Man Tutoring",
-    lPhone:"WhatsApp number", phPhone:"e.g. 9123 4567",
-    lIndustry:"Industry",
-    indPick:"Please choose…", indEdu:"Education", indFnb:"Food & drink", indBeauty:"Beauty", indRetail:"Retail", indClinic:"Clinic", indOther:"Other",
-    lChannels:"Channels you want", chWeb:"Website",
+    lCompany:"Business name", phCompany:"e.g. Smith & Sons Plumbing",
+    lPhone:"WhatsApp number", phPhone:"e.g. 07123 456789",
+    lIndustry:"Trade",
+    indPick:"Please choose…", indPlumb:"Plumbing", indElec:"Electrical", indHeat:"Heating / gas", indBuild:"Building / renovations", indRoof:"Roofing / property maintenance", indOther:"Other trade",
+    lChannels:"Where you want it", chWeb:"Website",
     lMessage:"Message (optional)", phMessage:"Anything you'd like us to demo?",
     submit:"Book my free demo",
     submitting:"Sending…",
     formNote:"By booking you agree that we may contact you on WhatsApp to arrange the demo. We only use your details to reach you — never sold.",
-    errRequired:"Please fill in your name, company/shop name and WhatsApp number first.",
+    errRequired:"Please fill in your name, business name and WhatsApp number first.",
     errPhone:"That phone number doesn't look right — please check it.",
     okTitle:"Thanks! We'll be in touch soon",
     okBody:"We've received your booking and will WhatsApp you shortly to arrange the demo. Want it faster? Message us directly.",
@@ -316,11 +310,11 @@ var I18N = {
     badBody:"Might be a network issue. You can book directly on WhatsApp instead — just as fast.",
     badWaCta:"Book the demo on WhatsApp",
     retry:"← Try again",
-    waMsg:"Hi BotLocal 👋 I'd like to book a free demo using my shop's info to see the AI assistant."
+    waMsg:"Hi BotLocal 👋 I'd like to book a free demo using my business info to see the AI assistant."
   }
 };
 
-var currentLang = "zh";
+var currentLang = "en";
 
 // Backend: config.js sets BACKEND_URL; ?backend=... overrides it for local testing.
 var _params = new URLSearchParams(location.search);
@@ -334,7 +328,7 @@ function waLink(lang){
 function setLang(lang){
   currentLang = lang;
   var dict = I18N[lang];
-  document.documentElement.setAttribute("lang", lang === "zh" ? "zh-HK" : "en");
+  document.documentElement.setAttribute("lang", lang === "zh" ? "zh-HK" : "en-GB");
   document.documentElement.setAttribute("data-lang", lang);
   document.querySelectorAll("[data-i18n]").forEach(function(el){
     var key = el.getAttribute("data-i18n");
@@ -347,12 +341,15 @@ function setLang(lang){
     var key = el.getAttribute("data-i18n-ph");
     if(dict[key] !== undefined) el.setAttribute("placeholder", dict[key]);
   });
+  // Language toggle is hidden for the UK (English-only) site; guard in case the buttons aren't present.
   var zhBtn = document.getElementById("lang-zh");
   var enBtn = document.getElementById("lang-en");
-  zhBtn.classList.toggle("active", lang==="zh");
-  enBtn.classList.toggle("active", lang==="en");
-  zhBtn.setAttribute("aria-pressed", lang==="zh" ? "true" : "false");
-  enBtn.setAttribute("aria-pressed", lang==="en" ? "true" : "false");
+  if(zhBtn && enBtn){
+    zhBtn.classList.toggle("active", lang==="zh");
+    enBtn.classList.toggle("active", lang==="en");
+    zhBtn.setAttribute("aria-pressed", lang==="zh" ? "true" : "false");
+    enBtn.setAttribute("aria-pressed", lang==="en" ? "true" : "false");
+  }
   document.getElementById("okWa").setAttribute("href", waLink(lang));
   document.getElementById("badWa").setAttribute("href", waLink(lang));
 }
@@ -426,7 +423,7 @@ form.addEventListener("submit", function(e){
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
-setLang("zh");   // Cantonese first
+setLang("en");   // English (UK) only
 </script>
 </body>
 </html>
