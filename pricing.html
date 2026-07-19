@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-HK" data-lang="zh">
+<html lang="en-GB" data-lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E" />
-<title data-i18n="pageTitle">價錢 · BotLocal</title>
-<meta name="description" data-i18n="metaDesc" content="BotLocal 收費：Basic £89／月、Professional £129／月，另加 VAT。14 天免費試用，免信用卡，冇長約。" />
+<title data-i18n="pageTitle">Pricing · BotLocal</title>
+<meta name="description" data-i18n="metaDesc" content="BotLocal pricing: Basic £89/mo, Professional £129/mo, + VAT. 14-day free trial, no card required, no lock-in." />
 <style>
   :root{
     --bg:#ffffff; --bg-soft:#f6f7f9; --bg-soft2:#eef1f5;
@@ -161,25 +161,21 @@
 </head>
 <body>
 
-<a href="#main" class="sr-only" data-i18n="skipLink">跳到內容</a>
+<a href="#main" class="sr-only" data-i18n="skipLink">Skip to content</a>
 
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="logo" href="index.html" aria-label="BotLocal"><span class="mark" aria-hidden="true">🤖</span><span>BotLocal</span></a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="index.html#features" data-i18n="navFeatures">功能</a>
-      <a href="index.html#how" data-i18n="navHow">點運作</a>
-      <a href="pricing.html" class="active" data-i18n="navPricing">價錢</a>
-      <a href="index.html#faq" data-i18n="navFaq">常見問題</a>
-      <a href="index.html#about" data-i18n="navAbout">關於我</a>
-      <a href="index.html#contact" data-i18n="navContact">聯絡</a>
+      <a href="index.html#features" data-i18n="navFeatures">Features</a>
+      <a href="index.html#how" data-i18n="navHow">How it works</a>
+      <a href="pricing.html" class="active" data-i18n="navPricing">Pricing</a>
+      <a href="index.html#faq" data-i18n="navFaq">FAQ</a>
+      <a href="index.html#about" data-i18n="navAbout">About</a>
+      <a href="index.html#contact" data-i18n="navContact">Contact</a>
     </nav>
     <div class="nav-right">
-      <div class="langtog" role="group" aria-label="Language">
-        <button id="lang-zh" class="active" onclick="setLang('zh')" aria-pressed="true">廣東話</button>
-        <button id="lang-en" onclick="setLang('en')" aria-pressed="false">EN</button>
-      </div>
-      <a class="btn btn-brand btn-sm" href="https://botlocal-production.up.railway.app/login"><span data-i18n="navTrialBtn">免費試用</span></a>
+      <a class="btn btn-brand btn-sm" href="https://botlocal-production.up.railway.app/login"><span data-i18n="navTrialBtn">Free trial</span></a>
     </div>
   </div>
 </header>
@@ -189,79 +185,71 @@
   <!-- HERO -->
   <section class="price-hero" aria-labelledby="price-h">
     <div class="wrap">
-      <span class="eyebrow" data-i18n="eyebrow">💬 用你間舖自己嘅資料，唔會亂噏</span>
-      <h1 id="price-h" data-i18n="heroHead">簡單透明嘅價錢</h1>
-      <p class="sub" data-i18n="heroSub">揀啱你生意規模嘅方案，隨時可以升級或者停用。</p>
-      <p class="trustline" data-i18n="heroTrust">14 天免費試用 · 免信用卡 · 隨時取消</p>
-
-      <div class="billing">
-        <span class="lbl on" id="lbl-monthly" data-i18n="billMonthly">月付</span>
-        <button class="toggle" id="billToggle" role="switch" aria-checked="false" aria-label="Monthly or annual billing" onclick="toggleBilling()"><span class="knob"></span></button>
-        <span class="lbl" id="lbl-annual" data-i18n="billAnnual">年付</span>
-        <span class="save-pill" data-i18n="billSave">慳 10%</span>
-      </div>
+      <span class="eyebrow" data-i18n="eyebrow">💬 Built from your own business info — never makes things up</span>
+      <h1 id="price-h" data-i18n="heroHead">Simple, transparent pricing</h1>
+      <p class="sub" data-i18n="heroSub">Pick the plan that fits your business — upgrade or cancel anytime.</p>
+      <p class="trustline" data-i18n="heroTrust">14-day free trial · no card required · cancel anytime</p>
 
       <div class="pricing">
         <!-- BASIC -->
         <article class="price" aria-label="Basic plan">
           <h3>Basic</h3>
-          <p class="desc" data-i18n="p1Desc">啱啱起步、想試水溫嘅小店。</p>
+          <p class="desc" data-i18n="p1Desc">For sole traders just getting started.</p>
           <div class="price-amount">
-            <span class="cur">£</span><span class="now" id="p1-now">89</span><span class="per" id="p1-per" data-i18n="perMo">/月</span><span class="vat" data-i18n="plusVat">＋ VAT</span>
+            <span class="cur">£</span><span class="now" id="p1-now">89</span><span class="per" id="p1-per" data-i18n="perMo">/mo</span><span class="vat" data-i18n="plusVat">+ VAT</span>
           </div>
-          <p class="billnote" id="p1-bill" data-i18n="billnoteMonthly">月付，隨時取消</p>
+          <p class="billnote" id="p1-bill" data-i18n="billnoteMonthly">Billed monthly, cancel anytime</p>
           <ul>
-            <li data-i18n="p1f1">1 個 WhatsApp 號碼</li>
-            <li data-i18n="p1f2">3 個用戶帳戶（seats）</li>
-            <li data-i18n="p1f3">WhatsApp ＋ 網站即時對話（Website live chat）</li>
-            <li data-i18n="p1f4">1 個 AI agent</li>
-            <li data-i18n="p1f5">收到嘅 WhatsApp 對話免費</li>
-            <li data-i18n="p1f6">角色權限管理 · 技術設定同上線協助全包</li>
+            <li data-i18n="p1f1">1 WhatsApp number</li>
+            <li data-i18n="p1f2">3 user seats</li>
+            <li data-i18n="p1f3">WhatsApp + website live chat</li>
+            <li data-i18n="p1f4">1 AI agent</li>
+            <li data-i18n="p1f5">Outbound conversations billed per use</li>
+            <li data-i18n="p1f6">Role-based access · setup & onboarding included</li>
           </ul>
-          <a class="btn btn-brand btn-block" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">開始免費試用</a>
+          <a class="btn btn-brand btn-block" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">Start free trial</a>
         </article>
 
         <!-- PROFESSIONAL -->
         <article class="price popular" aria-label="Professional plan">
-          <span class="price-badge" data-i18n="badgePopular">最受歡迎</span>
+          <span class="price-badge" data-i18n="badgePopular">Most popular</span>
           <h3>Professional</h3>
-          <p class="desc" data-i18n="p2Desc">生意有一定查詢量、需要多個號碼同團隊。</p>
+          <p class="desc" data-i18n="p2Desc">For busier trades needing more numbers and a team.</p>
           <div class="price-amount">
-            <span class="cur">£</span><span class="now" id="p2-now">129</span><span class="per" id="p2-per" data-i18n="perMo">/月</span><span class="vat" data-i18n="plusVat">＋ VAT</span>
+            <span class="cur">£</span><span class="now" id="p2-now">129</span><span class="per" id="p2-per" data-i18n="perMo">/mo</span><span class="vat" data-i18n="plusVat">+ VAT</span>
           </div>
-          <p class="billnote" id="p2-bill" data-i18n="billnoteMonthly">月付，隨時取消</p>
+          <p class="billnote" id="p2-bill" data-i18n="billnoteMonthly">Billed monthly, cancel anytime</p>
           <ul>
-            <li data-i18n="p2f1">3 個 WhatsApp 號碼</li>
-            <li data-i18n="p2f2">10 個用戶帳戶（seats）</li>
-            <li data-i18n="p2f3">每月額外包 10 個對話 bonus</li>
-            <li data-i18n="p2f4">WhatsApp ＋ 網站即時對話（同 Basic 一樣）</li>
-            <li data-i18n="p2f5">1 個 AI agent</li>
-            <li data-i18n="p2f6">角色權限管理 · 技術設定同上線協助全包</li>
+            <li data-i18n="p2f1">3 WhatsApp numbers</li>
+            <li data-i18n="p2f2">10 user seats</li>
+            <li data-i18n="p2f3">10 free outbound conversations per month</li>
+            <li data-i18n="p2f4">WhatsApp + website live chat (same as Basic)</li>
+            <li data-i18n="p2f5">1 AI agent</li>
+            <li data-i18n="p2f6">Role-based access · setup & onboarding included</li>
           </ul>
-          <a class="btn btn-brand btn-block" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">開始免費試用</a>
+          <a class="btn btn-brand btn-block" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">Start free trial</a>
         </article>
 
         <!-- ADVANCED -->
         <article class="price" aria-label="Advanced plan">
           <h3>Advanced</h3>
-          <p class="desc" data-i18n="p3Desc">規模較大、需要更多號碼、座位同 AI agent。</p>
+          <p class="desc" data-i18n="p3Desc">For larger teams needing more numbers, seats and AI agents.</p>
           <div class="price-amount">
-            <span class="now" id="p3-now" data-i18n="onRequest">按需報價</span>
+            <span class="now" id="p3-now" data-i18n="onRequest">On request</span>
           </div>
-          <p class="billnote" id="p3-bill" data-i18n="p3Bill">同我哋傾下你嘅需要</p>
+          <p class="billnote" id="p3-bill" data-i18n="p3Bill">Let's talk about what you need</p>
           <ul>
-            <li data-i18n="p3f1">5 個 WhatsApp 號碼</li>
-            <li data-i18n="p3f2">25 個用戶帳戶（seats）</li>
-            <li data-i18n="p3f3">每月額外包 40 個對話 bonus</li>
-            <li data-i18n="p3f4">WhatsApp ＋ 網站即時對話</li>
-            <li data-i18n="p3f5">2 個 AI agent</li>
-            <li data-i18n="p3f6">角色權限管理 · 優先設定同上線協助</li>
+            <li data-i18n="p3f1">5 WhatsApp numbers</li>
+            <li data-i18n="p3f2">25 user seats</li>
+            <li data-i18n="p3f3">40 free outbound conversations per month</li>
+            <li data-i18n="p3f4">WhatsApp + website live chat</li>
+            <li data-i18n="p3f5">2 AI agents</li>
+            <li data-i18n="p3f6">Role-based access · priority setup & onboarding</li>
           </ul>
-          <a class="btn btn-wa btn-block" id="p3-cta" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="ctaCall">預約傾一傾</span></a>
+          <a class="btn btn-wa btn-block" id="p3-cta" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="ctaCall">Book a call</span></a>
         </article>
       </div>
-      <p class="trustline" style="margin-top:22px" data-i18n="vatNote">所有價錢均為每月價，另加 VAT。Advanced 方案按需要報價。</p>
-      <p class="trustline" style="margin-top:2px" data-i18n="comingSoon">即將推出：Instagram、Facebook Messenger、Email、SMS</p>
+      <p class="trustline" style="margin-top:22px" data-i18n="vatNote">All prices are per month, plus VAT. Advanced is priced on request.</p>
     </div>
   </section>
 
@@ -269,8 +257,8 @@
   <section class="section alt" aria-labelledby="cmp-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="cmp-h" data-i18n="cmpTitle">方案比較</h2>
-        <p data-i18n="cmpSub">全部方案都包含 WhatsApp、網站即時對話、角色權限，同技術設定及上線協助。</p>
+        <h2 id="cmp-h" data-i18n="cmpTitle">Compare plans</h2>
+        <p data-i18n="cmpSub">Every plan includes WhatsApp, website live chat, role-based access, and technical setup & onboarding.</p>
       </div>
       <div class="table-scroll">
         <table class="cmp">
@@ -284,28 +272,27 @@
           </thead>
           <tbody>
             <!-- Usage & pricing -->
-            <tr class="group"><td colspan="4" data-i18n="grpUsage">用量與收費</td></tr>
-            <tr><td class="feat-col" data-i18n="rowPrice">每月價錢（＋ VAT）</td><td>£89</td><td>£129</td><td data-i18n="onRequest">按需報價</td></tr>
-            <tr><td class="feat-col" data-i18n="rowBonus">每月額外包對話 bonus</td><td><span class="dash">—</span></td><td>10</td><td>40</td></tr>
-            <tr><td class="feat-col" data-i18n="rowIncoming">收到嘅 WhatsApp 對話</td><td data-i18n="cellFree">免費</td><td data-i18n="cellFree">免費</td><td data-i18n="cellFree">免費</td></tr>
-            <tr><td class="feat-col" data-i18n="rowInitiated">公司主動發起嘅對話</td><td data-i18n="cell004">每個 £0.04</td><td data-i18n="cell004">每個 £0.04</td><td data-i18n="cell004">每個 £0.04</td></tr>
+            <tr class="group"><td colspan="4" data-i18n="grpUsage">Usage & pricing</td></tr>
+            <tr><td class="feat-col" data-i18n="rowPrice">Price per month (+ VAT)</td><td>£89</td><td>£129</td><td data-i18n="onRequest">On request</td></tr>
+            <tr><td class="feat-col" data-i18n="rowBonus">Free outbound conversations / month</td><td><span class="dash">—</span></td><td>10</td><td>40</td></tr>
+            <tr><td class="feat-col" data-i18n="rowIncoming">Incoming WhatsApp conversations</td><td data-i18n="cellFree">Free</td><td data-i18n="cellFree">Free</td><td data-i18n="cellFree">Free</td></tr>
+            <tr><td class="feat-col" data-i18n="rowInitiated">Outbound conversations you start</td><td data-i18n="cell004">£0.04 each</td><td data-i18n="cell004">£0.04 each</td><td data-i18n="cell004">£0.04 each</td></tr>
             <!-- WhatsApp & channels -->
-            <tr class="group"><td colspan="4" data-i18n="grpChannels">WhatsApp 與渠道</td></tr>
-            <tr><td class="feat-col" data-i18n="rowNumbers">內置 WhatsApp 號碼</td><td>1</td><td>3</td><td>5</td></tr>
-            <tr><td class="feat-col" data-i18n="rowAddNumber">加開 WhatsApp 號碼</td><td data-i18n="cell25">每個 £25/月</td><td data-i18n="cell25">每個 £25/月</td><td data-i18n="cell25">每個 £25/月</td></tr>
-            <tr><td class="feat-col" data-i18n="rowChannels">渠道：WhatsApp ＋ 網站即時對話（Website live chat）</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><td class="feat-col" data-i18n="rowComingSoon">即將推出：Instagram、Facebook Messenger、Email、SMS</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+            <tr class="group"><td colspan="4" data-i18n="grpChannels">WhatsApp & channels</td></tr>
+            <tr><td class="feat-col" data-i18n="rowNumbers">Integrated WhatsApp numbers</td><td>1</td><td>3</td><td>5</td></tr>
+            <tr><td class="feat-col" data-i18n="rowAddNumber">Additional WhatsApp number</td><td data-i18n="cell25">£25/mo each</td><td data-i18n="cell25">£25/mo each</td><td data-i18n="cell25">£25/mo each</td></tr>
+            <tr><td class="feat-col" data-i18n="rowChannels">Channels: WhatsApp + website live chat</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <!-- Team & AI -->
-            <tr class="group"><td colspan="4" data-i18n="grpTeam">團隊與 AI</td></tr>
-            <tr><td class="feat-col" data-i18n="rowSeats">用戶帳戶（seats）</td><td>3</td><td>10</td><td>25</td></tr>
+            <tr class="group"><td colspan="4" data-i18n="grpTeam">Team & AI</td></tr>
+            <tr><td class="feat-col" data-i18n="rowSeats">User seats</td><td>3</td><td>10</td><td>25</td></tr>
             <tr><td class="feat-col" data-i18n="rowAgents">AI agents</td><td>1</td><td>1</td><td>2</td></tr>
             <!-- Admin & security -->
-            <tr class="group"><td colspan="4" data-i18n="grpAdmin">管理與權限</td></tr>
-            <tr><td class="feat-col" data-i18n="rowRoles">角色權限管理（Role-based access）</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr class="group"><td colspan="4" data-i18n="grpAdmin">Admin & security</td></tr>
+            <tr><td class="feat-col" data-i18n="rowRoles">Role-based access</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <!-- Setup & support -->
-            <tr class="group"><td colspan="4" data-i18n="grpSetup">設定與支援</td></tr>
-            <tr><td class="feat-col" data-i18n="rowSetup">技術設定 ＋ 上線協助</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><td class="feat-col" data-i18n="rowTrial">14 天免費試用（免信用卡）</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td data-i18n="cellBookCall">預約傾一傾</td></tr>
+            <tr class="group"><td colspan="4" data-i18n="grpSetup">Setup & support</td></tr>
+            <tr><td class="feat-col" data-i18n="rowSetup">Technical setup + onboarding</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td class="feat-col" data-i18n="rowTrial">14-day free trial (no card)</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td data-i18n="cellBookCall">Book a call</td></tr>
           </tbody>
         </table>
       </div>
@@ -316,24 +303,24 @@
   <section class="section" aria-labelledby="addon-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="addon-h" data-i18n="addonTitle">加購項目</h2>
-        <p data-i18n="addonSub">按你需要加，適用於所有方案。</p>
+        <h2 id="addon-h" data-i18n="addonTitle">Add-ons</h2>
+        <p data-i18n="addonSub">Add what you need — available on every plan.</p>
       </div>
       <div class="addons">
         <div class="addon">
           <div class="a-ico" aria-hidden="true">🟢</div>
-          <h3 data-i18n="addon1T">加開 WhatsApp 號碼</h3>
-          <p data-i18n="addon1D">每個 £25／月，適用於所有方案。</p>
+          <h3 data-i18n="addon1T">Additional WhatsApp number</h3>
+          <p data-i18n="addon1D">£25/mo each, on any plan.</p>
         </div>
         <div class="addon">
           <div class="a-ico" aria-hidden="true">💬</div>
-          <h3 data-i18n="addon2T">公司主動發起嘅對話</h3>
-          <p data-i18n="addon2D">每個 £0.04（Meta 收費轉付）。客人主動搵你嘅對話永遠免費。</p>
+          <h3 data-i18n="addon2T">Outbound conversations you start</h3>
+          <p data-i18n="addon2D">£0.04 each (Meta pass-through). Conversations customers start with you are always free.</p>
         </div>
         <div class="addon">
           <div class="a-ico" aria-hidden="true">📥</div>
-          <h3 data-i18n="addon3T">收到嘅對話</h3>
-          <p data-i18n="addon3D">客人主動 message 你嘅 incoming 對話，所有方案都免費。</p>
+          <h3 data-i18n="addon3T">Incoming conversations</h3>
+          <p data-i18n="addon3D">Conversations a customer starts with you are free on every plan.</p>
         </div>
       </div>
     </div>
@@ -343,33 +330,33 @@
   <section class="section alt" aria-labelledby="faq-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="faq-h" data-i18n="faqTitle">常見問題</h2>
-        <p data-i18n="faqSub">關於收費最多人問嘅幾條問題。</p>
+        <h2 id="faq-h" data-i18n="faqTitle">Frequently asked questions</h2>
+        <p data-i18n="faqSub">The questions we hear most about pricing.</p>
       </div>
       <div class="faq">
         <details>
-          <summary data-i18n="fq1Q">免費試用點運作？</summary>
-          <div class="ans" data-i18n="fq1A">Basic 同 Professional 都有 14 天免費試用，唔使畀信用卡就可以開始。試用期內你可以實際用個 AI 客服，睇下啱唔啱你生意先再決定。Advanced 方案就先預約同我哋傾一傾。</div>
+          <summary data-i18n="fq1Q">How does the free trial work?</summary>
+          <div class="ans" data-i18n="fq1A">Basic and Professional both come with a 14-day free trial — no credit card required to start. During the trial you can actually use the AI assistant and see if it fits your business before deciding. For Advanced, book a call with us first.</div>
         </details>
         <details>
-          <summary data-i18n="fq2Q">試用期完咗之後會點？</summary>
-          <div class="ans" data-i18n="fq2A">14 天之後，如果你決定繼續，就會按你揀嘅方案開始收月費（Basic £89／月、Professional £129／月，另加 VAT）。冇長約，month-to-month，你可以隨時喺後台停用，唔會自動綁死你。</div>
+          <summary data-i18n="fq2Q">What happens after the trial?</summary>
+          <div class="ans" data-i18n="fq2A">After 14 days, if you decide to continue, your chosen plan starts billing (Basic £89/mo, Professional £129/mo, + VAT). No contract — it's month-to-month, and you can cancel anytime from your dashboard.</div>
         </details>
         <details>
-          <summary data-i18n="fq3Q">價錢包唔包 VAT？</summary>
-          <div class="ans" data-i18n="fq3A">所有列出嘅價錢都係未計 VAT，即係「＋ VAT」。落單同發票嗰陣會另加適用嘅 VAT。</div>
+          <summary data-i18n="fq3Q">Do prices include VAT?</summary>
+          <div class="ans" data-i18n="fq3A">All listed prices are before VAT — i.e. "+ VAT". Applicable VAT is added at checkout and on your invoice.</div>
         </details>
         <details>
-          <summary data-i18n="fq4Q">可唔可以隨時取消？有冇綁約？</summary>
-          <div class="ans" data-i18n="fq4A">冇長約，冇 lock-in。收費係逐月計，覺得唔啱用可以隨時取消，取消之後下一個計費週期就唔會再收費。</div>
+          <summary data-i18n="fq4Q">Can I cancel anytime? Is there any lock-in?</summary>
+          <div class="ans" data-i18n="fq4A">No contract, no lock-in. Billing is month-to-month, so you can cancel anytime and you won't be charged for the next billing cycle.</div>
         </details>
         <details>
-          <summary data-i18n="fq5Q">咩叫「公司主動發起嘅對話」？</summary>
-          <div class="ans" data-i18n="fq5A">係指由你（公司）主動開始嘅 WhatsApp 對話，例如你主動 send 訊息俾客人。呢類對話會有 Meta 嘅收費，我哋按成本轉付，每個 £0.04。相反，客人主動 message 你嘅 incoming 對話係永遠免費嘅。</div>
+          <summary data-i18n="fq5Q">What counts as an outbound (company-initiated) conversation?</summary>
+          <div class="ans" data-i18n="fq5A">It's a WhatsApp conversation your business starts — for example, when you message a customer first. These carry a Meta fee that we pass through at cost, £0.04 each. Conversations a customer starts with you (incoming) are always free.</div>
         </details>
         <details>
-          <summary data-i18n="fq6Q">技術設定係咪真係包？</summary>
-          <div class="ans" data-i18n="fq6A">係。所有方案都包技術設定同上線協助——我哋會用你間舖自己嘅資料幫你設定好個 AI 客服，唔使你自己搞技術。</div>
+          <summary data-i18n="fq6Q">Is setup really included?</summary>
+          <div class="ans" data-i18n="fq6A">Yes. Every plan includes technical setup and onboarding — we set your AI assistant up from your own business info, so you don't have to handle the technical side.</div>
         </details>
       </div>
     </div>
@@ -379,11 +366,11 @@
   <section class="section">
     <div class="wrap">
       <div class="band">
-        <h2 data-i18n="bandTitle">準備好試下？</h2>
-        <p data-i18n="bandSub">Basic 同 Professional 可以即刻免費試用；規模較大就預約同我哋傾一傾。</p>
+        <h2 data-i18n="bandTitle">Ready to try it?</h2>
+        <p data-i18n="bandSub">Start Basic or Professional free today; for larger needs, book a call with us.</p>
         <div class="btn-row">
-          <a class="btn btn-brand" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">開始免費試用</a>
-          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="ctaCall">預約傾一傾</span></a>
+          <a class="btn btn-brand" href="https://botlocal-production.up.railway.app/login" data-i18n="ctaTrial">Start free trial</a>
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="ctaCall">Book a call</span></a>
         </div>
       </div>
     </div>
@@ -395,14 +382,14 @@
   <div class="wrap foot-inner">
     <div>© <span id="year"></span> BotLocal</div>
     <div class="foot-links">
-      <a href="index.html#features" data-i18n="navFeatures">功能</a>
-      <a href="pricing.html" data-i18n="navPricing">價錢</a>
-      <a href="index.html#faq" data-i18n="navFaq">常見問題</a>
+      <a href="index.html#features" data-i18n="navFeatures">Features</a>
+      <a href="pricing.html" data-i18n="navPricing">Pricing</a>
+      <a href="index.html#faq" data-i18n="navFaq">FAQ</a>
       <a class="wa-link" href="#" target="_blank" rel="noopener" data-i18n="footWa">WhatsApp</a>
-      <a href="mailto:samkiengineer@gmail.com" data-i18n="footMail">電郵</a>
-      <a href="terms.html" data-i18n="footTerms">服務條款</a>
-      <a href="refund.html" data-i18n="footRefund">退款政策</a>
-      <a href="privacy.html" data-i18n="footPrivacy">私隱政策</a>
+      <a href="mailto:samkiengineer@gmail.com" data-i18n="footMail">Email</a>
+      <a href="terms.html" data-i18n="footTerms">Terms</a>
+      <a href="refund.html" data-i18n="footRefund">Refunds</a>
+      <a href="privacy.html" data-i18n="footPrivacy">Privacy</a>
     </div>
   </div>
 </footer>
@@ -491,51 +478,47 @@ var I18N = {
     pageTitle:"Pricing · BotLocal",
     metaDesc:"BotLocal pricing: Basic £89/mo, Professional £129/mo, + VAT. 14-day free trial, no card required, no lock-in.",
     skipLink:"Skip to content",
-    navFeatures:"Features", navHow:"How it works", navPricing:"Pricing", navFaq:"FAQ", navAbout:"About me", navContact:"Contact",
+    navFeatures:"Features", navHow:"How it works", navPricing:"Pricing", navFaq:"FAQ", navAbout:"About", navContact:"Contact",
     navTrialBtn:"Free trial",
     eyebrow:"💬 Built from your own business info — never makes things up",
     heroHead:"Simple, transparent pricing",
     heroSub:"Pick the plan that fits your business — upgrade or cancel anytime.",
     heroTrust:"14-day free trial · no card required · cancel anytime",
-    billMonthly:"Monthly", billAnnual:"Annual", billSave:"Save 10%",
     perMo:"/mo", plusVat:"+ VAT", onRequest:"On request",
     billnoteMonthly:"Billed monthly, cancel anytime",
-    billnoteAnnual:"Billed annually, save 10%",
     p3Bill:"Let's talk about what you need",
-    p1Desc:"For shops just getting started.",
-    p1f1:"1 integrated WhatsApp number",
+    p1Desc:"For sole traders just getting started.",
+    p1f1:"1 WhatsApp number",
     p1f2:"3 user seats",
     p1f3:"WhatsApp + website live chat",
     p1f4:"1 AI agent",
-    p1f5:"Incoming WhatsApp conversations free",
+    p1f5:"Outbound conversations billed per use",
     p1f6:"Role-based access · setup & onboarding included",
-    p2Desc:"For busier businesses needing more numbers and a team.",
-    p2f1:"3 integrated WhatsApp numbers",
+    p2Desc:"For busier trades needing more numbers and a team.",
+    p2f1:"3 WhatsApp numbers",
     p2f2:"10 user seats",
-    p2f3:"10 bonus conversations included each month",
+    p2f3:"10 free outbound conversations per month",
     p2f4:"WhatsApp + website live chat (same as Basic)",
     p2f5:"1 AI agent",
     p2f6:"Role-based access · setup & onboarding included",
     p3Desc:"For larger teams needing more numbers, seats and AI agents.",
-    p3f1:"5 integrated WhatsApp numbers",
+    p3f1:"5 WhatsApp numbers",
     p3f2:"25 user seats",
-    p3f3:"40 bonus conversations included each month",
+    p3f3:"40 free outbound conversations per month",
     p3f4:"WhatsApp + website live chat",
     p3f5:"2 AI agents",
     p3f6:"Role-based access · priority setup & onboarding",
     badgePopular:"Most popular",
     ctaTrial:"Start free trial", ctaCall:"Book a call",
     vatNote:"All prices are per month, plus VAT. Advanced is priced on request.",
-    comingSoon:"Coming soon: Instagram, Facebook Messenger, Email, SMS",
     cmpTitle:"Compare plans", cmpSub:"Every plan includes WhatsApp, website live chat, role-based access, and technical setup & onboarding.",
     grpUsage:"Usage & pricing",
-    rowPrice:"Price per month (+ VAT)", rowBonus:"Monthly conversation bonus included",
-    rowIncoming:"Incoming WhatsApp conversations", rowInitiated:"Company-initiated conversations",
+    rowPrice:"Price per month (+ VAT)", rowBonus:"Free outbound conversations / month",
+    rowIncoming:"Incoming WhatsApp conversations", rowInitiated:"Outbound conversations you start",
     cellFree:"Free", cell004:"£0.04 each",
     grpChannels:"WhatsApp & channels",
     rowNumbers:"Integrated WhatsApp numbers", rowAddNumber:"Additional WhatsApp number", cell25:"£25/mo each",
     rowChannels:"Channels: WhatsApp + website live chat",
-    rowComingSoon:"Coming soon: Instagram, Facebook Messenger, Email, SMS",
     grpTeam:"Team & AI",
     rowSeats:"User seats", rowAgents:"AI agents",
     grpAdmin:"Admin & security", rowRoles:"Role-based access",
@@ -543,7 +526,7 @@ var I18N = {
     cellBookCall:"Book a call",
     addonTitle:"Add-ons", addonSub:"Add what you need — available on every plan.",
     addon1T:"Additional WhatsApp number", addon1D:"£25/mo each, on any plan.",
-    addon2T:"Company-initiated conversations", addon2D:"£0.04 each (Meta pass-through). Conversations customers start with you are always free.",
+    addon2T:"Outbound conversations you start", addon2D:"£0.04 each (Meta pass-through). Conversations customers start with you are always free.",
     addon3T:"Incoming conversations", addon3D:"Conversations a customer starts with you are free on every plan.",
     faqTitle:"Frequently asked questions", faqSub:"The questions we hear most about pricing.",
     fq1Q:"How does the free trial work?",
@@ -554,7 +537,7 @@ var I18N = {
     fq3A:"All listed prices are before VAT — i.e. \"+ VAT\". Applicable VAT is added at checkout and on your invoice.",
     fq4Q:"Can I cancel anytime? Is there any lock-in?",
     fq4A:"No contract, no lock-in. Billing is month-to-month, so you can cancel anytime and you won't be charged for the next billing cycle.",
-    fq5Q:"What counts as a company-initiated conversation?",
+    fq5Q:"What counts as an outbound (company-initiated) conversation?",
     fq5A:"It's a WhatsApp conversation your business starts — for example, when you message a customer first. These carry a Meta fee that we pass through at cost, £0.04 each. Conversations a customer starts with you (incoming) are always free.",
     fq6Q:"Is setup really included?",
     fq6A:"Yes. Every plan includes technical setup and onboarding — we set your AI assistant up from your own business info, so you don't have to handle the technical side.",
@@ -564,43 +547,17 @@ var I18N = {
   }
 };
 
-var currentLang = "zh";
-var annual = false;
-
-// Monthly and annual (10% off, rounded) per-month prices.
-var PRICES = {
-  p1: { monthly: "89", annual: "80" },   // £89 -> £80.10 -> £80
-  p2: { monthly: "129", annual: "116" }  // £129 -> £116.10 -> £116
-};
+var currentLang = "en";
 
 function waLink(lang){
   var msg = encodeURIComponent(I18N[lang].waMsg);
   return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + msg;
 }
 
-function renderPrices(){
-  var mode = annual ? "annual" : "monthly";
-  document.getElementById("p1-now").textContent = PRICES.p1[mode];
-  document.getElementById("p2-now").textContent = PRICES.p2[mode];
-  var note = annual ? I18N[currentLang].billnoteAnnual : I18N[currentLang].billnoteMonthly;
-  document.getElementById("p1-bill").textContent = note;
-  document.getElementById("p2-bill").textContent = note;
-  // toggle label emphasis
-  document.getElementById("lbl-monthly").classList.toggle("on", !annual);
-  document.getElementById("lbl-annual").classList.toggle("on", annual);
-  var t = document.getElementById("billToggle");
-  t.setAttribute("aria-checked", annual ? "true" : "false");
-}
-
-function toggleBilling(){
-  annual = !annual;
-  renderPrices();
-}
-
 function setLang(lang){
   currentLang = lang;
   var dict = I18N[lang];
-  document.documentElement.setAttribute("lang", lang === "zh" ? "zh-HK" : "en");
+  document.documentElement.setAttribute("lang", lang === "zh" ? "zh-HK" : "en-GB");
   document.documentElement.setAttribute("data-lang", lang);
   document.querySelectorAll("[data-i18n]").forEach(function(el){
     var key = el.getAttribute("data-i18n");
@@ -610,18 +567,20 @@ function setLang(lang){
       else el.textContent = dict[key];
     }
   });
+  // Language toggle is hidden for the UK (English-only) site; guard in case the buttons aren't present.
   var zhBtn = document.getElementById("lang-zh");
   var enBtn = document.getElementById("lang-en");
-  zhBtn.classList.toggle("active", lang==="zh");
-  enBtn.classList.toggle("active", lang==="en");
-  zhBtn.setAttribute("aria-pressed", lang==="zh" ? "true" : "false");
-  enBtn.setAttribute("aria-pressed", lang==="en" ? "true" : "false");
+  if(zhBtn && enBtn){
+    zhBtn.classList.toggle("active", lang==="zh");
+    enBtn.classList.toggle("active", lang==="en");
+    zhBtn.setAttribute("aria-pressed", lang==="zh" ? "true" : "false");
+    enBtn.setAttribute("aria-pressed", lang==="en" ? "true" : "false");
+  }
   document.querySelectorAll(".wa-link, #p3-cta").forEach(function(a){ a.setAttribute("href", waLink(lang)); });
-  renderPrices();   // re-apply price text (overwrites any data-i18n on price nodes)
 }
 
 document.getElementById("year").textContent = new Date().getFullYear();
-setLang("zh"); /* Cantonese first, matching the rest of the site */
+setLang("en"); /* English (UK) only */
 </script>
 </body>
 </html>
