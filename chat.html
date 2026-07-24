@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E">
-<title>BotLocal · Live Demo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BF%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<title>BotSquirrel · Live Demo</title>
 <style>
   :root { --bg:#f4f5f7; --bot:#fff; --me:#0b5fff; --line:#e3e6ea; }
   * { box-sizing: border-box; }
@@ -76,7 +76,7 @@
     "en": {
       "title": "AI Customer Service Assistant",
       "subtitle": "Ask about our services, pricing, and how it works.",
-      "greeting": "Hi! I'm BotLocal. I build WhatsApp and website AI assistants for UK trades — plumbers, electricians, heating engineers and more — answering customers 24/7, taking booking enquiries and capturing leads while you're on the tools. I'm an independent developer, so I can tailor it to how your business works. Ask me anything about features, pricing, or booking a free demo.",
+      "greeting": "Hi! I'm BotSquirrel. I build WhatsApp and website AI assistants for UK trades — plumbers, electricians, heating engineers and more — answering customers 24/7, taking booking enquiries and capturing leads while you're on the tools. I'm an independent developer, so I can tailor it to how your business works. Ask me anything about features, pricing, or booking a free demo.",
       "placeholder": "Type your question…",
       "send": "Send",
       "suggestions": ["How much does it cost?", "What can it do for my trade?", "How do I book a free demo?"]
@@ -84,7 +84,7 @@
     "yue": {
       "title": "AI 客服助手",
       "subtitle": "有關我哋嘅服務、收費同運作，隨時問我。",
-      "greeting": "你好！我係 BotLocal，專幫香港小店同中小企建立 WhatsApp 或網站 AI 客服機械人，24 小時自動回答常見問題、處理預約查詢同介紹服務。我係個人開發者，可以按你嘅業務需要度身訂造功能。想了解功能、收費，或者預約免費示範，都可以直接問我。",
+      "greeting": "你好！我係 BotSquirrel，專幫香港小店同中小企建立 WhatsApp 或網站 AI 客服機械人，24 小時自動回答常見問題、處理預約查詢同介紹服務。我係個人開發者，可以按你嘅業務需要度身訂造功能。想了解功能、收費，或者預約免費示範，都可以直接問我。",
       "placeholder": "請輸入你嘅問題…",
       "send": "傳送",
       "suggestions": ["收費點計？", "有咩功能？", "點樣預約免費示範？"]
@@ -92,7 +92,7 @@
     "zh": {
       "title": "AI 客服助手",
       "subtitle": "关于我们的服务、收费和运作，欢迎咨询。",
-      "greeting": "您好！我是 BotLocal，专为香港小店和中小企业打造 WhatsApp 或网站 AI 客服机器人，24 小时自动回答常见问题、处理预约咨询并介绍服务。我是个人开发者，可以按照您的业务需要定制功能。想了解功能、费用，或预约免费演示，都可以直接问我。",
+      "greeting": "您好！我是 BotSquirrel，专为香港小店和中小企业打造 WhatsApp 或网站 AI 客服机器人，24 小时自动回答常见问题、处理预约咨询并介绍服务。我是个人开发者，可以按照您的业务需要定制功能。想了解功能、费用，或预约免费演示，都可以直接问我。",
       "placeholder": "请输入您的问题…",
       "send": "发送",
       "suggestions": ["收费怎么算？", "有什么功能？", "怎样预约免费演示？"]
@@ -111,7 +111,7 @@
 
   // Pretty-print an international phone number (digits only) for display.
   function fmtPhone(d) {
-    if (d === "447472323783") return "+44 7472 323783";   // BotLocal WhatsApp
+    if (d === "447472323783") return "+44 7472 323783";   // BotSquirrel WhatsApp
     return "+" + d;
   }
   // Render a bot reply safely: escape HTML first, then turn markdown links,
@@ -250,7 +250,7 @@
     lang = code;
     const t = T[code];
     document.documentElement.lang = code === 'yue' ? 'zh-HK' : code === 'zh' ? 'zh-Hans' : 'en-GB';
-    document.title = t.title + ' · BotLocal';
+    document.title = t.title + ' · BotSquirrel';
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
     box.placeholder = t.placeholder;
@@ -285,7 +285,7 @@
     lang = saved.lang;
     langForced = !!saved.forced;
     document.documentElement.lang = lang === 'yue' ? 'zh-HK' : lang === 'zh' ? 'zh-Hans' : 'en';
-    document.title = t.title + ' · BotLocal';
+    document.title = t.title + ' · BotSquirrel';
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
     box.placeholder = t.placeholder;
