@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--
+  BotSquirrel hero demo video — animation source
+  ==============================================
+  This single file is the master for the two hero videos on index.html:
+      botsquirrel-demo-en.mp4  (UK trades / plumber scenario, GBP)
+      botsquirrel-demo-zh.mp4  (Hong Kong tuition scenario, Cantonese)
+
+  It renders ONE frame at a time, deterministically: everything is driven by
+  window.renderFrame(t) where t is the time in seconds. There are no CSS
+  transitions or requestAnimationFrame loops, so a headless browser can be
+  stepped frame by frame and every capture is pixel-identical on re-render.
+
+  HOW TO RE-RENDER (from the repo root):
+      node render-demo-video.js          # captures frames + runs ffmpeg for both languages
+  or, for one language only:
+      node render-demo-video.js en
+
+  The script opens this page at 1080x1920, calls renderFrame(i/30) for every
+  frame, saves a JPEG per frame, then stitches with ffmpeg (H.264, yuv420p,
+  +faststart) and pulls a poster frame out of the thread.
+
+  TO EDIT THE SCRIPT/TIMING: change the SCRIPT object below (messages, `t`
+  times, chip, closing card copy). Nothing else needs touching.
+
+  You can also open this file directly in a browser and drag with ?t=12.5
+  in the URL, or use ?lang=zh, to eyeball a single frame.
+-->
+<meta charset="utf-8">
+<title>BotSquirrel demo video source</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#000;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang HK","PingFang TC","Hiragino Sans CNS",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0b1014;}
+
+  /* ---------- card scenes (title + closing) ---------- */
+  .card{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0 90px;
+    background:
+      radial-gradient(120% 70% at 22% 8%, rgba(26,92,72,.55) 0%, rgba(10,22,20,0) 62%),
+      radial-gradient(110% 60% at 85% 96%, rgba(18,74,60,.42) 0%, rgba(10,22,20,0) 60%),
+      linear-gradient(170deg,#0b1a17 0%,#08110f 55%,#0a1512 100%);
+  }
+  .eyebrow{font-size:34px;font-weight:800;letter-spacing:.30em;color:#37c68f;margin-bottom:34px;}
+  .cardTitle{font-size:96px;line-height:1.16;font-weight:800;color:#fff;letter-spacing:-.01em;}
+  .cardTitle.zh{font-size:100px;line-height:1.22;}
+  .cardSub{font-size:40px;color:#8fa9a2;margin-top:34px;font-weight:500;}
+
+  /* ---------- chat scene ---------- */
+  #chat{position:absolute;inset:0;display:flex;flex-direction:column;background:#0b1014;}
+  .hdr{
+    flex:0 0 148px;display:flex;align-items:center;gap:22px;padding:0 30px;
+    background:#1f2c34;border-bottom:1px solid rgba(255,255,255,.05);
+  }
+  .back{font-size:44px;color:#a4b4bb;line-height:1;margin-right:-6px;}
+  .avaWrap{position:relative;flex:0 0 auto;}
+  .ava{
+    width:92px;height:92px;border-radius:50%;background:linear-gradient(150deg,#1d6b56,#12503f);
+    display:flex;align-items:center;justify-content:center;font-size:50px;
+  }
+  .dot{
+    position:absolute;right:2px;bottom:2px;width:22px;height:22px;border-radius:50%;
+    background:#25d366;border:4px solid #1f2c34;
+  }
+  .hname{font-size:44px;font-weight:700;color:#fff;letter-spacing:-.005em;line-height:1.1;}
+  .hstat{display:flex;align-items:center;gap:12px;font-size:30px;color:#8fa3ab;margin-top:6px;}
+  .hstat i{width:16px;height:16px;border-radius:50%;background:#25d366;display:inline-block;}
+  .hicons{margin-left:auto;display:flex;align-items:center;gap:34px;color:#a4b4bb;}
+
+  #threadClip{flex:1 1 auto;position:relative;overflow:hidden;}
+  #thread{
+    position:absolute;left:0;right:0;bottom:0;min-height:100%;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:0 30px 18px;
+  }
+  .row{overflow:hidden;}
+  .rowIn{padding-top:22px;display:flex;}
+  .rowIn.out{justify-content:flex-end;}
+  .rowIn.in{justify-content:flex-start;}
+  .rowIn.mid{justify-content:center;}
+
+  .bub{
+    max-width:78%;border-radius:16px;padding:20px 24px 14px;position:relative;
+    box-shadow:0 2px 3px rgba(0,0,0,.28);
+  }
+  .bub.out{background:#005c4b;border-top-right-radius:4px;}
+  .bub.in{background:#202c33;border-top-left-radius:4px;}
+  .txt{font-size:39px;line-height:1.42;color:#e9edef;white-space:pre-wrap;word-break:break-word;}
+  .meta{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:2px;
+        font-size:25px;color:rgba(233,237,239,.55);line-height:1.2;}
+  .tick{color:#53bdeb;font-size:26px;letter-spacing:-3px;}
+  .daypill{background:#182229;color:#8fa3ab;font-size:29px;padding:11px 26px;border-radius:12px;font-weight:500;}
+
+  .chip{
+    display:inline-flex;align-items:center;gap:12px;background:#141f26;border:1px solid rgba(55,198,143,.28);
+    color:#93a6ad;font-size:28px;padding:12px 22px;border-radius:14px;
+  }
+  /* quick-reply pills — mirrors how app.botsquirrel.com/c/<slug> renders them */
+  .qrs{display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
+  .qr{
+    border:2px solid rgba(233,237,239,.26);border-radius:50px;color:#dbe4e7;
+    font-size:33px;padding:16px 34px;background:rgba(32,44,51,.55);
+  }
+  .typ{background:#202c33;border-radius:16px;border-top-left-radius:4px;padding:28px 30px;display:flex;gap:16px;align-items:center;}
+  .typ span{width:19px;height:19px;border-radius:50%;background:#8696a0;display:block;}
+
+  .inbar{
+    flex:0 0 154px;display:flex;align-items:center;gap:22px;padding:0 30px;background:#0b1014;
+  }
+  .field{
+    flex:1 1 auto;height:100px;border-radius:50px;background:#2a3942;display:flex;align-items:center;
+    gap:20px;padding:0 30px;color:#8696a0;font-size:36px;
+  }
+  .mic{flex:0 0 auto;width:100px;height:100px;border-radius:50%;background:#00a884;display:flex;align-items:center;justify-content:center;font-size:44px;}
+
+  /* ---------- mid-thread payoff overlay ---------- */
+  #overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 70px;}
+  /* position+z-index are load-bearing: #scrim is absolutely positioned, so
+     without them it paints on top of this text and greys it out. */
+  #overlay .txtBig{
+    position:relative;z-index:1;
+    font-size:92px;line-height:1.25;font-weight:800;color:#fff;text-align:center;
+    text-shadow:0 6px 44px rgba(0,0,0,1),0 2px 12px rgba(0,0,0,1),0 0 90px rgba(0,0,0,.9);
+  }
+  #overlay .txtBig.zh{font-size:98px;}
+  #scrim{position:absolute;inset:0;background:rgba(4,10,9,.86);}
+
+  /* ---------- closing card extras ---------- */
+  .endAva{width:150px;height:150px;border-radius:50%;background:linear-gradient(150deg,#1d6b56,#12503f);
+          display:flex;align-items:center;justify-content:center;font-size:80px;margin-bottom:26px;}
+  .endBrand{font-size:44px;font-weight:700;letter-spacing:.16em;color:#37c68f;margin-bottom:40px;}
+  .endHead{font-size:82px;line-height:1.24;font-weight:800;color:#fff;}
+  .endHead.zh{font-size:88px;}
+  .endSub{font-size:36px;line-height:1.55;color:#a7bcb5;margin-top:34px;max-width:840px;}
+  .endWa{margin-top:56px;background:#25d366;color:#06241b;font-size:44px;font-weight:800;
+         padding:30px 58px;border-radius:50px;display:flex;align-items:center;gap:18px;
+         box-shadow:0 0 60px rgba(37,211,102,.35);}
+  .endUrl{margin-top:30px;border:2px solid rgba(255,255,255,.22);border-radius:34px;color:#fff;
+          font-size:38px;font-weight:600;padding:26px 48px;display:flex;align-items:center;gap:16px;}
+  .endTrial{margin-top:52px;font-size:33px;font-weight:700;color:#f0c04a;line-height:1.5;}
+</style>
+
+<div id="stage">
+  <div class="card" id="titleCard">
+    <div class="eyebrow">02:14 AM</div>
+    <div class="cardTitle" id="tTitle"></div>
+    <div class="cardSub" id="tSub"></div>
+  </div>
+
+  <div id="chat">
+    <div class="hdr" id="hdr">
+      <div class="back">‹</div>
+      <div class="avaWrap"><div class="ava">🐿️</div><div class="dot"></div></div>
+      <div>
+        <div class="hname">BotSquirrel</div>
+        <div class="hstat"><i></i><span id="hstatTxt">online</span></div>
+      </div>
+      <div class="hicons">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"/></svg>
+      </div>
+    </div>
+    <div id="threadClip"><div id="thread"></div></div>
+    <div class="inbar" id="inbar">
+      <div class="field"><span>😊</span><span id="placeholder">Message</span></div>
+      <div class="mic">🎤</div>
+    </div>
+  </div>
+
+  <div id="overlay"><div id="scrim"></div><div class="txtBig" id="ovTxt"></div></div>
+
+  <div class="card" id="endCard">
+    <div class="endAva">🐿️</div>
+    <div class="endBrand">BotSquirrel</div>
+    <div class="endHead" id="eHead"></div>
+    <div class="endSub" id="eSub"></div>
+    <div class="endWa"><span>🟢</span><span>WhatsApp +44 7472 323783</span></div>
+    <div class="endUrl"><span>🌐</span><span>botsquirrel.com</span></div>
+    <div class="endTrial" id="eTrial"></div>
+  </div>
+</div>
+
+<script>
+/* =======================================================================
+   SCRIPTS — edit here to change the story
+   ======================================================================= */
+var SCRIPT = {
+  /* ---------------------------------------------------------------
+     ENGLISH — UK plumbing emergency.
+     Every bot bubble below is REAL output captured from the live demo
+     tenant "UK Rapid Plumbing & Electrical" via
+       POST https://app.botsquirrel.com/api/chat/uk-rapid/{session,message}
+     on 2026-07-24. Customer lines are the real turns, with two pairs
+     merged so the thread fits a 35s vertical cut. The quick-reply pills
+     (Morning / Afternoon / Evening) are the bot's real quickReplies.
+     --------------------------------------------------------------- */
+  en: {
+    duration: 35,
+    status: "online",
+    placeholder: "Message",
+    title: "2:14 AM —\na customer messages you 😴",
+    titleSub: "You're fast asleep…",
+    day: "Today",
+    chipText: "from your shop's info",
+    overlay: "You wake up to\na booked job. ☀️",
+    endHead: "Your business can have\nits own AI assistant",
+    endSub: "📚 Built from your own prices & services · in your own voice · never guessing",
+    endTrial: "14-day free trial · no card required · cancel anytime",
+    msgs: [
+      {t:4.1,  side:"out", time:"02:14",
+       text:"My kitchen ceiling is leaking and I need someone today"},
+      {t:5.2,  side:"in",  time:"02:14", typing:1.7,
+       text:"Got it — sounds like a leak.\n\nTo get someone out to you, could you let me know your name?"},
+      {t:8.6,  side:"out", time:"02:14",
+       text:"Dave Wilson. How much is a call-out at this hour?"},
+      {t:9.5,  side:"in",  time:"02:15", typing:1.9, chip:0.7,
+       text:"Emergency and out-of-hours call-outs are £120.\n\nTo get someone out to you, could you let me know the best contact number?"},
+      {t:14.6, side:"out", time:"02:15",
+       text:"07700 900412, postcode E3"},
+      {t:15.4, side:"in",  time:"02:15", typing:1.6, quick:["Morning","Afternoon","Evening"], quickAt:0.6,
+       text:"To get someone out to you, could you let me know what time of day works best?"},
+      {t:19.4, side:"out", time:"02:15", text:"Morning"},
+      {t:20.2, side:"in",  time:"02:16", typing:1.7,
+       text:"Thanks Dave Wilson — here's what I've got: Leak at E3, Fri 24 Jul morning. We'll call you on 07700900412 to confirm."}
+    ]
+  },
+  zh: {
+    duration: 35,
+    status: "在線",
+    placeholder: "訊息",
+    title: "凌晨 2:14，\n有客搵你 😴",
+    titleSub: "老闆瞓緊…",
+    day: "今天",
+    chipText: "嚟自你間舖嘅資料",
+    overlay: "你瞓醒，\n單生意已經接咗 ☀️",
+    endHead: "你間舖都可以有\n自己嘅 AI 客服",
+    endSub: "📚 用你間舖自己嘅資料 · 用你嘅口吻 · 唔會靠估",
+    endTrial: "14 天免費試用 · 免信用卡 · 隨時可以停",
+    msgs: [
+      {t:4.1,  side:"out", time:"02:14", text:"你哋中三數學班幾錢？"},
+      {t:5.2,  side:"in",  time:"02:14", typing:1.7, chip:0.7,
+       text:"中三數學班每月 HK$1,200，星期六下午 2–4 點。要唔要幫你 book 個試堂？😊"},
+      {t:8.4,  side:"out", time:"02:14", text:"咁快?! 你唔使瞓㗎？"},
+      {t:9.3,  side:"in",  time:"02:14", typing:1.8, text:"我係 AI，唔使瞓 🐿️ 24 小時都喺度"},
+      {t:14.3, side:"out", time:"02:15", text:"小六有冇班？"},
+      {t:15.1, side:"in",  time:"02:15", typing:1.6,
+       text:"唔好意思，暫時冇小六班～不過可以留低電話，開班第一時間通知你！"},
+      {t:18.5, side:"out", time:"02:15", text:"好呀 7472323783"},
+      {t:19.3, side:"in",  time:"02:15", typing:1.7, text:"收到 ✅ 幫你記低咗！"}
+    ]
+  }
+};
+
+/* Scene timeline (seconds) — shared by both languages */
+var TL = {
+  titleIn:0.0, titleHold:0.55, titleOut:3.25, titleGone:3.70,
+  chatIn:3.55, chatFull:4.00,
+  dayPill:4.05,
+  ovIn:24.30, ovFull:24.80, ovOut:28.10, ovGone:28.60,
+  endIn:28.70, endFull:29.30
+};
+
+/* ----------------------------------------------------------------- */
+var qs = new URLSearchParams(location.search);
+var LANG = qs.get("lang") === "zh" ? "zh" : "en";
+var S = SCRIPT[LANG];
+var isZh = LANG === "zh";
+
+function ease(p){ return p<=0?0 : p>=1?1 : 1-Math.pow(1-p,3); }
+function ramp(t,a,b){ return ease((t-a)/(b-a)); }
+function el(cls, html){ var d=document.createElement("div"); if(cls)d.className=cls; if(html!=null)d.innerHTML=html; return d; }
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+/* ---- static copy ---- */
+document.getElementById("tTitle").textContent = S.title;
+document.getElementById("tTitle").className = "cardTitle" + (isZh?" zh":"");
+document.getElementById("tSub").textContent  = S.titleSub;
+document.getElementById("hstatTxt").textContent = S.status;
+document.getElementById("placeholder").textContent = S.placeholder;
+document.getElementById("ovTxt").textContent = S.overlay;
+document.getElementById("ovTxt").className = "txtBig" + (isZh?" zh":"");
+document.getElementById("eHead").textContent = S.endHead;
+document.getElementById("eHead").className = "endHead" + (isZh?" zh":"");
+document.getElementById("eSub").textContent = S.endSub;
+document.getElementById("eTrial").textContent = S.endTrial;
+["tTitle","ovTxt","eHead"].forEach(function(id){ document.getElementById(id).style.whiteSpace="pre-line"; });
+
+/* ---- build the thread items ---- */
+/* Each ITEM = {node, inner, t (appear), out (collapse time or null), natural} */
+var thread = document.getElementById("thread");
+var ITEMS = [];
+
+function addItem(appearT, outT, innerCls, innerHTML){
+  var row = el("row");
+  var inner = el("rowIn " + innerCls);
+  inner.innerHTML = innerHTML;
+  row.appendChild(inner);
+  thread.appendChild(row);
+  ITEMS.push({row:row, inner:inner, t:appearT, out:outT});
+  return row;
+}
+
+/* "Today" pill */
+addItem(TL.dayPill, null, "mid", '<div class="daypill">'+esc(S.day)+'</div>');
+
+S.msgs.forEach(function(m){
+  var appear = m.t;
+  if(m.side === "in" && m.typing){
+    /* typing bubble lives from m.t until the message lands */
+    appear = m.t + m.typing;
+    addItem(m.t, appear, "in", '<div class="typ"><span class="d0"></span><span class="d1"></span><span class="d2"></span></div>');
+  }
+  var tick = m.side === "out" ? '<span class="tick">✓✓</span>' : '';
+  addItem(appear, null, m.side,
+    '<div class="bub '+m.side+'"><div class="txt">'+esc(m.text)+'</div>'+
+    '<div class="meta"><span>'+m.time+'</span>'+tick+'</div></div>');
+  if(m.chip){
+    addItem(appear + m.chip, null, "in", '<div class="chip">📚 '+esc(S.chipText)+'</div>');
+  }
+  if(m.quick){
+    addItem(appear + (m.quickAt || 0.6), null, "in",
+      '<div class="qrs">' + m.quick.map(function(q){ return '<div class="qr">'+esc(q)+'</div>'; }).join("") + '</div>');
+  }
+  m._appear = appear;
+});
+
+/* measure natural heights once, with everything laid out */
+ITEMS.forEach(function(it){ it.row.style.height="auto"; });
+ITEMS.forEach(function(it){ it.natural = it.inner.offsetHeight; });
+
+/* ---- per-frame render ---- */
+var GROW = 0.26;      // seconds for a row to expand in
+var SHRINK = 0.20;    // seconds for the typing bubble to collapse
+
+var titleCard = document.getElementById("titleCard");
+var chat      = document.getElementById("chat");
+var overlay   = document.getElementById("overlay");
+var endCard   = document.getElementById("endCard");
+
+window.renderFrame = function(t){
+  /* title card */
+  var tOp = 0;
+  if(t < TL.titleGone){
+    tOp = Math.min(ramp(t, TL.titleIn, TL.titleHold), 1 - ramp(t, TL.titleOut, TL.titleGone));
+  }
+  titleCard.style.opacity = tOp;
+  titleCard.style.display = tOp > 0.001 ? "flex" : "none";
+  titleCard.style.transform = "scale(" + (1 + 0.02 * (1 - ramp(t, TL.titleIn, TL.titleOut))) + ")";
+
+  /* chat scene */
+  var cOp = ramp(t, TL.chatIn, TL.chatFull);
+  chat.style.opacity = cOp;
+  chat.style.display = cOp > 0.001 ? "flex" : "none";
+
+  ITEMS.forEach(function(it){
+    var h = 0, op = 0, dy = 0;
+    if(t >= it.t){
+      var g = ease((t - it.t) / GROW);
+      h = it.natural * g; op = g; dy = 14 * (1 - g);
+      if(it.out != null && t >= it.out){
+        var s = 1 - ease((t - it.out) / SHRINK);
+        h = it.natural * s; op = s; dy = 0;
+      }
+    }
+    it.row.style.height = h.toFixed(2) + "px";
+    it.inner.style.opacity = op;
+    it.inner.style.transform = "translateY(" + dy.toFixed(2) + "px)";
+  });
+
+  /* typing dots pulse (driven by t, not by CSS animation) */
+  var dots = thread.querySelectorAll(".typ span");
+  for(var i=0;i<dots.length;i++){
+    var ph = (t * 1.6 + (i % 3) * 0.22) % 1;
+    dots[i].style.opacity = (0.35 + 0.6 * (0.5 + 0.5 * Math.cos(ph * 2 * Math.PI))).toFixed(3);
+  }
+
+  /* payoff overlay */
+  var oOp = 0;
+  if(t >= TL.ovIn && t < TL.ovGone){
+    oOp = Math.min(ramp(t, TL.ovIn, TL.ovFull), 1 - ramp(t, TL.ovOut, TL.ovGone));
+  }
+  overlay.style.opacity = oOp;
+  overlay.style.display = oOp > 0.001 ? "flex" : "none";
+
+  /* closing card */
+  var eOp = ramp(t, TL.endIn, TL.endFull);
+  endCard.style.opacity = eOp;
+  endCard.style.display = eOp > 0.001 ? "flex" : "none";
+  endCard.style.transform = "scale(" + (1.03 - 0.03 * ease((t - TL.endIn) / 1.6)) + ")";
+
+  document.documentElement.dataset.ready = "1";
+};
+
+window.DURATION = S.duration;
+renderFrame(parseFloat(qs.get("t") || "0"));
+</script>

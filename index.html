@@ -263,7 +263,7 @@ It answers questions, books jobs and takes down leads 24/7, in your own words �
         <div class="duo-title" data-i18n="duoTitle">Built from your own business info — never guessing.</div>
         <div class="video-wrap">
           <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="demo-poster-en.jpg" aria-hidden="true">
-            <source src="botlocal-demo-animated-en.mp4" type="video/mp4">
+            <source src="botsquirrel-demo-en.mp4" type="video/mp4">
           </video>
         </div>
         <div class="chat-input"><span data-i18n="cardChat">💬 Try the live demo — see how it answers</span><span class="send">➤</span></div>
@@ -826,8 +826,8 @@ function setLang(lang){
   // Hero demo video follows the language: Cantonese / English cut.
   var hv = document.querySelector(".hero-video");
   if(hv){
-    var vidSrc = lang === "en" ? "botlocal-demo-animated-en.mp4" : "botlocal-demo-animated.mp4";
-    var poster = lang === "en" ? "demo-poster-en.jpg" : "demo-poster.jpg";
+    var vidSrc = lang === "en" ? "botsquirrel-demo-en.mp4" : "botsquirrel-demo-zh.mp4";
+    var poster = lang === "en" ? "demo-poster-en.jpg" : "demo-poster-zh.jpg";
     var srcEl = hv.querySelector("source");
     if(srcEl && srcEl.getAttribute("src") !== vidSrc){
       srcEl.setAttribute("src", vidSrc);
