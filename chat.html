@@ -84,18 +84,18 @@
     "yue": {
       "title": "AI 客服助手",
       "subtitle": "有關我哋嘅服務、收費同運作，隨時問我。",
-      "greeting": "你好！我係 BotSquirrel，專幫香港小店同中小企建立 WhatsApp 或網站 AI 客服機械人，24 小時自動回答常見問題、處理預約查詢同介紹服務。我係個人開發者，可以按你嘅業務需要度身訂造功能。想了解功能、收費，或者預約免費示範，都可以直接問我。",
+      "greeting": "你好！我係 BotSquirrel，專幫英國行業師傅（水喉、電工、暖氣工程等）建立 WhatsApp 同網站 AI 助手，24 小時自動回覆客人、處理預約查詢同收集客源，等你開工嗰陣都唔會漏單。我係個人開發者，可以按你盤生意嘅運作度身訂造。想了解功能、收費，或者預約免費示範，都可以直接問我。",
       "placeholder": "請輸入你嘅問題…",
       "send": "傳送",
-      "suggestions": ["收費點計？", "有咩功能？", "點樣預約免費示範？"]
+      "suggestions": ["收費點計？", "可以幫我盤生意做啲咩？", "點樣預約免費示範？"]
     },
     "zh": {
       "title": "AI 客服助手",
       "subtitle": "关于我们的服务、收费和运作，欢迎咨询。",
-      "greeting": "您好！我是 BotSquirrel，专为香港小店和中小企业打造 WhatsApp 或网站 AI 客服机器人，24 小时自动回答常见问题、处理预约咨询并介绍服务。我是个人开发者，可以按照您的业务需要定制功能。想了解功能、费用，或预约免费演示，都可以直接问我。",
+      "greeting": "您好！我是 BotSquirrel，专为英国工程师傅（水管、电工、暖气工程等）打造 WhatsApp 和网站 AI 助手，24 小时自动回复客户、处理预约咨询并收集客源，让您在开工时也不会漏单。我是个人开发者，可以按照您的业务运作定制功能。想了解功能、收费，或预约免费演示，都可以直接问我。",
       "placeholder": "请输入您的问题…",
       "send": "发送",
-      "suggestions": ["收费怎么算？", "有什么功能？", "怎样预约免费演示？"]
+      "suggestions": ["收费怎么算？", "能为我的生意做什么？", "怎样预约免费演示？"]
     }
   };
   let T = null;                       // set from /config when it arrives
@@ -340,17 +340,16 @@
       setLang(el.dataset.lang);
     }));
 
-  // Refresh the WhatsApp number from the chatbot API in the background
-  // (non-blocking). We deliberately do NOT take cfg.ui any more: the engine
-  // still serves the old BotLocal / Hong Kong copy, which was overwriting this
-  // page's BotSquirrel UK text. FALLBACK_T above is the source of truth for
-  // brand wording until the engine's own copy is rebranded.
+  // Refresh brand text from the chatbot API in the background (non-blocking).
+  // The engine's /config serves BotSquirrel UK copy again, so cfg.ui is the
+  // live source of truth; FALLBACK_T above just keeps the page instant.
   async function init() {
     try {
       const res = await fetch(BACKEND_URL + '/config');
       const cfg = await res.json();
       WA_NUMBER = cfg.whatsapp || WA_NUMBER;
-      renderSuggestions();   // re-render chips from the built-in copy
+      T = cfg.ui || T;
+      renderSuggestions();   // refresh chips from server config (no-op mid-chat)
     } catch (err) {
       // Server unreachable: the built-in text keeps the page usable; actual
       // answers will show a connection error only if the user sends a message.
