@@ -340,14 +340,17 @@
       setLang(el.dataset.lang);
     }));
 
-  // Refresh brand text from the chatbot API in the background (non-blocking).
+  // Refresh the WhatsApp number from the chatbot API in the background
+  // (non-blocking). We deliberately do NOT take cfg.ui any more: the engine
+  // still serves the old BotLocal / Hong Kong copy, which was overwriting this
+  // page's BotSquirrel UK text. FALLBACK_T above is the source of truth for
+  // brand wording until the engine's own copy is rebranded.
   async function init() {
     try {
       const res = await fetch(BACKEND_URL + '/config');
       const cfg = await res.json();
       WA_NUMBER = cfg.whatsapp || WA_NUMBER;
-      T = cfg.ui || T;
-      renderSuggestions();   // refresh chips from server config (no-op mid-chat)
+      renderSuggestions();   // re-render chips from the built-in copy
     } catch (err) {
       // Server unreachable: the built-in text keeps the page usable; actual
       // answers will show a connection error only if the user sends a message.
