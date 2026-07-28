@@ -9,10 +9,12 @@ cd "$(dirname "$0")"
 
 # Assets get a long cache; HTML gets a short one so copy changes appear quickly.
 aws s3 sync . "s3://$BUCKET/" --delete \
-  --exclude ".git/*" --exclude ".github/*" --exclude ".DS_Store" --exclude "deploy-prod.sh" \
+  --exclude ".git/*" --exclude ".github/*" --exclude ".gstack/*" --exclude ".DS_Store" \
+  --exclude "deploy-prod.sh" --exclude "render-demo-video.js" \
   --exclude "*.html" --cache-control "public,max-age=31536000"
 aws s3 sync . "s3://$BUCKET/" \
-  --exclude "*" --include "*.html" --exclude ".git/*" \
+  --exclude "*" --include "*.html" --exclude ".git/*" --exclude ".gstack/*" \
+  --exclude "demo-video-source.html" \
   --cache-control "public,max-age=300" --content-type "text/html; charset=utf-8"
 
 aws cloudfront create-invalidation --distribution-id "$DIST" --paths "/*" \
