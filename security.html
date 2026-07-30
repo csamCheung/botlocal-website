@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BF%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+<title>Security & data protection · BotSquirrel</title>
+<meta name="description" content="How BotSquirrel protects your business and customer data: UK/EU hosting, tenant isolation, role-based access, audit logging, human handover, and UK GDPR-aligned practices." />
+<style>
+  :root{
+    --bg:#ffffff; --bg-soft:#f6f7f9;
+    --ink:#1b2330; --ink-soft:#5a6473; --ink-faint:#8a94a3;
+    --brand:#2f6df0; --brand-dark:#1f50c0; --brand-soft:#e8f0fe;
+    --wa:#25d366; --wa-dark:#128c4a;
+    --line:rgba(20,30,50,.10); --line2:rgba(20,30,50,.16);
+    --ok:#128c4a; --ok-soft:#e8f6ec;
+    --radius:14px; --radius-sm:10px; --radius-pill:999px;
+    --shadow:0 1px 2px rgba(20,30,50,.05), 0 8px 30px rgba(20,30,50,.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 22px;}
+  a{color:inherit; text-decoration:none;}
+  :focus-visible{outline:2px solid var(--brand); outline-offset:2px; border-radius:6px;}
+
+  header.nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px; gap:14px;}
+  .logo{display:flex; align-items:center; gap:9px; font-weight:600; font-size:18px;}
+  .logo .mark{width:30px; height:30px; border-radius:9px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:18px;}
+  .nav-links{display:flex; gap:20px; font-size:14px; color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-right{display:flex; align-items:center; gap:10px;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font:inherit; font-weight:600; cursor:pointer; border:none; border-radius:var(--radius-sm); padding:12px 20px; font-size:15px; text-align:center;}
+  .btn-brand{background:var(--brand); color:#fff;}
+  .btn-brand:hover{background:var(--brand-dark);}
+  .btn-ghost{background:transparent; color:var(--ink); border:1px solid var(--line2);}
+  .btn-ghost:hover{background:var(--bg-soft);}
+  .btn-wa{background:var(--wa); color:#fff;}
+  .btn-wa:hover{background:var(--wa-dark);}
+  .btn-sm{padding:8px 15px; font-size:14px;}
+
+  .hero{padding:64px 0 32px; text-align:center;}
+  .eyebrow{display:inline-block; font-size:13px; font-weight:600; color:var(--brand-dark); background:var(--brand-soft); padding:6px 13px; border-radius:var(--radius-pill); margin-bottom:18px;}
+  h1{font-size:38px; line-height:1.15; margin:0 0 14px; letter-spacing:-.01em;}
+  .sub{font-size:17px; color:var(--ink-soft); margin:0 auto 10px; max-width:44em;}
+
+  .section{padding:48px 0;}
+  .section.alt{background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .sec-head{text-align:center; max-width:680px; margin:0 auto 36px;}
+  .sec-head h2{font-size:28px; margin:0 0 10px; letter-spacing:-.01em;}
+  .sec-head p{font-size:16px; color:var(--ink-soft); margin:0;}
+
+  .grid-3{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;}
+  .feat{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px;}
+  .feat .ico{width:44px; height:44px; border-radius:11px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:22px; margin-bottom:14px;}
+  .feat h3{font-size:17px; margin:0 0 8px;}
+  .feat p{font-size:14.5px; color:var(--ink-soft); margin:0;}
+
+  .subproc{max-width:760px; margin:0 auto; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:#fff;}
+  .subproc table{width:100%; border-collapse:collapse; font-size:14.5px;}
+  .subproc th,.subproc td{text-align:left; padding:13px 18px; border-bottom:1px solid var(--line);}
+  .subproc th{background:var(--bg-soft); font-size:13px; color:var(--ink-soft); font-weight:600;}
+  .subproc tr:last-child td{border-bottom:none;}
+  .table-scroll{overflow-x:auto;}
+
+  .promise{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
+  .promise .p-row{display:flex; gap:14px; background:#fff; border:1px solid var(--line); border-radius:var(--radius-sm); padding:16px 20px; align-items:flex-start;}
+  .promise .p-ico{color:var(--ok); font-weight:700; flex-shrink:0;}
+  .promise h3{font-size:15.5px; margin:0 0 3px;}
+  .promise p{font-size:14px; color:var(--ink-soft); margin:0;}
+
+  .band{background:var(--ink); color:#fff; border-radius:var(--radius); padding:40px 32px; text-align:center; box-shadow:var(--shadow); margin:24px 0 48px;}
+  .band h2{font-size:26px; margin:0 0 10px;}
+  .band p{font-size:16px; color:rgba(255,255,255,.75); margin:0 0 22px;}
+  .btn-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .wa-ico{font-size:18px; line-height:1;}
+
+  footer{padding:36px 0; border-top:1px solid var(--line); color:var(--ink-faint); font-size:14px;}
+  .foot-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .foot-links{display:flex; gap:18px; flex-wrap:wrap;}
+  .foot-links a:hover{color:var(--ink);}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+
+  @media(max-width:860px){
+    h1{font-size:30px;}
+    .nav-links{display:none;}
+    .section{padding:40px 0;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="sr-only">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html" aria-label="BotSquirrel"><span class="mark" aria-hidden="true">🐿️</span><span>BotSquirrel</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#product">Product</a>
+      <a href="index.html#how">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html" style="color:var(--ink);font-weight:600;">Security</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-ghost btn-sm" href="https://app.botsquirrel.com/login" target="_blank" rel="noopener">Log in</a>
+      <a class="btn btn-brand btn-sm" href="demo.html">Book a demo</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Security &amp; data protection</span>
+      <h1>Your customers' data, treated like it's ours</h1>
+      <p class="sub">BotSquirrel stores customer names, phone numbers, addresses, photos and conversations on your behalf. This page explains — specifically, not vaguely — how that data is protected. We only list controls that are actually in place.</p>
+    </div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section class="section" aria-labelledby="controls-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="controls-h">How the platform is built</h2>
+      </div>
+      <div class="grid-3">
+        <article class="feat">
+          <div class="ico" aria-hidden="true">🇬🇧</div>
+          <h3>Hosted in the UK/EU</h3>
+          <p>The platform and its database run on cloud infrastructure in the London region (AWS eu-west-2). Your data isn't scattered across arbitrary regions.</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">🔒</div>
+          <h3>Encrypted in transit</h3>
+          <p>All traffic between your customers, your team and the platform is encrypted with TLS (HTTPS). WhatsApp messages are carried over WhatsApp's own encrypted delivery.</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">🏢</div>
+          <h3>Tenant isolation</h3>
+          <p>Every record is scoped to your business at the database-query level, and we run automated cross-tenant isolation tests. One customer's data is invisible to another — by design, not by policy.</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">👥</div>
+          <h3>Role-based access</h3>
+          <p>Team members get the access their role needs. Sensitive actions — like editing business information the AI answers from — require an admin role.</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">📝</div>
+          <h3>Audit logging</h3>
+          <p>Changes to your business data — who changed what, and when — are recorded in an audit trail, including changes made by our own platform administrators.</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">🤝</div>
+          <h3>Humans stay in control</h3>
+          <p>The AI never confirms bookings or invents prices on its own. Appointments are booked by your team from real availability, and uncertain conversations hand over to a person.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI DATA -->
+  <section class="section alt" aria-labelledby="ai-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="ai-h">How AI providers see your data</h2>
+        <p>Plainly: what leaves the platform, and what doesn't.</p>
+      </div>
+      <div class="promise">
+        <div class="p-row"><span class="p-ico" aria-hidden="true">✓</span><div><h3>Answers come from your approved business information</h3><p>The AI is given your own services, prices and policies to answer from. It's instructed to say "I'm not sure" and hand over rather than guess.</p></div></div>
+        <div class="p-row"><span class="p-ico" aria-hidden="true">✓</span><div><h3>API-based AI providers, not consumer chatbots</h3><p>We use commercial AI APIs whose terms state that API data is not used to train their models.</p></div></div>
+        <div class="p-row"><span class="p-ico" aria-hidden="true">✓</span><div><h3>Your data is never sold</h3><p>Customer and business data is used to run your workspace — nothing else. No selling, no sharing with unrelated third parties, no advertising use.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBPROCESSORS -->
+  <section class="section" aria-labelledby="sub-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="sub-h">Who we rely on</h2>
+        <p>The service providers that process data so the platform can run.</p>
+      </div>
+      <div class="table-scroll">
+        <div class="subproc">
+          <table>
+            <thead><tr><th>Provider</th><th>What for</th></tr></thead>
+            <tbody>
+              <tr><td>Amazon Web Services (London)</td><td>Application hosting and database</td></tr>
+              <tr><td>Meta (WhatsApp Business Platform)</td><td>Delivering WhatsApp conversations</td></tr>
+              <tr><td>AI model providers (API)</td><td>Generating assistant replies from your approved information</td></tr>
+              <tr><td>Paddle</td><td>Subscription billing — we never see or store your card details</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUR RIGHTS -->
+  <section class="section alt" aria-labelledby="rights-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="rights-h">Your data, your call</h2>
+        <p>We build towards UK GDPR alignment — and we'd rather under-claim than over-claim.</p>
+      </div>
+      <div class="promise">
+        <div class="p-row"><span class="p-ico" aria-hidden="true">✓</span><div><h3>Export on request</h3><p>Ask us for a copy of your business and customer data and we'll provide it in a usable format.</p></div></div>
+        <div class="p-row"><span class="p-ico" aria-hidden="true">✓</span><div><h3>Deletion on request</h3><p>Leave the service and want your data gone? We delete your business's data on request, subject to legal retention requirements (e.g. invoices).</p></div></div>
+        <div class="p-row"><span class="p-ico" aria-hidden="true">✓</span><div><h3>Retention</h3><p>Data is kept while your account is active. It isn't mined, repurposed or kept "just in case" after you leave.</p></div></div>
+        <div class="p-row"><span class="p-ico" aria-hidden="true">✓</span><div><h3>Something goes wrong? You hear about it</h3><p>If an incident affects your data, we investigate, fix and tell you what happened — see our <a href="privacy.html" style="color:var(--brand);font-weight:600;">privacy notice</a> and <a href="privacy.html#complaints" style="color:var(--brand);font-weight:600;">complaints route</a>.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="wrap">
+      <div class="band">
+        <h2>Questions about security?</h2>
+        <p>Ask the engineer who built it — directly, on WhatsApp or email.</p>
+        <div class="btn-row">
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Ask on WhatsApp</span></a>
+          <a class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.4);" href="mailto:samkiengineer@gmail.com">Email us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© <span id="year"></span> BotSquirrel</div>
+    <div class="foot-links">
+      <a href="index.html#product">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="index.html#faq">FAQ</a>
+      <a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:samkiengineer@gmail.com">Email</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund.html">Refunds</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="privacy.html#complaints">Data-protection complaints</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+var WHATSAPP_NUMBER = "447472323783";
+var WA_MSG = "Hi BotSquirrel 👋 I have a question about security and data protection.";
+document.querySelectorAll(".wa-link").forEach(function(a){
+  a.setAttribute("href", "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_MSG));
+});
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

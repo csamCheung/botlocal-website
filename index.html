@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en-GB" data-lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BF%EF%B8%8F%3C/text%3E%3C/svg%3E" />
-<title data-i18n="pageTitle">BotSquirrel · AI assistant for UK trades</title>
-<style>p.sub[data-i18n="sub"]{white-space:pre-line}</style>
-<meta name="description" data-i18n="metaDesc" content="An AI assistant for UK trades, built from your own prices and services — answers customers on WhatsApp and your website 24/7, books jobs and captures leads, and never makes things up." />
+<title>BotSquirrel · Enquiry & job management software for UK plumbing and heating</title>
+<meta name="description" content="BotSquirrel answers new enquiries on WhatsApp and your website, collects the postcode, problem, photos and availability, then organises everything into a job enquiry your team can review, assign and schedule. Built for UK plumbing and heating businesses." />
 <style>
   :root{
     --bg:#ffffff; --bg-soft:#f6f7f9; --bg-soft2:#eef1f5;
@@ -15,6 +14,7 @@
     --wa:#25d366; --wa-dark:#128c4a;
     --line:rgba(20,30,50,.10); --line2:rgba(20,30,50,.16);
     --star:#f5a623; --accent:#ff6b6b;
+    --ok:#128c4a; --ok-soft:#e8f6ec; --warn:#b26a00; --warn-soft:#fdf2e0;
     --radius:14px; --radius-sm:10px; --radius-pill:999px;
     --shadow:0 1px 2px rgba(20,30,50,.05), 0 8px 30px rgba(20,30,50,.06);
     --shadow-lg:0 4px 12px rgba(20,30,50,.08), 0 16px 48px rgba(20,30,50,.10);
@@ -23,7 +23,7 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang HK","Hiragino Sans GB","Microsoft JhengHei",sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     line-height:1.6; -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1120px; margin:0 auto; padding:0 22px;}
@@ -36,12 +36,9 @@
   .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px; gap:14px;}
   .logo{display:flex; align-items:center; gap:9px; font-weight:600; font-size:18px;}
   .logo .mark{width:30px; height:30px; border-radius:9px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:18px;}
-  .nav-links{display:flex; gap:22px; font-size:14px; color:var(--ink-soft);}
+  .nav-links{display:flex; gap:20px; font-size:14px; color:var(--ink-soft);}
   .nav-links a:hover{color:var(--ink);}
-  .nav-right{display:flex; align-items:center; gap:14px;}
-  .langtog{display:flex; border:1px solid var(--line2); border-radius:var(--radius-pill); overflow:hidden; font-size:13px;}
-  .langtog button{border:none; background:transparent; color:var(--ink-soft); padding:6px 14px; cursor:pointer; font:inherit; font-size:13px;}
-  .langtog button.active{background:var(--ink); color:#fff;}
+  .nav-right{display:flex; align-items:center; gap:10px;}
 
   .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font:inherit; font-weight:600; cursor:pointer; border:none; border-radius:var(--radius-sm); padding:12px 20px; font-size:15px; transition:transform .06s ease, background .15s ease; text-align:center;}
   .btn:active{transform:scale(.98);}
@@ -54,40 +51,19 @@
   .btn-sm{padding:8px 15px; font-size:14px;}
   .btn-block{width:100%;}
   .wa-ico{font-size:18px; line-height:1;}
-  /* social buttons — equal visual weight, brand colours */
-  .btn-ig{background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888); color:#fff;}
-  .btn-fb{background:#1877f2; color:#fff;}
-  .btn-ig:hover,.btn-fb:hover{filter:brightness(1.07);}
-  .btn .brand-ic{width:16px; height:16px; display:block; flex:0 0 auto;}
-  .social-ic{width:34px; height:34px; padding:0; border-radius:50%;}
-  .social-ic .brand-ic{width:16px; height:16px;}
-  .nav-right{gap:10px;}
-  /* about me */
-  .about-card{max-width:880px; margin:0 auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:36px; display:grid; grid-template-columns:210px 1fr; gap:36px; align-items:center;}
-  .about-avatar{position:relative; width:210px; height:210px; border-radius:28px; background:#fff; color:var(--brand); display:grid; place-items:center; font-size:70px; font-weight:700; margin:0 auto; overflow:hidden;}
-  .about-avatar img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%;}
-  .about-name{font-size:24px; font-weight:700; margin:0 0 2px;}
-  .about-role{font-size:14.5px; color:var(--ink-soft); margin:0 0 14px;}
-  .about-bio{font-size:15px; color:var(--ink); margin:0 0 16px; line-height:1.75;}
-  .about-chips{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; padding:0; list-style:none;}
-  .about-chips li{font-size:13px; font-weight:600; background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius-pill); padding:6px 13px; color:var(--ink-soft);}
-  .btn-li{background:#0a66c2; color:#fff;}
-  .btn-li:hover{background:#084d92;}
-  .about-find{font-size:13px; color:var(--ink-faint); margin:12px 0 0;}
-  @media (max-width:720px){ .about-card{grid-template-columns:1fr; text-align:center; padding:28px 20px;} .about-chips{justify-content:center;} }
 
   /* hero */
   .hero{padding:64px 0 48px;}
   .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center;}
   .eyebrow{display:inline-block; font-size:13px; font-weight:600; color:var(--brand-dark); background:var(--brand-soft); padding:6px 13px; border-radius:var(--radius-pill); margin-bottom:18px;}
-  h1{font-size:44px; line-height:1.15; margin:0 0 18px; letter-spacing:-.01em;}
+  h1{font-size:42px; line-height:1.15; margin:0 0 18px; letter-spacing:-.01em;}
   .subhead{font-size:20px; font-weight:600; color:var(--ink); margin:0 0 14px; max-width:30em;}
-  .sub{font-size:18px; color:var(--ink-soft); margin:0 0 28px; max-width:30em;}
+  .sub{font-size:17px; color:var(--ink-soft); margin:0 0 28px; max-width:32em;}
   .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:22px;}
-  .trust{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink-faint);}
+  .trust{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink-faint); flex-wrap:wrap;}
   .trust .star{color:var(--star);}
 
-  /* chat preview card — animated demo video, edge to edge */
+  /* chat preview card — animated demo video */
   .chatcard{background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius); padding:14px; box-shadow:var(--shadow);}
   .chat-input{margin-top:16px; display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:var(--radius-pill); padding:9px 14px; font-size:13px; color:var(--ink-faint);}
   .chat-input .send{margin-left:auto; color:var(--brand); font-size:17px;}
@@ -98,7 +74,7 @@
   /* section */
   .section{padding:72px 0;}
   .section.alt{background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .sec-head{text-align:center; max-width:640px; margin:0 auto 44px;}
+  .sec-head{text-align:center; max-width:680px; margin:0 auto 44px;}
   .sec-head h2{font-size:32px; margin:0 0 12px; letter-spacing:-.01em;}
   .sec-head p{font-size:17px; color:var(--ink-soft); margin:0;}
 
@@ -110,6 +86,55 @@
   .feat h3{font-size:17px; margin:0 0 8px;}
   .feat p{font-size:14.5px; color:var(--ink-soft); margin:0;}
 
+  /* workflow rail */
+  .flow{max-width:560px; margin:0 auto; display:flex; flex-direction:column;}
+  .flow-step{display:flex; gap:18px;}
+  .flow-num{display:flex; flex-direction:column; align-items:center;}
+  .flow-dot{width:38px; height:38px; border-radius:50%; background:var(--brand); color:#fff; display:grid; place-items:center; font-weight:700; font-size:15px; box-shadow:0 4px 10px rgba(47,109,240,.3); flex-shrink:0;}
+  .flow-line{width:2px; flex:1; background:var(--line2); min-height:26px; margin:6px 0;}
+  .flow-step:last-child .flow-line{display:none;}
+  .flow-body{padding:6px 0 26px;}
+  .flow-body h3{font-size:17px; margin:0 0 4px;}
+  .flow-body p{font-size:14.5px; color:var(--ink-soft); margin:0;}
+  .flow-tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; padding:3px 10px; border-radius:var(--radius-pill); margin-bottom:6px;}
+  .flow-tag.ai{background:var(--brand-soft); color:var(--brand-dark);}
+  .flow-tag.team{background:var(--warn-soft); color:var(--warn);}
+
+  /* product screens */
+  .shot-row{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; margin-bottom:64px;}
+  .shot-row:last-child{margin-bottom:0;}
+  .shot-row.flip .shot-copy{order:2;}
+  @media(max-width:860px){ .shot-row, .shot-row.flip{grid-template-columns:1fr;} .shot-row.flip .shot-copy{order:0;} }
+  .shot-copy h3{font-size:24px; margin:0 0 10px; letter-spacing:-.01em;}
+  .shot-copy p{font-size:16px; color:var(--ink-soft); margin:0;}
+  .shot-note{font-size:12px; color:var(--ink-faint); margin-top:10px;}
+  .mock{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-lg); overflow:hidden; font-size:12.5px;}
+  .mock-bar{display:flex; align-items:center; gap:6px; padding:9px 14px; background:var(--bg-soft); border-bottom:1px solid var(--line);}
+  .mock-bar i{width:9px; height:9px; border-radius:50%; background:var(--line2); display:block;}
+  .mock-bar span{margin-left:8px; font-weight:600; color:var(--ink-soft); font-size:12px;}
+  .mock-body{padding:14px;}
+  .m-row{display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--line); border-radius:9px; padding:10px 12px; margin-bottom:8px; background:#fff;}
+  .m-row:last-child{margin-bottom:0;}
+  .m-row .who{font-weight:600;}
+  .m-row .meta{color:var(--ink-faint); font-size:11.5px;}
+  .m-pill{font-size:10.5px; font-weight:700; padding:3px 9px; border-radius:var(--radius-pill); white-space:nowrap;}
+  .m-pill.new{background:var(--brand-soft); color:var(--brand-dark);}
+  .m-pill.ok{background:var(--ok-soft); color:var(--ok);}
+  .m-pill.warn{background:var(--warn-soft); color:var(--warn);}
+  .m-field{display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px dashed var(--line);}
+  .m-field:last-child{border-bottom:none;}
+  .m-field .k{color:var(--ink-faint);}
+  .m-field .v{font-weight:600; text-align:right;}
+  .m-cal{display:grid; grid-template-columns:52px 1fr; gap:6px;}
+  .m-cal .t{color:var(--ink-faint); font-size:11px; padding-top:6px; text-align:right;}
+  .m-slot{border-radius:8px; padding:7px 10px; font-weight:600; font-size:11.5px; margin-bottom:2px;}
+  .m-slot.a{background:var(--brand-soft); color:var(--brand-dark);}
+  .m-slot.b{background:var(--ok-soft); color:var(--ok);}
+  .m-slot.free{background:var(--bg-soft); color:var(--ink-faint); font-weight:500; border:1px dashed var(--line2);}
+  .m-log{display:flex; gap:10px; padding:7px 0; border-bottom:1px dashed var(--line); align-items:baseline;}
+  .m-log:last-child{border-bottom:none;}
+  .m-log .d{color:var(--ink-faint); font-size:11px; white-space:nowrap; min-width:56px;}
+
   /* steps */
   .steps{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:24px; counter-reset:step;}
   .step{position:relative; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px 24px; counter-increment:step;}
@@ -117,23 +142,23 @@
   .step h3{font-size:18px; margin:6px 0 8px;}
   .step p{font-size:14.5px; color:var(--ink-soft); margin:0;}
 
-  /* pricing */
-  .pricing{display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; align-items:stretch;}
-  @media(max-width:1040px){ .pricing{grid-template-columns:repeat(2, 1fr);} }
-  @media(max-width:540px){ .pricing{grid-template-columns:1fr;} }
+  /* pricing teaser */
+  .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; max-width:940px; margin:0 auto;}
+  @media(max-width:820px){ .pricing{grid-template-columns:1fr; max-width:420px;} }
   .price{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; position:relative;}
   .price.popular{border:2px solid var(--brand); box-shadow:var(--shadow-lg); transform:translateY(-4px);}
+  @media(max-width:860px){ .price.popular{transform:none;} }
   .price-badge{position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--accent); color:#fff; font-size:12px; font-weight:700; padding:5px 14px; border-radius:var(--radius-pill); letter-spacing:.02em;}
   .price h3{font-size:20px; margin:0 0 6px;}
   .price .desc{font-size:14px; color:var(--ink-soft); margin:0 0 18px;}
   .price-amount{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:6px;}
   .price-amount .now{font-size:36px; font-weight:700; letter-spacing:-.02em;}
-  .price-amount .was{font-size:18px; color:var(--ink-faint); text-decoration:line-through;}
   .price-amount .cur{font-size:14px; color:var(--ink-soft); font-weight:600;}
-  .price .term{font-size:13px; color:var(--ink-faint); margin:0 0 18px;}
   .price ul{list-style:none; padding:0; margin:0 0 22px; flex:1;}
   .price li{font-size:14.5px; padding:7px 0 7px 26px; position:relative; color:var(--ink);}
   .price li::before{content:"✓"; position:absolute; left:0; top:7px; color:var(--wa-dark); font-weight:700;}
+  .see-full{display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--brand); font-size:16px;}
+  .see-full:hover{color:var(--brand-dark);}
 
   /* FAQ */
   .faq{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
@@ -145,45 +170,47 @@
   .faq details[open] summary::after{transform:rotate(45deg);}
   .faq .ans{padding:0 22px 20px; color:var(--ink-soft); font-size:15px;}
 
+  /* about */
+  .about-card{max-width:880px; margin:0 auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:36px; display:grid; grid-template-columns:210px 1fr; gap:36px; align-items:center;}
+  .about-avatar{position:relative; width:210px; height:210px; border-radius:28px; background:#fff; color:var(--brand); display:grid; place-items:center; font-size:70px; font-weight:700; margin:0 auto; overflow:hidden;}
+  .about-avatar img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%;}
+  .about-name{font-size:24px; font-weight:700; margin:0 0 2px;}
+  .about-role{font-size:14.5px; color:var(--ink-soft); margin:0 0 14px;}
+  .about-bio{font-size:15px; color:var(--ink); margin:0 0 16px; line-height:1.75;}
+  .btn-li{background:#0a66c2; color:#fff;}
+  .btn-li:hover{background:#084d92;}
+  .brand-ic{width:16px; height:16px; display:block; flex:0 0 auto;}
+  @media (max-width:720px){ .about-card{grid-template-columns:1fr; text-align:center; padding:28px 20px;} }
+
   /* contact */
-  .contact-grid{display:grid; grid-template-columns:1fr 1.2fr; gap:36px; align-items:start;}
-  .contact-info h3{font-size:18px; margin:0 0 14px;}
+  .contact-info{max-width:460px; margin:0 auto;}
   .contact-info .ci-row{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--line);}
   .contact-info .ci-row:last-child{border-bottom:none;}
   .contact-info .ci-ico{width:36px; height:36px; border-radius:9px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:17px; flex-shrink:0;}
   .contact-info .ci-label{font-size:13px; color:var(--ink-faint); margin:0;}
   .contact-info .ci-value{font-size:15px; color:var(--ink); margin:2px 0 0; font-weight:500;}
-  .contact-form{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
-  .form-row{display:flex; flex-direction:column; gap:6px; margin-bottom:16px;}
-  .form-row label{font-size:13px; font-weight:600; color:var(--ink-soft);}
-  .form-row input, .form-row textarea{font:inherit; font-size:15px; padding:11px 13px; border:1px solid var(--line2); border-radius:var(--radius-sm); background:#fff; color:var(--ink); transition:border-color .15s ease;}
-  .form-row input:focus, .form-row textarea:focus{outline:none; border-color:var(--brand); box-shadow:0 0 0 3px rgba(47,109,240,.15);}
-  .form-row textarea{min-height:110px; resize:vertical;}
-  .form-note{font-size:12.5px; color:var(--ink-faint); margin:10px 0 0;}
 
   /* CTA band */
   .band{background:var(--ink); color:#fff; border-radius:var(--radius); padding:44px 32px; text-align:center; box-shadow:var(--shadow);}
   .band h2{font-size:30px; margin:0 0 12px;}
   .band p{font-size:17px; color:rgba(255,255,255,.75); margin:0 0 24px;}
+  .btn-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
 
   footer{padding:36px 0; border-top:1px solid var(--line); color:var(--ink-faint); font-size:14px;}
   .foot-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
   .foot-links{display:flex; gap:18px; flex-wrap:wrap;}
   .foot-links a:hover{color:var(--ink);}
 
-  /* sr-only utility */
   .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
 
   @media(max-width:860px){
-    h1{font-size:34px;}
+    h1{font-size:32px;}
     .hero-grid{grid-template-columns:1fr; gap:32px;}
     .hero{padding:40px 0 32px;}
     .section{padding:52px 0;}
     .sec-head{margin-bottom:32px;}
     .sec-head h2{font-size:26px;}
     .nav-links{display:none;}
-    .contact-grid{grid-template-columns:1fr; gap:28px;}
-    .price.popular{transform:none;}
     .band{padding:32px 22px;}
     .band h2{font-size:24px;}
   }
@@ -191,24 +218,7 @@
     .wrap{padding-left:14px; padding-right:14px;}
     .nav-inner{height:58px;}
     .logo span:last-child{font-size:16px;}
-    .nav-right{gap:6px;}
-    .langtog button{padding:6px 10px; white-space:nowrap;}
-    .nav-right .btn-ig, .nav-right .btn-fb{display:none;}
     .btn-sm{padding:8px 10px; white-space:nowrap;}
-  }
-  @media(max-width:380px){
-    .nav-inner{padding-left:10px; padding-right:10px;}
-    .nav-right{gap:4px;}
-    .langtog button{padding:6px 8px;}
-    .social-ic{width:30px; height:30px;}
-    .social-ic .brand-ic{width:15px; height:15px;}
-    .nav-right .btn-sm{padding:7px;}
-  }
-  @media(max-width:340px){
-    .nav-right{gap:3px;}
-    .langtog button{padding:6px 6px;}
-    .social-ic{width:28px; height:28px;}
-    .logo span:last-child{font-size:15px;}
   }
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
@@ -217,24 +227,22 @@
 </head>
 <body>
 
-<a href="#main" class="sr-only" data-i18n="skipLink">Skip to content</a>
+<a href="#main" class="sr-only">Skip to content</a>
 
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="logo" href="#top" aria-label="BotSquirrel"><span class="mark" aria-hidden="true">🐿️</span><span>BotSquirrel</span></a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#features" data-i18n="navFeatures">Features</a>
-      <a href="#how" data-i18n="navHow">How it works</a>
-      <a href="pricing.html" data-i18n="navPricing">Pricing</a>
-      <a href="#faq" data-i18n="navFaq">FAQ</a>
-      <a href="#about" data-i18n="navAbout">About</a>
-      <a href="#contact" data-i18n="navContact">Contact</a>
+      <a href="#product">Product</a>
+      <a href="#how">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About</a>
     </nav>
     <div class="nav-right">
-      <a class="btn btn-ig social-ic" href="https://www.instagram.com/botlocal_ai" target="_blank" rel="noopener" aria-label="Instagram @botlocal_ai" title="Instagram @botlocal_ai"><svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.86 5.86 0 00.63 4.14c-.3.76-.5 1.64-.56 2.9C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 002.12-1.38 5.86 5.86 0 001.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.12A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.85a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
-      <a class="btn btn-fb social-ic" href="https://www.facebook.com/1238971922628849" target="_blank" rel="noopener" aria-label="Facebook BotSquirrel" title="Facebook BotSquirrel"><svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
-      <a class="btn btn-wa social-ic wa-link" href="#" target="_blank" rel="noopener" aria-label="WhatsApp BotSquirrel" title="WhatsApp"><svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 01-1.6-5.96C.16 5.32 5.5 0 12.06 0a11.8 11.8 0 018.4 3.49 11.8 11.8 0 013.48 8.4c0 6.55-5.34 11.88-11.9 11.88a11.9 11.9 0 01-5.68-1.45L.06 24zm6.6-3.8c1.68.98 3.28 1.58 5.4 1.58 5.45 0 9.9-4.43 9.9-9.9a9.85 9.85 0 00-2.9-7 9.82 9.82 0 00-7-2.9c-5.46 0-9.9 4.44-9.9 9.9 0 2.24.65 3.9 1.75 5.65l-1 3.65 3.75-.98zm11.4-5.57c-.07-.12-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.6.14-.14.3-.36.44-.53.16-.18.2-.3.3-.5.1-.2.06-.38-.02-.53-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5l-.57-.02c-.2 0-.52.08-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.5.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.28.18-1.4z"/></svg></a>
-      <a class="btn btn-brand btn-sm" href="demo.html"><span data-i18n="navDemoBtn">Book a demo</span></a>
+      <a class="btn btn-ghost btn-sm" href="https://app.botsquirrel.com/login" target="_blank" rel="noopener">Log in</a>
+      <a class="btn btn-brand btn-sm" href="demo.html">Book a demo</a>
     </div>
   </div>
 </header>
@@ -246,326 +254,399 @@
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow" data-i18n="eyebrow">Gathers every enquiry — built from your own prices, services & FAQs</span>
-        <h1 id="hero-h" data-i18n="headline">Never miss a job while you're on the tools</h1>
-        <p class="subhead" data-i18n="subhead">An AI assistant that answers your customers on WhatsApp and your website, day or night — and stores every enquiry so you never lose one.</p>
-        <p class="sub" data-i18n="sub">We set it up with your own prices, services, coverage area and FAQs. Every reply comes straight from the info you give us — it never makes things up.
-
-It answers questions, books jobs and takes down leads 24/7, in your own words — so an emergency call-out at 11pm still gets a reply while you're asleep. Nothing gets dropped: every name, number and postcode is put away and waiting for you when you're off the job, the way a squirrel keeps its store through winter.</p>
+        <span class="eyebrow">Built for UK plumbing &amp; heating businesses</span>
+        <h1 id="hero-h">From missed enquiry to booked job — without stopping work</h1>
+        <p class="subhead">Never miss a job while you're on the tools. BotSquirrel answers new enquiries on WhatsApp and your website, collects the postcode, problem, photos and availability — then organises everything into a job enquiry your team can review, assign and schedule.</p>
+        <p class="sub">It answers from your approved business information — your prices, services, coverage area and policies. When it's not sure, it asks for details or hands the conversation to your team instead of guessing. And like a squirrel with its winter store, every enquiry is kept safe and organised until you're ready for it.</p>
         <div class="cta-row">
-          <a class="btn btn-brand" href="https://app.botsquirrel.com/demo/trades" target="_blank" rel="noopener"><span aria-hidden="true">💬</span><span data-i18n="ctaChat">Try the live demo</span></a>
-          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="cta1">Message us on WhatsApp</span></a>
+          <a class="btn btn-brand" href="https://app.botsquirrel.com/demo/trades" target="_blank" rel="noopener"><span aria-hidden="true">💬</span><span>Try the plumbing demo</span></a>
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Book a 15-minute walkthrough</span></a>
         </div>
-        <div class="trust"><span class="star" aria-hidden="true">★</span><span data-i18n="trust">Built for UK trades</span><span aria-hidden="true">·</span><span data-i18n="poweredBy">⚡ Answers only from your business info — never makes things up</span></div>
+        <div class="trust"><span class="star" aria-hidden="true">★</span><span>Enquiries · customer records · scheduling · follow-ups, in one workspace</span></div>
       </div>
 
       <a class="chatcard" href="https://app.botsquirrel.com/demo/trades" target="_blank" rel="noopener" style="display:block;cursor:pointer" aria-label="Try the live BotSquirrel demo">
-        <div class="duo-title" data-i18n="duoTitle">Built from your own business info — never guessing.</div>
+        <div class="duo-title">Answers from your own business info — never guessing.</div>
         <div class="video-wrap">
           <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="demo-poster-en.jpg" aria-hidden="true">
             <source src="botsquirrel-demo-en.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="chat-input"><span data-i18n="cardChat">💬 Try the live demo — see how it answers</span><span class="send">➤</span></div>
+        <div class="chat-input"><span>💬 Try the live demo — see how it answers</span><span class="send">➤</span></div>
       </a>
     </div>
   </section>
 
-  <!-- PLATFORMS -->
-  <section class="section alt" id="platforms" aria-labelledby="platforms-h">
+  <!-- WORKFLOW -->
+  <section class="section alt" id="how" aria-labelledby="how-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="platforms-h" data-i18n="platTitle">One assistant, where your customers already are</h2>
-        <p data-i18n="platSub">The same AI assistant on the channels your customers actually use.</p>
+        <h2 id="how-h">Not just a chatbot — the whole enquiry-to-booking workflow</h2>
+        <p>The AI handles the front door. Your team runs the job from one workspace.</p>
       </div>
-      <div class="grid-3" style="grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); max-width:720px; margin:0 auto;">
-        <div class="feat">
-          <div class="ico" aria-hidden="true">🟢</div>
-          <h3 data-i18n="plat2T">WhatsApp Business</h3>
-          <p data-i18n="plat2D">Customers message your assistant straight from WhatsApp — where most call-out enquiries start.</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8f6ec;color:#128c4a;" data-i18n="platIncl2">✓ Included in all plans</span>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num"><div class="flow-dot">1</div><div class="flow-line"></div></div>
+          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>Customer sends an enquiry</h3><p>On WhatsApp or your website — a burst pipe at 11pm still gets an instant reply.</p></div>
         </div>
-        <div class="feat">
-          <div class="ico" aria-hidden="true">💬</div>
-          <h3 data-i18n="plat1T">Your website</h3>
-          <p data-i18n="plat1D">A small snippet drops a live-chat widget into your existing site — Wix, WordPress or custom.</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8f6ec;color:#128c4a;" data-i18n="platIncl1">✓ Included in all plans</span>
+        <div class="flow-step">
+          <div class="flow-num"><div class="flow-dot">2</div><div class="flow-line"></div></div>
+          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>AI collects the job information</h3><p>Postcode, the problem, photos, urgency and preferred times — asked for naturally, in your business's voice.</p></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num"><div class="flow-dot">3</div><div class="flow-line"></div></div>
+          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>The enquiry appears in your dashboard</h3><p>Structured and ready to act on — not buried in a message thread.</p></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num"><div class="flow-dot">4</div><div class="flow-line"></div></div>
+          <div class="flow-body"><span class="flow-tag team">Your team</span><h3>Review and request missing details</h3><p>BotSquirrel highlights what's missing — a phone number, an access note — and helps you ask for it.</p></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num"><div class="flow-dot">5</div><div class="flow-line"></div></div>
+          <div class="flow-body"><span class="flow-tag team">Your team</span><h3>Assign an engineer</h3><p>Pick the right person for the job before confirming anything with the customer.</p></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num"><div class="flow-dot">6</div><div class="flow-line"></div></div>
+          <div class="flow-body"><span class="flow-tag team">Your team</span><h3>Book a genuine available slot</h3><p>Appointments go in the calendar — the AI never promises times on its own.</p></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num"><div class="flow-dot">7</div></div>
+          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>Keep the customer updated</h3><p>Confirmations and follow-ups go out, and the whole history stays on the customer's record.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SCREENS -->
+  <section class="section" id="product" aria-labelledby="product-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="product-h">One workspace for every job enquiry</h2>
+        <p>What your team sees once the AI has done the collecting.</p>
+      </div>
+
+      <div class="shot-row">
+        <div class="shot-copy">
+          <h3>Every enquiry arrives organised</h3>
+          <p>See the customer, postcode, issue, urgency and preferred time at a glance — without reading through an entire message thread.</p>
+          <p class="shot-note">Illustrative product view</p>
+        </div>
+        <div class="mock" role="img" aria-label="Illustration of the enquiry inbox">
+          <div class="mock-bar"><i></i><i></i><i></i><span>Enquiries</span></div>
+          <div class="mock-body">
+            <div class="m-row"><div><div class="who">Sarah W. · SW11 4EX</div><div class="meta">Boiler losing pressure · photos ×2 · prefers Thu AM</div></div><span class="m-pill new">New</span></div>
+            <div class="m-row"><div><div class="who">Tom H. · CR0 2RD</div><div class="meta">Leak under kitchen sink · urgent</div></div><span class="m-pill warn">Needs details</span></div>
+            <div class="m-row"><div><div class="who">Priya N. · SE15 3AB</div><div class="meta">Annual boiler service · flexible</div></div><span class="m-pill ok">Booked</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shot-row flip">
+        <div class="shot-copy">
+          <h3>Know what's missing</h3>
+          <p>BotSquirrel highlights missing contact details or job information and helps your team request it — so no one turns up to a job half-briefed.</p>
+          <p class="shot-note">Illustrative product view</p>
+        </div>
+        <div class="mock" role="img" aria-label="Illustration of an enquiry detail view">
+          <div class="mock-bar"><i></i><i></i><i></i><span>Enquiry · Tom H.</span></div>
+          <div class="mock-body">
+            <div class="m-field"><span class="k">Issue</span><span class="v">Leak under kitchen sink</span></div>
+            <div class="m-field"><span class="k">Postcode</span><span class="v">CR0 2RD</span></div>
+            <div class="m-field"><span class="k">Urgency</span><span class="v">Today if possible</span></div>
+            <div class="m-field"><span class="k">Phone</span><span class="v" style="color:var(--warn)">Missing — ask customer</span></div>
+            <div class="m-field"><span class="k">Photos</span><span class="v" style="color:var(--warn)">Missing — ask customer</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shot-row">
+        <div class="shot-copy">
+          <h3>Schedule the right engineer</h3>
+          <p>Review availability before confirming an appointment — bookings are real slots your team controls, not promises the AI makes on its own.</p>
+          <p class="shot-note">Illustrative product view</p>
+        </div>
+        <div class="mock" role="img" aria-label="Illustration of the engineer calendar">
+          <div class="mock-bar"><i></i><i></i><i></i><span>Thursday · Engineers</span></div>
+          <div class="mock-body">
+            <div class="m-cal">
+              <div class="t">09:00</div><div><div class="m-slot a">Dave — Boiler service, SE15</div></div>
+              <div class="t">11:00</div><div><div class="m-slot free">Available</div></div>
+              <div class="t">13:30</div><div><div class="m-slot b">Aiden — Leak repair, CR0</div></div>
+              <div class="t">16:00</div><div><div class="m-slot free">Available</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shot-row flip">
+        <div class="shot-copy">
+          <h3>Keep the full customer history</h3>
+          <p>Conversations, visits, notes, photos and status changes stay connected to the same customer — so repeat work starts with context, not a cold thread.</p>
+          <p class="shot-note">Illustrative product view</p>
+        </div>
+        <div class="mock" role="img" aria-label="Illustration of a customer record">
+          <div class="mock-bar"><i></i><i></i><i></i><span>Customer · Sarah W.</span></div>
+          <div class="mock-body">
+            <div class="m-log"><span class="d">Today</span><span>Enquiry: boiler losing pressure · photos attached</span></div>
+            <div class="m-log"><span class="d">Mar 2026</span><span>Job completed: radiator valve replacement</span></div>
+            <div class="m-log"><span class="d">Nov 2025</span><span>Annual boiler service · reminder scheduled</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FEATURES -->
-  <section class="section" id="features" aria-labelledby="features-h">
+  <section class="section alt" id="features" aria-labelledby="features-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="features-h" data-i18n="featTitle">What it does for your business</h2>
-        <p data-i18n="featSub">From answering enquiries to booking jobs — one assistant handles it all.</p>
+        <h2 id="features-h">What it does for your business</h2>
+        <p>From the first message to the booked job — and everything your team needs in between.</p>
       </div>
       <div class="grid-3">
         <article class="feat">
           <div class="ico" aria-hidden="true">⏰</div>
-          <h3 data-i18n="feat1T">Answers 24/7, even on the tools</h3>
-          <p data-i18n="feat1D">A boiler packs up at 11pm and they've messaged you? The assistant replies straight away — you don't have to stop the job or wake up for it.</p>
-        </article>
-        <article class="feat">
-          <div class="ico" aria-hidden="true">🗣️</div>
-          <h3 data-i18n="feat3T">Replies the way you would</h3>
-          <p data-i18n="feat3D">It talks like your business does — straight-talking or friendly, your call. Customers feel like they're texting you, not a robot.</p>
-        </article>
-        <article class="feat">
-          <div class="ico" aria-hidden="true">📚</div>
-          <h3 data-i18n="feat4T">Knows your prices and services</h3>
-          <p data-i18n="feat4D">Set up with your own call-out charges, services and FAQs, so every answer comes from your business — not a generic guess. No made-up quotes.</p>
+          <h3>Answers 24/7, even on the tools</h3>
+          <p>A boiler packs up at 11pm? The assistant replies straight away and starts collecting the job details — you don't stop the job or wake up for it.</p>
         </article>
         <article class="feat">
           <div class="ico" aria-hidden="true">📥</div>
-          <h3 data-i18n="feat5T">Books jobs and captures leads</h3>
-          <p data-i18n="feat5D">It takes booking enquiries and collects the customer's name, number and postcode — so the lead's waiting for you when you're off the job.</p>
+          <h3>Structured job enquiries</h3>
+          <p>Name, number, postcode, the problem, photos and preferred times — collected in conversation and organised into an enquiry, not a scroll-back exercise.</p>
         </article>
         <article class="feat">
-          <div class="ico" aria-hidden="true">⚡</div>
-          <h3 data-i18n="feat6T">No tech knowledge needed</h3>
-          <p data-i18n="feat6D">You don't touch any code. Send us your details and it's usually live in 14–21 days.</p>
+          <div class="ico" aria-hidden="true">👤</div>
+          <h3>Customer records that build up</h3>
+          <p>Every conversation, job and note stays attached to the customer — so the second call-out starts with the full history.</p>
         </article>
         <article class="feat">
-          <div class="ico" aria-hidden="true">🛠️</div>
-          <h3 data-i18n="feat7T">Tuned to how you work</h3>
-          <p data-i18n="feat7D">Only reply during working hours? Always ask for a postcode first? Flag emergency call-outs? Just tell us — we set it up your way.</p>
+          <div class="ico" aria-hidden="true">📅</div>
+          <h3>Engineer scheduling</h3>
+          <p>Assign the right engineer and book real slots from the calendar. The AI never invents availability or confirms times on its own.</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">🤝</div>
+          <h3>Human handover built in</h3>
+          <p>When a conversation needs a person — a complaint, a complex quote, anything uncertain — it hands over to your team with the full context, instead of guessing.</p>
+        </article>
+        <article class="feat">
+          <div class="ico" aria-hidden="true">📚</div>
+          <h3>Answers from your approved info</h3>
+          <p>Built from your call-out charges, services and policies. It quotes only prices that appear in your business information — no made-up figures.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- WHO IT'S FOR -->
-  <section class="section alt" id="who" aria-labelledby="who-h">
+  <!-- BUILT FOR PLUMBING & HEATING -->
+  <section class="section" id="who" aria-labelledby="who-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="who-h" data-i18n="fitTitle">Who's it for?</h2>
-        <p data-i18n="fitSub">Built for trades who lose work to missed calls and messages.</p>
+        <h2 id="who-h">Built for plumbing &amp; heating — not "any business"</h2>
+        <p>The workflows, questions and job types are the ones your trade actually deals with.</p>
       </div>
       <div class="grid-3">
-        <article class="feat"><h3 data-i18n="fit1T">Plumbers</h3><p data-i18n="fit1D">Answers on call-out charges, leaks and blocked drains; books jobs and takes emergency details.</p></article>
-        <article class="feat"><h3 data-i18n="fit2T">Electricians</h3><p data-i18n="fit2D">Handles EICR and rewire enquiries, quote questions and booking requests.</p></article>
-        <article class="feat"><h3 data-i18n="fit3T">Heating & gas engineers</h3><p data-i18n="fit3D">Fields boiler breakdowns, servicing and quote requests — day or night.</p></article>
-        <article class="feat"><h3 data-i18n="fit4T">Builders & renovations</h3><p data-i18n="fit4D">Answers what you cover and your area, and collects job details for a quote.</p></article>
-        <article class="feat"><h3 data-i18n="fit5T">Roofers & property maintenance</h3><p data-i18n="fit5D">Replies to repair enquiries and books site visits while you're up a ladder.</p></article>
-        <article class="feat"><h3 data-i18n="fit6T">Locksmiths & emergency call-out</h3><p data-i18n="fit6D">Never miss an urgent job — it replies instantly and grabs the address and number.</p></article>
+        <article class="feat"><div class="ico" aria-hidden="true">🔥</div><h3>Boiler breakdowns &amp; servicing</h3><p>Fields breakdown enquiries with urgency and symptoms, and handles annual service requests day or night.</p></article>
+        <article class="feat"><div class="ico" aria-hidden="true">💧</div><h3>Leaks, drains &amp; emergencies</h3><p>Captures the address, access details and photos for urgent call-outs — the details your engineer needs before setting off.</p></article>
+        <article class="feat"><div class="ico" aria-hidden="true">🛁</div><h3>Installations &amp; quotes</h3><p>Collects what a bathroom, boiler swap or heating job involves so you can quote from real information, not a one-line text.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="section" id="how" aria-labelledby="how-h">
+  <!-- CHANNELS -->
+  <section class="section alt" id="platforms" aria-labelledby="platforms-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="how-h" data-i18n="howTitle">How to get started</h2>
-        <p data-i18n="howSub">Three steps — usually live in 14–21 days, depending on how much info you have and which channels we connect.</p>
+        <h2 id="platforms-h">Where your customers already are</h2>
+        <p>The same assistant on the channels UK customers actually use.</p>
+      </div>
+      <div class="grid-3" style="grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); max-width:720px; margin:0 auto;">
+        <div class="feat">
+          <div class="ico" aria-hidden="true">🟢</div>
+          <h3>WhatsApp Business</h3>
+          <p>Customers message your assistant straight from WhatsApp — where most call-out enquiries start.</p>
+          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:var(--ok-soft);color:var(--ok);">✓ Included in all plans</span>
+        </div>
+        <div class="feat">
+          <div class="ico" aria-hidden="true">💬</div>
+          <h3>Your website</h3>
+          <p>A small snippet drops a live-chat widget into your existing site — Wix, WordPress or custom.</p>
+          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:var(--ok-soft);color:var(--ok);">✓ Included in all plans</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO GET STARTED -->
+  <section class="section" id="start" aria-labelledby="start-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="start-h">How to get started</h2>
+        <p>Three steps — usually live in 14–21 days, depending on how much info you have and which channels we connect.</p>
       </div>
       <div class="steps">
         <article class="step">
-          <h3 data-i18n="step1T">Tell us about your business</h3>
-          <p data-i18n="step1D">A 15-minute WhatsApp chat — what you do, your prices, and what customers ask you most.</p>
+          <h3>Tell us about your business</h3>
+          <p>A 15-minute WhatsApp chat — what you do, your prices, coverage area, and what customers ask you most.</p>
         </article>
         <article class="step">
-          <h3 data-i18n="step2T">We set up your assistant</h3>
-          <p data-i18n="step2D">We build it from your info and tune it to sound like you, testing until it answers your questions accurately.</p>
+          <h3>We set up your workspace</h3>
+          <p>We build the assistant from your info, tune it to sound like you, and set up your enquiry dashboard, customer records and calendar.</p>
         </article>
         <article class="step">
-          <h3 data-i18n="step3T">Go live and stop missing work</h3>
-          <p data-i18n="step3D">We connect it to your WhatsApp and website, and it starts replying to customers 24/7.</p>
+          <h3>Go live and stop missing work</h3>
+          <p>We connect your WhatsApp and website. Enquiries start arriving organised — and nothing gets dropped.</p>
         </article>
       </div>
-    </div>
-  </section>
-
-  <!-- WHAT YOU PROVIDE -->
-  <section class="section alt" id="provide" aria-labelledby="provide-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="provide-h" data-i18n="provTitle">What do you need to give us?</h2>
-        <p data-i18n="provSub">The more of your real info you give us, the more it answers exactly like your business — we handle the setup, testing and launch.</p>
-      </div>
-      <p style="text-align:center; max-width:720px; margin:0 auto; font-size:15.5px; color:var(--ink); line-height:1.9;" data-i18n="provList">Your price list & call-out charges · services you cover · hours & coverage area (postcodes) · common questions · how you take bookings</p>
     </div>
   </section>
 
   <!-- PRICING (teaser — full details on pricing.html) -->
-  <style>
-    .pricing.teaser{grid-template-columns:repeat(3,1fr); max-width:940px; margin:0 auto;}
-    @media(max-width:820px){ .pricing.teaser{grid-template-columns:1fr; max-width:420px;} }
-    .see-full{display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--brand); font-size:16px;}
-    .see-full:hover{color:var(--brand-dark);}
-  </style>
-  <section class="section" id="pricing" aria-labelledby="pricing-h">
+  <section class="section alt" id="pricing" aria-labelledby="pricing-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="pricing-h" data-i18n="priceTitle">Simple, honest pricing</h2>
-        <p data-i18n="priceSub">14-day free trial, no card needed, no lock-in. All prices + VAT.</p>
+        <h2 id="pricing-h">Simple, honest pricing</h2>
+        <p>14-day free trial, no card needed, no lock-in. All prices + VAT.</p>
       </div>
-      <div class="pricing teaser">
+      <div class="pricing">
         <article class="price" aria-label="Basic plan">
           <h3>Basic</h3>
-          <p class="desc" data-i18n="tzBasicD">For sole traders just getting started.</p>
+          <p class="desc">For sole traders — one person, one van.</p>
           <div class="price-amount">
-            <span class="cur" style="font-size:18px;">£</span><span class="now">89</span><span class="cur" style="font-size:15px;" data-i18n="perMo">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);" data-i18n="plusVat">+ VAT</span>
+            <span class="cur" style="font-size:18px;">£</span><span class="now">89</span><span class="cur" style="font-size:15px;">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);">+ VAT</span>
           </div>
           <ul>
-            <li data-i18n="tzB1">1 WhatsApp number</li>
-            <li data-i18n="tzB2">3 user seats</li>
-            <li data-i18n="tzB3">1 AI agent · outbound messages billed as you go</li>
+            <li>AI enquiry assistant on WhatsApp + your website</li>
+            <li>Enquiry dashboard &amp; customer records</li>
+            <li>3 team members · 1 WhatsApp number</li>
           </ul>
-          <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login" data-i18n="ctaTrial">Start free trial</a>
+          <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login">Start free trial</a>
         </article>
         <article class="price popular" aria-label="Professional plan">
-          <span class="price-badge" data-i18n="badgePopular">Most popular</span>
+          <span class="price-badge">Most popular</span>
           <h3>Professional</h3>
-          <p class="desc" data-i18n="tzProD">For busier trades needing more numbers and a team.</p>
+          <p class="desc">For teams with engineers to schedule.</p>
           <div class="price-amount">
-            <span class="cur" style="font-size:18px;">£</span><span class="now">129</span><span class="cur" style="font-size:15px;" data-i18n="perMo">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);" data-i18n="plusVat">+ VAT</span>
+            <span class="cur" style="font-size:18px;">£</span><span class="now">129</span><span class="cur" style="font-size:15px;">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);">+ VAT</span>
           </div>
           <ul>
-            <li data-i18n="tzP1">3 WhatsApp numbers</li>
-            <li data-i18n="tzP2">10 user seats</li>
-            <li data-i18n="tzP3">1 AI agent · 10 free outbound conversations/mo</li>
+            <li>Everything in Basic</li>
+            <li>Engineer scheduling &amp; assignment</li>
+            <li>10 team members · 3 WhatsApp numbers</li>
           </ul>
-          <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login" data-i18n="ctaTrial">Start free trial</a>
+          <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login">Start free trial</a>
         </article>
         <article class="price" aria-label="Advanced plan">
           <h3>Advanced</h3>
-          <p class="desc" data-i18n="tzAdvD">For larger teams needing more numbers and AI agents.</p>
+          <p class="desc">For larger operations with multiple teams.</p>
           <div class="price-amount">
-            <span class="now" style="font-size:26px;" data-i18n="onRequest">On request</span>
+            <span class="now" style="font-size:26px;">On request</span>
           </div>
           <ul>
-            <li data-i18n="tzA1">5 WhatsApp numbers</li>
-            <li data-i18n="tzA2">25 user seats</li>
-            <li data-i18n="tzA3">2 AI agents · 40 free outbound conversations/mo</li>
+            <li>Everything in Professional</li>
+            <li>25 team members · 5 WhatsApp numbers</li>
+            <li>Priority setup &amp; onboarding</li>
           </ul>
-          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="ctaCall">Book a call</span></a>
+          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Book a call</span></a>
         </article>
       </div>
       <p style="text-align:center; margin:30px auto 0;">
-        <a class="see-full" href="pricing.html"><span data-i18n="seeFull">See full pricing & comparison</span><span aria-hidden="true">→</span></a>
+        <a class="see-full" href="pricing.html"><span>See full pricing &amp; comparison</span><span aria-hidden="true">→</span></a>
       </p>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section alt" id="faq" aria-labelledby="faq-h">
+  <section class="section" id="faq" aria-labelledby="faq-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="faq-h" data-i18n="faqTitle">Frequently asked questions</h2>
-        <p data-i18n="faqSub">The questions we hear most. Anything else — message us on WhatsApp.</p>
+        <h2 id="faq-h">Frequently asked questions</h2>
+        <p>The questions we hear most. Anything else — message us on WhatsApp.</p>
       </div>
       <div class="faq">
         <details>
-          <summary data-i18n="faq0Q">Is this just ChatGPT? Will it make things up?</summary>
-          <div class="ans" data-i18n="faq0A">No — it's not a chatbot that just makes conversation. We build it from your own business info (services, prices, call-out charges, policies, FAQs), so it only answers from what you give it — it won't invent a quote or a detail. When it's not sure, it takes the customer's details for you instead of guessing. And we tune it to reply in your own voice.</div>
+          <summary>Is this just a chatbot?</summary>
+          <div class="ans">The chat is the front door, not the product. Behind it is a workspace your team uses every day: an enquiry dashboard, customer records, engineer scheduling and follow-ups. The AI's job is to make sure every enquiry arrives complete and organised — your team's job stays the same, just without the chasing.</div>
         </details>
         <details>
-          <summary data-i18n="faq1Q">How long does setup take?</summary>
-          <div class="ans" data-i18n="faq1A">Usually live in 14–21 days, depending on how much info you have and which channels we connect. You send the basics (services, prices, hours, coverage area) and we handle the setup and testing.</div>
+          <summary>Will the AI make things up?</summary>
+          <div class="ans">It answers from your approved business information — your services, prices, call-out charges and policies. It only quotes prices that appear in that information, and it never confirms appointment times on its own. When it's uncertain, it asks for details or hands the conversation to your team instead of guessing.</div>
         </details>
         <details>
-          <summary data-i18n="faq2Q">What if a customer asks something it doesn't know?</summary>
-          <div class="ans" data-i18n="faq2A">It won't guess. When it hits something it isn't sure about, it takes the customer's name and number and points them to you — so you get the lead instead of losing it.</div>
+          <summary>How long does setup take?</summary>
+          <div class="ans">Usually live in 14–21 days, depending on how much info you have and which channels we connect. You send the basics (services, prices, hours, coverage area) and we handle the setup and testing.</div>
         </details>
         <details>
-          <summary data-i18n="faq3Q">Is my business data safe?</summary>
-          <div class="ans" data-i18n="faq3A">Your data is only used to build and run your assistant. We never sell it or share it with unrelated third parties. To run the service we use trusted AI, hosting and messaging providers, all handled securely.</div>
+          <summary>What if a customer asks something it doesn't know?</summary>
+          <div class="ans">It won't guess. It takes the customer's details, logs the question as a gap you can fill, and hands the conversation to your team — so you get the lead instead of losing it.</div>
         </details>
         <details>
-          <summary data-i18n="faq4Q">Any long contracts? How does pricing work?</summary>
-          <div class="ans" data-i18n="faq4A">No contract — month-to-month, cancel anytime. Plans are Basic £89/mo and Professional £129/mo (+ VAT), with Advanced priced on request. Basic and Professional include a 14-day free trial, no card required — you're only billed after the trial if you continue. Extra WhatsApp numbers are £25/mo each, and outbound conversations you start are £0.04 each (conversations customers start with you are free). See our <a href="pricing.html" style="color:var(--brand);font-weight:600;">pricing page</a> for full details.</div>
+          <summary>Is my business and customer data safe?</summary>
+          <div class="ans">Each business's data is kept separate, access is role-based, and changes are logged. We use trusted AI, hosting and messaging providers and never sell your data. See our <a href="security.html" style="color:var(--brand);font-weight:600;">security page</a> for the specifics.</div>
         </details>
         <details>
-          <summary data-i18n="faq5Q">Where does it answer customers?</summary>
-          <div class="ans" data-i18n="faq5A">On WhatsApp Business and a live-chat widget on your website. Need it somewhere else? Just ask and we'll see what we can do.</div>
+          <summary>Any long contracts? How does pricing work?</summary>
+          <div class="ans">No contract — month-to-month, cancel anytime. Plans are Basic £89/mo and Professional £129/mo (+ VAT), with Advanced priced on request. Basic and Professional include a 14-day free trial, no card required. See our <a href="pricing.html" style="color:var(--brand);font-weight:600;">pricing page</a> for full details.</div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT ME -->
-  <section class="section" id="about" aria-labelledby="about-h">
+  <!-- ABOUT -->
+  <section class="section alt" id="about" aria-labelledby="about-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="about-h" data-i18n="aboutTitle">Who's behind this?</h2>
-        <p data-i18n="aboutSub">Not a faceless company — a real engineer you can look up.</p>
+        <h2 id="about-h">Who's behind this?</h2>
+        <p>Not a faceless company — a real engineer you can look up.</p>
       </div>
       <div class="about-card">
         <div class="about-avatar">S<img src="sam.png?v=1" alt="Sam Cheung" onerror="this.remove()"></div>
         <div>
           <p class="about-name">Sam Cheung</p>
-          <p class="about-role" data-i18n="aboutRole">Software engineer · the person who builds and supports your assistant</p>
-          <p class="about-bio" data-i18n="aboutBio">I'm Sam, the software engineer behind BotSquirrel. I build your assistant, tune it to sound like your business, and keep supporting it after it goes live — all handled personally. Before you commit, reach me anytime on LinkedIn or WhatsApp.</p>
-          <ul class="about-chips">
-            <li data-i18n="aboutChip1">🛠️ Built & supported personally</li>
-            <li data-i18n="aboutChip2">💬 Reach a real person, not a bot</li>
-            <li data-i18n="aboutChip3">⚡ Usually live in 14–21 days</li>
-            <li data-i18n="aboutChip4">🇬🇧 Built for UK trades</li>
-          </ul>
-          <a class="btn btn-li" href="https://www.linkedin.com/in/sam-ki-cheung/" target="_blank" rel="noopener"><svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg><span data-i18n="aboutCta">Find me on LinkedIn</span></a>
-          <p class="about-find" data-i18n="aboutFind">Reach me directly on WhatsApp or LinkedIn — handled personally, not handed off to a bot.</p>
+          <p class="about-role">Software engineer · builds and supports BotSquirrel personally</p>
+          <p class="about-bio">I'm Sam, the software engineer behind BotSquirrel. I build your workspace, tune the assistant to sound like your business, and keep supporting it after it goes live. Before you commit, reach me anytime on LinkedIn or WhatsApp.</p>
+          <a class="btn btn-li" href="https://www.linkedin.com/in/sam-ki-cheung/" target="_blank" rel="noopener"><svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg><span>Find me on LinkedIn</span></a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section alt" id="contact" aria-labelledby="contact-h">
+  <section class="section" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="contact-h" data-i18n="contactTitle">Get in touch</h2>
-        <p data-i18n="contactSub">WhatsApp is fastest — we usually reply within an hour on weekdays.</p>
+        <h2 id="contact-h">Get in touch</h2>
+        <p>WhatsApp is fastest — we usually reply within an hour on weekdays.</p>
       </div>
-      <div class="contact-grid" style="grid-template-columns:1fr; max-width:460px; margin:0 auto;">
-        <div class="contact-info">
-          <div class="ci-row">
-            <div class="ci-ico" aria-hidden="true">🟢</div>
-            <div>
-              <p class="ci-label" data-i18n="ciWaLabel">WhatsApp</p>
-              <p class="ci-value"><a class="wa-link" href="#" target="_blank" rel="noopener">+44 7472 323783</a></p>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-ico" aria-hidden="true" style="background:linear-gradient(45deg,#f09433,#dc2743 50%,#bc1888); color:#fff;"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.86 5.86 0 00.63 4.14c-.3.76-.5 1.64-.56 2.9C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 002.12-1.38 5.86 5.86 0 001.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.12A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.85a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></div>
-            <div>
-              <p class="ci-label">Instagram</p>
-              <p class="ci-value"><a href="https://www.instagram.com/botlocal_ai" target="_blank" rel="noopener">@botlocal_ai</a></p>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-ico" aria-hidden="true" style="background:#1877f2; color:#fff;"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></div>
-            <div>
-              <p class="ci-label">Facebook</p>
-              <p class="ci-value"><a href="https://www.facebook.com/1238971922628849" target="_blank" rel="noopener">BotSquirrel</a></p>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-ico" aria-hidden="true">✉️</div>
-            <div>
-              <p class="ci-label" data-i18n="ciMailLabel">Email</p>
-              <p class="ci-value"><a href="mailto:samkiengineer@gmail.com">samkiengineer@gmail.com</a></p>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-ico" aria-hidden="true">💼</div>
-            <div>
-              <p class="ci-label">LinkedIn</p>
-              <p class="ci-value"><a href="https://www.linkedin.com/in/sam-ki-cheung" target="_blank" rel="noopener">linkedin.com/in/sam-ki-cheung</a></p>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-ico" aria-hidden="true">📍</div>
-            <div>
-              <p class="ci-label" data-i18n="ciLocLabel">Location</p>
-              <p class="ci-value" data-i18n="ciLoc">Serving trades across the UK</p>
-            </div>
+      <div class="contact-info">
+        <div class="ci-row">
+          <div class="ci-ico" aria-hidden="true">🟢</div>
+          <div>
+            <p class="ci-label">WhatsApp</p>
+            <p class="ci-value"><a class="wa-link" href="#" target="_blank" rel="noopener">+44 7472 323783</a></p>
           </div>
         </div>
-
+        <div class="ci-row">
+          <div class="ci-ico" aria-hidden="true">✉️</div>
+          <div>
+            <p class="ci-label">Email</p>
+            <p class="ci-value"><a href="mailto:samkiengineer@gmail.com">samkiengineer@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-ico" aria-hidden="true">💼</div>
+          <div>
+            <p class="ci-label">LinkedIn</p>
+            <p class="ci-value"><a href="https://www.linkedin.com/in/sam-ki-cheung" target="_blank" rel="noopener">linkedin.com/in/sam-ki-cheung</a></p>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-ico" aria-hidden="true">📍</div>
+          <div>
+            <p class="ci-label">Location</p>
+            <p class="ci-value">Serving plumbing &amp; heating businesses across the UK</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -574,7 +655,12 @@ It answers questions, books jobs and takes down leads 24/7, in your own words �
   <section class="section">
     <div class="wrap">
       <div class="band">
-        <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span data-i18n="bandCta">Message us on WhatsApp</span></a>
+        <h2>See your next enquiry arrive organised</h2>
+        <p>Try the live plumbing demo, or book a 15-minute walkthrough on WhatsApp.</p>
+        <div class="btn-row">
+          <a class="btn btn-brand" href="https://app.botsquirrel.com/demo/trades" target="_blank" rel="noopener">Try the plumbing demo</a>
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Book a walkthrough</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -585,283 +671,31 @@ It answers questions, books jobs and takes down leads 24/7, in your own words �
   <div class="wrap foot-inner">
     <div>© <span id="year"></span> BotSquirrel</div>
     <div class="foot-links">
-      <a href="#features" data-i18n="navFeatures">Features</a>
-      <a href="pricing.html" data-i18n="navPricing">Pricing</a>
-      <a href="#faq" data-i18n="navFaq">FAQ</a>
-      <a class="wa-link" href="#" target="_blank" rel="noopener" data-i18n="footWa">WhatsApp</a>
-      <a href="mailto:samkiengineer@gmail.com" data-i18n="footMail">Email</a>
-      <a href="terms.html" data-i18n="footTerms">Terms</a>
-      <a href="refund.html" data-i18n="footRefund">Refunds</a>
-      <a href="privacy.html" data-i18n="footPrivacy">Privacy</a>
+      <a href="#product">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="#faq">FAQ</a>
+      <a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:samkiengineer@gmail.com">Email</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund.html">Refunds</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="privacy.html#complaints">Data-protection complaints</a>
     </div>
   </div>
 </footer>
 
 <script>
 /* ====== EDIT THESE ====== */
-var WHATSAPP_NUMBER = "447472323783";                                   // International format, no '+' (44 = UK)
-var CONTACT_EMAIL = "samkiengineer@gmail.com";
+var WHATSAPP_NUMBER = "447472323783";   // International format, no '+' (44 = UK)
 /* ======================== */
 
-var I18N = {
-  zh:{
-    pageTitle:"BotSquirrel · 用你間舖自己嘅資料打造嘅 AI 客服",
-    metaDesc:"用你間舖自己嘅資料整嘅 AI 客服機械人，用你嘅口吻 24 小時答客人、接受預約，唔會亂噏。",
-    skipLink:"跳到內容",
-    navFeatures:"功能", navHow:"點運作", navPricing:"價錢", navFaq:"常見問題", navAbout:"關於我", navDemo:"預約示範", navDemoBtn:"預約示範", navContact:"聯絡",
-    aboutTitle:"邊個做㗎？", aboutSub:"不是找不到人的匿名團隊——由香港軟件工程師親自負責及跟進。",
-    aboutRole:"軟件工程師 · 香港中文大學畢業 · 經常往返香港及英國",
-    aboutBio:"我是 Sam，在香港長大、中大畢業的軟件工程師，經常往返香港及英國兩地。由建立機械人、調校至你店舖的語氣，到上線之後的持續跟進，全部由我親自負責——在你決定合作之前，歡迎隨時透過 LinkedIn 或 WhatsApp 聯絡我。",
-    aboutChip1:"🎓 香港中文大學", aboutChip2:"🌍 香港・英國兩地", aboutChip3:"🤖 Microsoft・Hugging Face AI 認證", aboutChip4:"🇭🇰 香港人・親自跟進",
-    aboutCta:"上 LinkedIn 認識我",
-    aboutFind:"你可以透過 Instagram、Facebook 或 WhatsApp 直接聯絡我。由真人親自跟進，不會交給 bot 之後便失去聯絡。",
-    navCta:"WhatsApp",
-    eyebrow:"收齊每個查詢，用你公司資料答客",
-    headline:"熟悉你嘅業務，用廣東話即時覆客",
-    subhead:"用 WhatsApp 同網站即時對話自動覆客，每個查詢都幫你收好，唔會漏單（Instagram、Facebook 即將推出）。",
-    sub:"我們會根據你公司的產品、服務、價格、FAQ 及政策設定 AI 客服。所有回覆均以你提供的資料為基礎，不會在網上隨意作答。\n\nAI 客服可以配合你公司的溝通語氣，24 小時回答問題、處理查詢及接收預約，亦可按業務需要度身開發其他功能。就像松鼠把過冬的糧食一顆一顆收好，每一個客人查詢——姓名、電話、想問甚麼——都會為你保存下來，等你得閒再跟進，不會漏單。",
-    cta1:"WhatsApp 預約免費示範", ctaChat:"試下同 AI 傾偈",
-    trust:"專為香港小店同中小企而設", poweredBy:"⚡ 只答你間舖嘅資料，唔會亂噏",
-    chatTitle:"BotSquirrel · 即時對話", online:"在線",
-    duoTitle:"用你間舖自己嘅資料，唔會靠估",
-    phGenName:"普通 AI", phGenStatus:"乜舖都唔識",
-    phGenAns:"一般補習班大約 $200–$500 一堂，視乎地區同年級，建議你直接聯絡相關機構查詢…",
-    phGenVerdict:"靠估",
-    phBotStatus:"你間舖嘅 AI 客服 · 在線", phBotVerdict:"答啱",
-    srcChip:"嚟自你間舖嘅資料",
-    msgUser:"你哋中三數學班幾錢？",
-    msgBot:"中三數學班每月 HK$1,200，星期六下午 2-4 點。要唔要幫你 book 個試堂？",
-    msgUser2:"好呀，今個星期六。",
-    msgBot2:"收到 ✅ 已經幫你 book 咗星期六 2:00 試堂。到時見！",
-    msgUser3:"小六有冇班？",
-    msgBot3:"唔好意思，我哋暫時冇小六班，中一至中六先有。留低你電話，有新班我哋第一時間通知你？",
-    chatInput:"輸入訊息…",
+var WA_MSG = "Hi BotSquirrel 👋 I run a plumbing/heating business and I'd like a 15-minute walkthrough of the platform.";
 
-    featTitle:"幫你間舖頭做嘅事", featSub:"由接待客人到落單，全部交由一個 bot 完成。",
-    feat1T:"24 小時答客人", feat1D:"凌晨三點也有人查詢營業時間？不用擔心，bot 會即時回覆，你不必半夜起床覆訊息。",
-    feat2T:"自動接受預約", feat2D:"直接在對話中為客人訂位、訂枱、預約服務 —— 同步至你的日曆。",
-    feat3T:"用你間舖嘅口吻答客", feat3D:"不只會說地道廣東話，還會貼近你平時與客人溝通的語氣——想客氣專業一點，還是親切一點，都可以按你店舖的風格回答，像你自己的員工多於像機械人。",
-    feat4T:"熟悉你間舖嘅產品同服務", feat4D:"我們會根據你的產品、服務、價格、地址及常見問題設定 bot，它回答的每一句都來自你店舖的真實資料——不會在網上隨意抄襲，不會胡亂作答。",
-    feat5T:"接駁你常用嘅平台", feat5D:"同一個 bot 可以喺 WhatsApp 同你網站的即時對話回覆客人；Instagram、Facebook 即將推出。",
-    feat6T:"無需技術知識", feat6D:"你完全不需要懂得編寫程式。把資料交給我們，一般 14 至 21 日完成。",
-    feat7T:"有咩特別要求都整到", feat7D:"想 bot 只在營業時間回覆？想它先向客人索取電話？想接駁你自己的預約系統？只要告訴我們，全部都可以為你度身設定。",
-
-    howTitle:"點樣開始？", howSub:"只需三步，一般 14 至 21 日完成，視乎資料量及接駁平台而定。",
-    fitTitle:"適合邊啲生意？", fitSub:"尤其是每日都有大量 WhatsApp / IG 查詢的生意。",
-    fit1T:"補習社・教育中心", fit1D:"回答課程、收費、時間表查詢，接收試堂預約。",
-    fit2T:"美容・醫美・Spa", fit2D:"介紹療程、報價，收集預約資料。",
-    fit3T:"餐廳・外賣店", fit3D:"回答 menu、營業時間、訂座及外賣查詢。",
-    fit4T:"寵物美容・寵物店", fit4D:"回答收費、可預約時間及基本 FAQ。",
-    fit5T:"診所・本地服務", fit5D:"回答地址、收費、預約，減少電話查詢。",
-    fit6T:"網店・零售", fit6D:"回答送貨、退換，推薦適合客人的產品。",
-    provTitle:"你需要提供咩資料？", provSub:"你提供的真實資料愈多，bot 回答得就愈貼近你的店舖——其餘由我們整理、設定、測試及上線。",
-    provList:"價目表 · 服務／課程介紹 · 營業時間及地址 · 常見問題 · 預約流程",
-    roi:"每月為你多接一兩單，基本上已經回本 —— 減少漏覆 WhatsApp，騰出更多時間做生意。",
-    platTitle:"一個 bot，可以接駁邊啲平台？", platSub:"同一個 AI 客服，放置於你客人最常用的地方。",
-    plat1T:"你嘅網站", plat1D:"加入一小段 code，就可以直接嵌入你現有的網站——Wix、WordPress、自家網站均可。",
-    plat2T:"WhatsApp Business", plat2D:"客人可在 WhatsApp 直接與你的 bot 對話——這是香港客人最常用的聯絡渠道。",
-    plat3T:"Instagram DM", plat3D:"客人透過 IG DM 查詢，bot 會自動回覆——特別適合主要透過 IG 接觸客人的小店。",
-    plat4T:"Facebook Messenger", plat4D:"Facebook 專頁的訊息也可以交由同一個 bot 處理。",
-    platIncl1:"✓ 所有方案包含", platIncl2:"✓ 所有方案包含", platOpt1:"即將推出 · Coming soon", platOpt2:"即將推出 · Coming soon",
-    step1T:"傾下你盤生意", step1D:"用 WhatsApp 與我們傾談 15 分鐘，了解你店舖的業務，以及客人最常查詢的問題。",
-    step2T:"我哋幫你設定個 bot", step2D:"我們會根據你的業務資料，為你度身設定 bot，並調校至貼近你店舖的語氣，持續測試及調校，直至 bot 能準確回答你的業務問題。",
-    step3T:"上線收客", step3D:"接駁至你的 WhatsApp 及網站，正式開始 24 小時自動回覆客人。",
-
-
-    priceTitle:"簡單透明嘅價錢", priceSub:"14 天免費試用，免信用卡，冇長約。所有價錢另加 VAT。",
-    perMo:"/月", plusVat:"＋ VAT", onRequest:"按需報價", badgePopular:"最受歡迎",
-    ctaTrial:"開始免費試用", ctaCall:"預約傾一傾", seeFull:"睇晒全部價錢同比較",
-    tzBasicD:"啱啱起步、想試水溫嘅小店。",
-    tzB1:"1 個 WhatsApp 號碼", tzB2:"3 個用戶帳戶（seats）", tzB3:"WhatsApp ＋ 網站即時對話 · 1 個 AI agent",
-    tzProD:"查詢量較多、需要多個號碼同團隊。",
-    tzP1:"3 個 WhatsApp 號碼", tzP2:"10 個用戶帳戶（seats）", tzP3:"每月額外包 10 個對話 bonus",
-    tzAdvD:"規模較大、需要更多號碼同 AI agent。",
-    tzA1:"5 個 WhatsApp 號碼", tzA2:"25 個用戶帳戶（seats）", tzA3:"2 個 AI agent · 優先設定協助",
-
-    faqTitle:"常見問題", faqSub:"最多人查詢的幾條問題。如仍有疑問，歡迎 WhatsApp 我們。",
-    faq0Q:"係咪即係 ChatGPT？會唔會亂噏、答錯嘢？",
-    faq0A:"它不是一個只會閒聊的 ChatGPT。我們會用你店舖自己的資料（產品及服務資料、價格、政策、FAQ）來建立 bot，它只會根據你提供的資料回答客人，不會自行作答。遇到不肯定的內容，會請客人直接聯絡你或留下聯絡方法，不會胡亂誤導客人。而且我們會為你調校至以你店舖的語氣回答。",
-    faq1Q:"要幾耐先整好個 bot？",
-    faq1A:"一般 14 至 21 日完成，視乎資料量及接駁平台而定。你只需提供一些基本資料（課程、時間表、收費、地址等），設定及測試由我們負責。",
-    faq2Q:"支援咩語言？",
-    faq2A:"廣東話、英文、普通話均可，並可自動識別客人正在使用的語言，自動切換。亦可加入日文、韓文。",
-    faq3Q:"我嘅生意資料安唔安全？",
-    faq3A:"你的資料只會用於建立及維護你的 bot。我們不會出售，亦不會向無關的第三方分享你的資料。為了提供服務，我們可能會使用 AI、系統託管或通訊平台等可靠供應商，並會以安全方式處理。",
-    faq4Q:"使唔使簽長約？點收費？",
-    faq4A:"冇長約，逐月收費，隨時可以停。方案有 Basic £89／月同 Professional £129／月（另加 VAT），Advanced 按需報價。Basic 同 Professional 有 14 天免費試用，免信用卡；試用期後決定繼續先收費。加開 WhatsApp 號碼每個 £25／月，公司主動發起嘅對話每個 £0.04（客人主動搵你嘅對話免費）。詳情可以睇我哋嘅價錢頁 pricing.html。",
-    faq5Q:"可以接駁邊啲平台？",
-    faq5A:"而家可以即刻用嘅係 WhatsApp Business 同你網站上的即時對話 widget。Instagram、Facebook Messenger、Email、SMS 即將推出。有其他平台需求？歡迎隨時與我們聯絡。",
-
-    contactTitle:"聯絡我哋", contactSub:"透過 WhatsApp 聯絡通常最快有回覆，平日一般 1 小時內回覆。",
-    ciWaLabel:"WhatsApp", ciMailLabel:"電郵",
-    ciLocLabel:"地點", ciLoc:"服務全港中小企",
-    cfNameLabel:"你嘅名", cfBizLabel:"舖頭/公司名", cfMsgLabel:"想問啲咩？",
-    cfSubmit:"發送訊息",
-    cfNote:"㩒「發送」會用你預設嘅 email app 打開一封訊息畀我哋。",
-    cfMissing:"請填咗你個名同訊息內容先。",
-
-    bandTitle:"想喺自己盤生意試下？", bandSub:"歡迎透過 WhatsApp 聯絡我們，免費傾談如何為你的店舖設置 AI 客服。",
-    bandCta:"WhatsApp 預約免費示範",
-    footWa:"WhatsApp", footMail:"電郵", footTerms:"服務條款", footRefund:"退款政策", footPrivacy:"私隱政策",
-    waMsg:"你好 BotSquirrel 👋 我喺你個網站見到你哋嘅 AI 客服服務，想問多啲，方便傾一傾？",
-    mailSubject:"BotSquirrel 查詢"
-  },
-  en:{
-    pageTitle:"BotSquirrel · AI assistant for UK trades",
-    metaDesc:"An AI assistant for UK trades, built from your own prices and services — answers customers on WhatsApp and your website 24/7, books jobs and captures leads, and never makes things up.",
-    skipLink:"Skip to content",
-    navFeatures:"Features", navHow:"How it works", navPricing:"Pricing", navFaq:"FAQ", navAbout:"About", navDemo:"Book a demo", navDemoBtn:"Book a demo", navContact:"Contact",
-    aboutTitle:"Who's behind this?", aboutSub:"Not a faceless company — a real engineer you can look up.",
-    aboutRole:"Software engineer · the person who builds and supports your assistant",
-    aboutBio:"I'm Sam, the software engineer behind BotSquirrel. I build your assistant, tune it to sound like your business, and keep supporting it after it goes live — all handled personally. Before you commit, reach me anytime on LinkedIn or WhatsApp.",
-    aboutChip1:"🛠️ Built & supported personally", aboutChip2:"💬 Reach a real person, not a bot", aboutChip3:"⚡ Usually live in 14–21 days", aboutChip4:"🇬🇧 Built for UK trades",
-    aboutCta:"Find me on LinkedIn",
-    aboutFind:"Reach me directly on WhatsApp or LinkedIn — handled personally, not handed off to a bot.",
-    navCta:"WhatsApp",
-    eyebrow:"Gathers every enquiry — built from your own prices, services & FAQs",
-    headline:"Never miss a job while you're on the tools",
-    subhead:"An AI assistant that answers your customers on WhatsApp and your website, day or night — and stores every enquiry so you never lose one.",
-    sub:"We set it up with your own prices, services, coverage area and FAQs. Every reply comes straight from the info you give us — it never makes things up.\n\nIt answers questions, books jobs and takes down leads 24/7, in your own words — so an emergency call-out at 11pm still gets a reply while you're asleep. Nothing gets dropped: every name, number and postcode is put away and waiting for you when you're off the job, the way a squirrel keeps its store through winter.",
-    cta1:"Message us on WhatsApp", ctaChat:"Try the live demo",
-    trust:"Built for UK trades", poweredBy:"⚡ Answers only from your business info — never makes things up",
-    duoTitle:"Built from your own business info — never guessing.",
-    cardChat:"💬 Try the live demo — see how it answers",
-
-    featTitle:"What it does for your business", featSub:"From answering enquiries to booking jobs — one assistant handles it all.",
-    feat1T:"Answers 24/7, even on the tools", feat1D:"A boiler packs up at 11pm and they've messaged you? The assistant replies straight away — you don't have to stop the job or wake up for it.",
-    feat3T:"Replies the way you would", feat3D:"It talks like your business does — straight-talking or friendly, your call. Customers feel like they're texting you, not a robot.",
-    feat4T:"Knows your prices and services", feat4D:"Set up with your own call-out charges, services and FAQs, so every answer comes from your business — not a generic guess. No made-up quotes.",
-    feat5T:"Books jobs and captures leads", feat5D:"It takes booking enquiries and collects the customer's name, number and postcode — so the lead's waiting for you when you're off the job.",
-    feat6T:"No tech knowledge needed", feat6D:"You don't touch any code. Send us your details and it's usually live in 14–21 days.",
-    feat7T:"Tuned to how you work", feat7D:"Only reply during working hours? Always ask for a postcode first? Flag emergency call-outs? Just tell us — we set it up your way.",
-
-    howTitle:"How to get started", howSub:"Three steps — usually live in 14–21 days, depending on how much info you have and which channels we connect.",
-    fitTitle:"Who's it for?", fitSub:"Built for trades who lose work to missed calls and messages.",
-    fit1T:"Plumbers", fit1D:"Answers on call-out charges, leaks and blocked drains; books jobs and takes emergency details.",
-    fit2T:"Electricians", fit2D:"Handles EICR and rewire enquiries, quote questions and booking requests.",
-    fit3T:"Heating & gas engineers", fit3D:"Fields boiler breakdowns, servicing and quote requests — day or night.",
-    fit4T:"Builders & renovations", fit4D:"Answers what you cover and your area, and collects job details for a quote.",
-    fit5T:"Roofers & property maintenance", fit5D:"Replies to repair enquiries and books site visits while you're up a ladder.",
-    fit6T:"Locksmiths & emergency call-out", fit6D:"Never miss an urgent job — it replies instantly and grabs the address and number.",
-    provTitle:"What do you need to give us?", provSub:"The more of your real info you give us, the more it answers exactly like your business — we handle the setup, testing and launch.",
-    provList:"Your price list & call-out charges · services you cover · hours & coverage area (postcodes) · common questions · how you take bookings",
-    platTitle:"One assistant, where your customers already are", platSub:"The same AI assistant on the channels your customers actually use.",
-    plat1T:"Your website", plat1D:"A small snippet drops a live-chat widget into your existing site — Wix, WordPress or custom.",
-    plat2T:"WhatsApp Business", plat2D:"Customers message your assistant straight from WhatsApp — where most call-out enquiries start.",
-    platIncl1:"✓ Included in all plans", platIncl2:"✓ Included in all plans",
-    step1T:"Tell us about your business", step1D:"A 15-minute WhatsApp chat — what you do, your prices, and what customers ask you most.",
-    step2T:"We set up your assistant", step2D:"We build it from your info and tune it to sound like you, testing until it answers your questions accurately.",
-    step3T:"Go live and stop missing work", step3D:"We connect it to your WhatsApp and website, and it starts replying to customers 24/7.",
-
-    priceTitle:"Simple, honest pricing", priceSub:"14-day free trial, no card needed, no lock-in. All prices + VAT.",
-    perMo:"/mo", plusVat:"+ VAT", onRequest:"On request", badgePopular:"Most popular",
-    ctaTrial:"Start free trial", ctaCall:"Book a call", seeFull:"See full pricing & comparison",
-    tzBasicD:"For sole traders just getting started.",
-    tzB1:"1 WhatsApp number", tzB2:"3 user seats", tzB3:"1 AI agent · outbound messages billed as you go",
-    tzProD:"For busier trades needing more numbers and a team.",
-    tzP1:"3 WhatsApp numbers", tzP2:"10 user seats", tzP3:"1 AI agent · 10 free outbound conversations/mo",
-    tzAdvD:"For larger teams needing more numbers and AI agents.",
-    tzA1:"5 WhatsApp numbers", tzA2:"25 user seats", tzA3:"2 AI agents · 40 free outbound conversations/mo",
-
-    faqTitle:"Frequently asked questions", faqSub:"The questions we hear most. Anything else — message us on WhatsApp.",
-    faq0Q:"Is this just ChatGPT? Will it make things up?",
-    faq0A:"No — it's not a chatbot that just makes conversation. We build it from your own business info (services, prices, call-out charges, policies, FAQs), so it only answers from what you give it — it won't invent a quote or a detail. When it's not sure, it takes the customer's details for you instead of guessing. And we tune it to reply in your own voice.",
-    faq1Q:"How long does setup take?",
-    faq1A:"Usually live in 14–21 days, depending on how much info you have and which channels we connect. You send the basics (services, prices, hours, coverage area) and we handle the setup and testing.",
-    faq2Q:"What if a customer asks something it doesn't know?",
-    faq2A:"It won't guess. When it hits something it isn't sure about, it takes the customer's name and number and points them to you — so you get the lead instead of losing it.",
-    faq3Q:"Is my business data safe?",
-    faq3A:"Your data is only used to build and run your assistant. We never sell it or share it with unrelated third parties. To run the service we use trusted AI, hosting and messaging providers, all handled securely.",
-    faq4Q:"Any long contracts? How does pricing work?",
-    faq4A:"No contract — month-to-month, cancel anytime. Plans are Basic £89/mo and Professional £129/mo (+ VAT), with Advanced priced on request. Basic and Professional include a 14-day free trial, no card required — you're only billed after the trial if you continue. Extra WhatsApp numbers are £25/mo each, and outbound conversations you start are £0.04 each (conversations customers start with you are free). See our pricing page (pricing.html) for full details.",
-    faq5Q:"Where does it answer customers?",
-    faq5A:"On WhatsApp Business and a live-chat widget on your website. Need it somewhere else? Just ask and we'll see what we can do.",
-
-    contactTitle:"Get in touch", contactSub:"WhatsApp is fastest — we usually reply within an hour on weekdays.",
-    ciWaLabel:"WhatsApp", ciMailLabel:"Email",
-    ciLocLabel:"Location", ciLoc:"Serving trades across the UK",
-    cfNameLabel:"Your name", cfBizLabel:"Business name", cfMsgLabel:"What would you like to ask?",
-    cfSubmit:"Send message",
-    cfNote:"Pressing Send will open your default email app with your message pre-filled.",
-    cfMissing:"Please fill in your name and message first.",
-
-    bandTitle:"Want to try it on your own business?", bandSub:"Message us on WhatsApp for a free chat about adding an AI assistant to your business.",
-    bandCta:"Message us on WhatsApp",
-    footWa:"WhatsApp", footMail:"Email", footTerms:"Terms", footRefund:"Refunds", footPrivacy:"Privacy",
-    waMsg:"Hi BotSquirrel 👋 I saw your AI assistant for trades and I'd like to ask a few questions.",
-    mailSubject:"BotSquirrel enquiry"
-  }
-};
-
-var currentLang = "en";
-
-function waLink(lang){
-  var msg = encodeURIComponent(I18N[lang].waMsg);
-  return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + msg;
-}
-
-function setLang(lang){
-  currentLang = lang;
-  var dict = I18N[lang];
-  document.documentElement.setAttribute("lang", lang === "zh" ? "zh-HK" : "en-GB");
-  document.documentElement.setAttribute("data-lang", lang);
-  document.querySelectorAll("[data-i18n]").forEach(function(el){
-    var key = el.getAttribute("data-i18n");
-    if(dict[key] !== undefined){
-      if(el.tagName === "TITLE") el.textContent = dict[key];
-      else if(el.tagName === "META") el.setAttribute("content", dict[key]);
-      else el.textContent = dict[key];
-    }
-  });
-  // Language toggle is hidden for the UK (English-only) site; guard in case the buttons aren't present.
-  var zhBtn = document.getElementById("lang-zh");
-  var enBtn = document.getElementById("lang-en");
-  if(zhBtn && enBtn){
-    zhBtn.classList.toggle("active", lang==="zh");
-    enBtn.classList.toggle("active", lang==="en");
-    zhBtn.setAttribute("aria-pressed", lang==="zh" ? "true" : "false");
-    enBtn.setAttribute("aria-pressed", lang==="en" ? "true" : "false");
-  }
-  document.querySelectorAll(".wa-link").forEach(function(a){ a.setAttribute("href", waLink(lang)); });
-  // Hero demo video follows the language: Cantonese / English cut.
-  var hv = document.querySelector(".hero-video");
-  if(hv){
-    var vidSrc = lang === "en" ? "botsquirrel-demo-en.mp4" : "botsquirrel-demo-zh.mp4";
-    var poster = lang === "en" ? "demo-poster-en.jpg" : "demo-poster-zh.jpg";
-    var srcEl = hv.querySelector("source");
-    if(srcEl && srcEl.getAttribute("src") !== vidSrc){
-      srcEl.setAttribute("src", vidSrc);
-      hv.setAttribute("poster", poster);
-      hv.load();
-      var p = hv.play();
-      if(p && p.catch) p.catch(function(){});
-    }
-  }
-}
-
-function sendContact(e){
-  e.preventDefault();
-  var name = document.getElementById("cf-name").value.trim();
-  var biz  = document.getElementById("cf-biz").value.trim();
-  var msg  = document.getElementById("cf-msg").value.trim();
-  if(!name || !msg){
-    alert(I18N[currentLang].cfMissing);
-    return false;
-  }
-  var subject = encodeURIComponent(I18N[currentLang].mailSubject + " — " + name);
-  var bodyLines = [
-    "Name: " + name,
-    "Business: " + (biz || "-"),
-    "",
-    msg
-  ];
-  var body = encodeURIComponent(bodyLines.join("\n"));
-  window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + subject + "&body=" + body;
-  return false;
-}
-
+document.querySelectorAll(".wa-link").forEach(function(a){
+  a.setAttribute("href", "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_MSG));
+});
 document.getElementById("year").textContent = new Date().getFullYear();
-setLang("en"); /* English (UK) only */
 </script>
 <!-- ============ Floating chat widget: opens chat.html inside the page ============ -->
 <style>
