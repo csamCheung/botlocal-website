@@ -67,8 +67,14 @@
   </form>
 
 <!-- BACKEND_URL lives in config.js — the one file you edit after deploying the bot. -->
-<script src="config.js?v=2"></script>
+<script src="config.js?v=3"></script>
 <script>
+  // Both server calls name our company in the path (/c/<slug>/…). If a stale
+  // cached config.js has no COMPANY_SLUG yet, fall back to the literal rather
+  // than requesting /c/undefined/.
+  const TENANT_BASE = BACKEND_URL + '/c/'
+    + (typeof COMPANY_SLUG !== 'undefined' ? COMPANY_SLUG : 'mybiz');
+
   // This is a STATIC site. Brand text is BUILT IN below so the page always works
   // instantly; the /config fetch merely refreshes it from the bot server. The
   // server is only truly required for answering questions (/chat).
@@ -314,7 +320,7 @@
     send.disabled = true;
     const typing = add('…', 'bot typing');
     try {
-      const res = await fetch(BACKEND_URL + '/chat', {
+      const res = await fetch(TENANT_BASE + '/chat', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ message: text, lang: langForced ? lang : null, session_id: sessionId })
@@ -345,7 +351,7 @@
   // live source of truth; FALLBACK_T above just keeps the page instant.
   async function init() {
     try {
-      const res = await fetch(BACKEND_URL + '/config');
+      const res = await fetch(TENANT_BASE + '/config');
       const cfg = await res.json();
       WA_NUMBER = cfg.whatsapp || WA_NUMBER;
       T = cfg.ui || T;
