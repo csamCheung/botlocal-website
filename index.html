@@ -101,13 +101,40 @@
   .flow-tag.team{background:var(--warn-soft); color:var(--warn);}
 
   /* product screens */
-  .shot-row{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; margin-bottom:64px;}
-  .shot-row:last-child{margin-bottom:0;}
-  .shot-row.flip .shot-copy{order:2;}
-  @media(max-width:860px){ .shot-row, .shot-row.flip{grid-template-columns:1fr;} .shot-row.flip .shot-copy{order:0;} }
-  .shot-copy h3{font-size:24px; margin:0 0 10px; letter-spacing:-.01em;}
-  .shot-copy p{font-size:16px; color:var(--ink-soft); margin:0;}
   .shot-note{font-size:12px; color:var(--ink-faint); margin-top:10px;}
+  .sw-note{text-align:center; margin-top:16px;}
+
+  /* tab row */
+  .sw-tabs{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:720px; margin:0 auto 24px;}
+  .sw-tabs[hidden]{display:none;} /* author display:grid would otherwise beat the UA [hidden] rule */
+  .sw-tab{display:flex; flex-direction:column; align-items:center; gap:9px; background:transparent; border:1px solid transparent; border-radius:var(--radius); padding:14px 8px 12px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; line-height:1.25; color:var(--ink-soft); text-align:center; transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .sw-tab .ico{width:44px; height:44px; border-radius:11px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:22px; transition:background .15s ease, color .15s ease;}
+  .sw-tab:hover{color:var(--ink); background:var(--bg-soft); border-color:var(--line);}
+  .sw-tab[aria-selected="true"]{color:var(--brand-dark); background:var(--brand-soft); border-color:transparent;}
+  .sw-tab[aria-selected="true"] .ico{background:var(--brand); color:#fff;}
+
+  /* supporting line */
+  .sw-line{text-align:center; font-size:17px; color:var(--ink-soft); margin:0 auto 24px; max-width:44em;}
+
+  /* panel stage — no-JS: rows. sw-ready: all panels share one cell */
+  .sw-stage{display:grid; gap:40px;}
+  .sw-stage.sw-ready{gap:0;}
+  .sw-stage.sw-ready .sw-panel{grid-area:1/1;}
+  .sw-stage.sw-ready .sw-panel[hidden]{display:block; visibility:hidden;}
+  .sw-panel{min-width:0;}
+  .sw-panel-h{font-size:24px; margin:0 0 12px; letter-spacing:-.01em;}
+  .sw-stage.sw-ready .sw-panel-h{display:none;}
+  .sw-stage.sw-ready .sw-panel:not([hidden]){animation:swIn .18s ease-out;}
+  @keyframes swIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  @media(max-width:860px){
+    .sw-tabs{grid-template-columns:repeat(2,1fr); gap:10px; max-width:420px;}
+    .sw-panel-h{font-size:20px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .sw-stage.sw-ready .sw-panel:not([hidden]){animation:none;}
+    .sw-tab, .sw-tab .ico{transition:none;}
+  }
   .mock{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-lg); overflow:hidden; font-size:12.5px;}
   .mock-bar{display:flex; align-items:center; gap:6px; padding:9px 14px; background:var(--bg-soft); border-bottom:1px solid var(--line);}
   .mock-bar i{width:9px; height:9px; border-radius:50%; background:var(--line2); display:block;}
@@ -325,74 +352,88 @@
         <p>What your team sees once the AI has done the collecting.</p>
       </div>
 
-      <div class="shot-row">
-        <div class="shot-copy">
-          <h3>Every enquiry arrives organised</h3>
-          <p>See the customer, postcode, issue, urgency and preferred time at a glance — without reading through an entire message thread.</p>
-          <p class="shot-note">Illustrative product view</p>
-        </div>
-        <div class="mock" role="img" aria-label="Illustration of the enquiry inbox">
-          <div class="mock-bar"><i></i><i></i><i></i><span>Enquiries</span></div>
-          <div class="mock-body">
-            <div class="m-row"><div><div class="who">Sarah W. · SW11 4EX</div><div class="meta">Boiler losing pressure · photos ×2 · prefers Thu AM</div></div><span class="m-pill new">New</span></div>
-            <div class="m-row"><div><div class="who">Tom H. · CR0 2RD</div><div class="meta">Leak under kitchen sink · urgent</div></div><span class="m-pill warn">Needs details</span></div>
-            <div class="m-row"><div><div class="who">Priya N. · SE15 3AB</div><div class="meta">Annual boiler service · flexible</div></div><span class="m-pill ok">Booked</span></div>
-          </div>
-        </div>
+      <div class="sw-tabs" id="sw-tabs" role="tablist" aria-label="Workspace views" hidden>
+        <button class="sw-tab" type="button" role="tab" id="sw-tab-1" aria-controls="sw-panel-1" aria-selected="true" tabindex="0"
+                data-line="Every enquiry arrives organised — customer, postcode, issue, urgency and preferred time at a glance.">
+          <span class="ico" aria-hidden="true">📥</span>Enquiries
+        </button>
+        <button class="sw-tab" type="button" role="tab" id="sw-tab-2" aria-controls="sw-panel-2" aria-selected="false" tabindex="-1"
+                data-line="Missing contact or job info gets flagged, so no one turns up to a job half-briefed.">
+          <span class="ico" aria-hidden="true">⚠️</span>Missing details
+        </button>
+        <button class="sw-tab" type="button" role="tab" id="sw-tab-3" aria-controls="sw-panel-3" aria-selected="false" tabindex="-1"
+                data-line="Book real slots your team controls — the AI never invents availability.">
+          <span class="ico" aria-hidden="true">📅</span>Scheduling
+        </button>
+        <button class="sw-tab" type="button" role="tab" id="sw-tab-4" aria-controls="sw-panel-4" aria-selected="false" tabindex="-1"
+                data-line="Conversations, visits, notes and photos stay attached to the same customer.">
+          <span class="ico" aria-hidden="true">👤</span>Customer history
+        </button>
       </div>
 
-      <div class="shot-row flip">
-        <div class="shot-copy">
-          <h3>Know what's missing</h3>
-          <p>BotSquirrel highlights missing contact details or job information and helps your team request it — so no one turns up to a job half-briefed.</p>
-          <p class="shot-note">Illustrative product view</p>
-        </div>
-        <div class="mock" role="img" aria-label="Illustration of an enquiry detail view">
-          <div class="mock-bar"><i></i><i></i><i></i><span>Enquiry · Tom H.</span></div>
-          <div class="mock-body">
-            <div class="m-field"><span class="k">Issue</span><span class="v">Leak under kitchen sink</span></div>
-            <div class="m-field"><span class="k">Postcode</span><span class="v">CR0 2RD</span></div>
-            <div class="m-field"><span class="k">Urgency</span><span class="v">Today if possible</span></div>
-            <div class="m-field"><span class="k">Phone</span><span class="v" style="color:var(--warn)">Missing — ask customer</span></div>
-            <div class="m-field"><span class="k">Photos</span><span class="v" style="color:var(--warn)">Missing — ask customer</span></div>
-          </div>
-        </div>
-      </div>
+      <p class="sw-line" id="sw-line" hidden></p>
 
-      <div class="shot-row">
-        <div class="shot-copy">
-          <h3>Schedule the right engineer</h3>
-          <p>Review availability before confirming an appointment — bookings are real slots your team controls, not promises the AI makes on its own.</p>
-          <p class="shot-note">Illustrative product view</p>
-        </div>
-        <div class="mock" role="img" aria-label="Illustration of the engineer calendar">
-          <div class="mock-bar"><i></i><i></i><i></i><span>Thursday · Engineers</span></div>
-          <div class="mock-body">
-            <div class="m-cal">
-              <div class="t">09:00</div><div><div class="m-slot a">Dave — Boiler service, SE15</div></div>
-              <div class="t">11:00</div><div><div class="m-slot free">Available</div></div>
-              <div class="t">13:30</div><div><div class="m-slot b">Aiden — Leak repair, CR0</div></div>
-              <div class="t">16:00</div><div><div class="m-slot free">Available</div></div>
+      <div class="sw-stage" id="sw-stage">
+
+        <!-- Each .sw-panel is a content-agnostic slot. To use a real product
+             screenshot later, delete the .mock element inside the panel and
+             drop in <img src="..." alt="..."> — no CSS or JS change needed. -->
+        <div class="sw-panel" id="sw-panel-1" role="tabpanel" aria-labelledby="sw-tab-1" tabindex="0">
+          <h3 class="sw-panel-h">Every enquiry arrives organised</h3>
+          <div class="mock" role="img" aria-label="Illustration of the enquiry inbox">
+            <div class="mock-bar"><i></i><i></i><i></i><span>Enquiries</span></div>
+            <div class="mock-body">
+              <div class="m-row"><div><div class="who">Sarah W. · SW11 4EX</div><div class="meta">Boiler losing pressure · photos ×2 · prefers Thu AM</div></div><span class="m-pill new">New</span></div>
+              <div class="m-row"><div><div class="who">Tom H. · CR0 2RD</div><div class="meta">Leak under kitchen sink · urgent</div></div><span class="m-pill warn">Needs details</span></div>
+              <div class="m-row"><div><div class="who">Priya N. · SE15 3AB</div><div class="meta">Annual boiler service · flexible</div></div><span class="m-pill ok">Booked</span></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="shot-row flip">
-        <div class="shot-copy">
-          <h3>Keep the full customer history</h3>
-          <p>Conversations, visits, notes, photos and status changes stay connected to the same customer — so repeat work starts with context, not a cold thread.</p>
-          <p class="shot-note">Illustrative product view</p>
-        </div>
-        <div class="mock" role="img" aria-label="Illustration of a customer record">
-          <div class="mock-bar"><i></i><i></i><i></i><span>Customer · Sarah W.</span></div>
-          <div class="mock-body">
-            <div class="m-log"><span class="d">Today</span><span>Enquiry: boiler losing pressure · photos attached</span></div>
-            <div class="m-log"><span class="d">Mar 2026</span><span>Job completed: radiator valve replacement</span></div>
-            <div class="m-log"><span class="d">Nov 2025</span><span>Annual boiler service · reminder scheduled</span></div>
+        <div class="sw-panel" id="sw-panel-2" role="tabpanel" aria-labelledby="sw-tab-2" tabindex="0">
+          <h3 class="sw-panel-h">Know what's missing</h3>
+          <div class="mock" role="img" aria-label="Illustration of an enquiry detail view">
+            <div class="mock-bar"><i></i><i></i><i></i><span>Enquiry · Tom H.</span></div>
+            <div class="mock-body">
+              <div class="m-field"><span class="k">Issue</span><span class="v">Leak under kitchen sink</span></div>
+              <div class="m-field"><span class="k">Postcode</span><span class="v">CR0 2RD</span></div>
+              <div class="m-field"><span class="k">Urgency</span><span class="v">Today if possible</span></div>
+              <div class="m-field"><span class="k">Phone</span><span class="v" style="color:var(--warn)">Missing — ask customer</span></div>
+              <div class="m-field"><span class="k">Photos</span><span class="v" style="color:var(--warn)">Missing — ask customer</span></div>
+            </div>
           </div>
         </div>
+
+        <div class="sw-panel" id="sw-panel-3" role="tabpanel" aria-labelledby="sw-tab-3" tabindex="0">
+          <h3 class="sw-panel-h">Schedule the right engineer</h3>
+          <div class="mock" role="img" aria-label="Illustration of the engineer calendar">
+            <div class="mock-bar"><i></i><i></i><i></i><span>Thursday · Engineers</span></div>
+            <div class="mock-body">
+              <div class="m-cal">
+                <div class="t">09:00</div><div><div class="m-slot a">Dave — Boiler service, SE15</div></div>
+                <div class="t">11:00</div><div><div class="m-slot free">Available</div></div>
+                <div class="t">13:30</div><div><div class="m-slot b">Aiden — Leak repair, CR0</div></div>
+                <div class="t">16:00</div><div><div class="m-slot free">Available</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sw-panel" id="sw-panel-4" role="tabpanel" aria-labelledby="sw-tab-4" tabindex="0">
+          <h3 class="sw-panel-h">Keep the full customer history</h3>
+          <div class="mock" role="img" aria-label="Illustration of a customer record">
+            <div class="mock-bar"><i></i><i></i><i></i><span>Customer · Sarah W.</span></div>
+            <div class="mock-body">
+              <div class="m-log"><span class="d">Today</span><span>Enquiry: boiler losing pressure · photos attached</span></div>
+              <div class="m-log"><span class="d">Mar 2026</span><span>Job completed: radiator valve replacement</span></div>
+              <div class="m-log"><span class="d">Nov 2025</span><span>Annual boiler service · reminder scheduled</span></div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <p class="shot-note sw-note">Illustrative product view</p>
     </div>
   </section>
 
