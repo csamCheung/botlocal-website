@@ -767,6 +767,16 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
     tabs.forEach(function(tab, i){
       tab.addEventListener('click', function(){ select(i, false); });
+      tab.addEventListener('keydown', function(e){
+        var next = null;
+        if(e.key === 'ArrowRight')     next = (i + 1) % tabs.length;
+        else if(e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+        else if(e.key === 'Home')      next = 0;
+        else if(e.key === 'End')       next = tabs.length - 1;
+        if(next === null) return;
+        e.preventDefault();
+        select(next, true);
+      });
     });
 
     stage.classList.add('sw-ready');
