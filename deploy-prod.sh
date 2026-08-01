@@ -25,6 +25,14 @@ cd "$(dirname "$0")"
 #     noindex and reproduce third-party branding), so they must stay reachable
 #     there and must NEVER appear on customer-facing botsquirrel.com.
 #
+#   docs/ — internal specs and implementation plans. Tracked in git so the
+#     reasoning behind a change stays with its history, but it is engineering
+#     notes, not customer content, and has no business on the public site.
+#
+#   .superpowers/ — workflow scratch (task briefs, review packages). Git-ignored,
+#     so GitHub Pages never sees it, but it sits on disk next to index.html and
+#     `aws s3 sync` walks it like any other directory unless excluded here.
+#
 # PATTERN RULE: `aws s3 sync --exclude` matches the WHOLE relative key, and `*`
 # crosses `/`. A bare "deploy-prod.sh" therefore matches only the root copy — a
 # nested .claude/worktrees/<id>/deploy-prod.sh slips straight through, which is

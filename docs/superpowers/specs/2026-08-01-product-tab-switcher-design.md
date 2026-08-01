@@ -127,3 +127,12 @@ Run the page in the browser preview and confirm:
 - Real product screenshots — the admin UI is mid-rework.
 - Any change to `#features`, the hero, or any other section.
 - Autoplay, deep-linking a tab via URL hash, or swipe gestures.
+
+## Implementation notes (deviations from the design above)
+
+Recorded at implementation time — the code is the source of truth.
+
+- Tab 1's supporting line shipped as "Customer, postcode, issue, urgency and preferred time — every enquiry arrives organised." (88 chars). The original 100-char line wrapped to two lines at desktop widths while the other three stayed on one, shifting everything below the switcher by one line-box when switching tabs.
+- `.sw-line` carries `min-height:3.2em` (2 line-boxes at the site's 17px/1.6 metrics), raised to `4.8em` (3 line-boxes) under `@media(max-width:430px)`, so differing wrap counts between tabs can never shift the page. These values are tuned to the current four `data-line` strings — lengthening any of them past ~83 characters requires re-checking the wrap counts.
+- `.sw-tabs[hidden]{display:none;}` exists because the author-level `display:grid` on `.sw-tabs` would otherwise defeat the UA stylesheet's `[hidden]` rule, making the tab row visible in the no-JS state.
+- The contact-email change (hello@botsquirrel.com) landed on this branch for index.html and pricing.html; the legal pages carry the same change uncommitted alongside unrelated in-flight edits.
