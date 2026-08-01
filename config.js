@@ -5,7 +5,7 @@
 //  • Local testing (bot running on your Mac):  http://localhost:8000
 //  • After you deploy the bot to Render:       https://your-bot-xxxx.onrender.com
 // ============================================================================
-const BACKEND_URL = "https://rag-chatbot-production-5fcc.up.railway.app";
+const BACKEND_URL = "https://engine.botsquirrel.com";
 
 // Which company on that server answers this page. The site names its tenant
 // explicitly (/c/<slug>/chat) instead of using the server's default-host route,
