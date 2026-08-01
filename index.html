@@ -53,8 +53,12 @@
   .wa-ico{font-size:18px; line-height:1;}
 
   /* hero */
-  .hero{padding:64px 0 48px;}
-  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center;}
+  .hero{padding:64px 0 40px;}
+  .hero-center{max-width:46em; margin:0 auto; text-align:center;}
+  .hero-center h1{font-size:clamp(34px,5vw,54px);}
+  .hero-center .subhead{margin-left:auto; margin-right:auto;}
+  .hero-center .cta-row{justify-content:center;}
+  .hero-center .trust{justify-content:center;}
   .eyebrow{display:inline-block; font-size:13px; font-weight:600; color:var(--brand-dark); background:var(--brand-soft); padding:6px 13px; border-radius:var(--radius-pill); margin-bottom:18px;}
   h1{font-size:42px; line-height:1.15; margin:0 0 18px; letter-spacing:-.01em;}
   .subhead{font-size:20px; font-weight:600; color:var(--ink); margin:0 0 14px; max-width:30em;}
@@ -105,7 +109,7 @@
   .sw-note{text-align:center; margin-top:16px;}
 
   /* tab row */
-  .sw-tabs{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:720px; margin:0 auto 24px;}
+  .sw-tabs{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; max-width:900px; margin:0 auto 24px;}
   .sw-tabs[hidden]{display:none;} /* author display:grid would otherwise beat the UA [hidden] rule */
   .sw-tab{display:flex; flex-direction:column; align-items:center; gap:9px; background:transparent; border:1px solid transparent; border-radius:var(--radius); padding:14px 8px 12px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; line-height:1.25; color:var(--ink-soft); text-align:center; transition:background .15s ease, color .15s ease, border-color .15s ease;}
   .sw-tab .ico{width:44px; height:44px; border-radius:11px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:22px; transition:background .15s ease, color .15s ease;}
@@ -131,6 +135,7 @@
 
   @media(max-width:860px){
     .sw-tabs{grid-template-columns:repeat(2,1fr); gap:10px; max-width:420px;}
+    .sw-tabs .sw-tab:first-child{grid-column:1/-1;}
     .sw-panel-h{font-size:20px;}
   }
   /* below ~428px the longest supporting line needs a 3rd line-box; reserve it so
@@ -239,7 +244,7 @@
 
   @media(max-width:860px){
     h1{font-size:32px;}
-    .hero-grid{grid-template-columns:1fr; gap:32px;}
+    .hero-center h1{font-size:clamp(28px,8vw,34px);}
     .hero{padding:40px 0 32px;}
     .section{padding:52px 0;}
     .sec-head{margin-bottom:32px;}
@@ -286,28 +291,17 @@
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-h">
-    <div class="wrap hero-grid">
-      <div>
+    <div class="wrap">
+      <div class="hero-center">
         <span class="eyebrow">Built for UK plumbing &amp; heating businesses</span>
         <h1 id="hero-h">From missed enquiry to booked job — without stopping work</h1>
-        <p class="subhead">Never miss a job while you're on the tools. BotSquirrel answers new enquiries on WhatsApp and your website, collects the postcode, problem, photos and availability — then organises everything into a job enquiry your team can review, assign and schedule.</p>
-        <p class="sub">It answers from your approved business information — your prices, services, coverage area and policies. When it's not sure, it asks for details or hands the conversation to your team instead of guessing. And like a squirrel with its winter store, every enquiry is kept safe and organised until you're ready for it.</p>
+        <p class="subhead">Never miss a job while you're on the tools. BotSquirrel answers WhatsApp and website enquiries from your approved business information — collects the postcode, problem, photos and availability, and hands anything uncertain to your team instead of guessing.</p>
         <div class="cta-row">
           <a class="btn btn-brand" href="https://app.botsquirrel.com/demo/trades" target="_blank" rel="noopener"><span aria-hidden="true">💬</span><span>Try the plumbing demo</span></a>
           <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Book a 15-minute walkthrough</span></a>
         </div>
         <div class="trust"><span class="star" aria-hidden="true">★</span><span>Enquiries · customer records · scheduling · follow-ups, in one workspace</span></div>
       </div>
-
-      <a class="chatcard" href="https://app.botsquirrel.com/demo/trades" target="_blank" rel="noopener" style="display:block;cursor:pointer" aria-label="Try the live BotSquirrel demo">
-        <div class="duo-title">Answers from your own business info — never guessing.</div>
-        <div class="video-wrap">
-          <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="demo-poster-en.jpg" aria-hidden="true">
-            <source src="botsquirrel-demo-en.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="chat-input"><span>💬 Try the live demo — see how it answers</span><span class="send">➤</span></div>
-      </a>
     </div>
   </section>
 
@@ -354,13 +348,16 @@
   <!-- PRODUCT SCREENS -->
   <section class="section" id="product" aria-labelledby="product-h">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 id="product-h">One workspace for every job enquiry</h2>
-        <p>What your team sees once the AI has done the collecting.</p>
+      <div class="sec-head" style="margin-bottom:24px">
+        <h2 id="product-h" style="font-size:22px">One workspace for every job enquiry</h2>
       </div>
 
       <div class="sw-tabs" id="sw-tabs" role="tablist" aria-label="Workspace views" hidden>
-        <button class="sw-tab" type="button" role="tab" id="sw-tab-1" aria-controls="sw-panel-1" aria-selected="true" tabindex="0"
+        <button class="sw-tab" type="button" role="tab" id="sw-tab-0" aria-controls="sw-panel-0" aria-selected="true" tabindex="0"
+                data-line="Try it live — the assistant answers from your own prices and policies, never guessing.">
+          <span class="ico" aria-hidden="true">💬</span>Live chat
+        </button>
+        <button class="sw-tab" type="button" role="tab" id="sw-tab-1" aria-controls="sw-panel-1" aria-selected="false" tabindex="-1"
                 data-line="Customer, postcode, issue, urgency and preferred time — every enquiry arrives organised.">
           <span class="ico" aria-hidden="true">📥</span>Enquiries
         </button>
@@ -381,6 +378,18 @@
       <p class="sw-line" id="sw-line" hidden></p>
 
       <div class="sw-stage" id="sw-stage">
+
+        <div class="sw-panel" id="sw-panel-0" role="tabpanel" aria-labelledby="sw-tab-0" tabindex="0">
+          <h3 class="sw-panel-h">See it answer a real enquiry</h3>
+          <a class="chatcard" href="https://app.botsquirrel.com/demo/trades" target="_blank" rel="noopener" style="display:block;cursor:pointer;max-width:520px;margin:0 auto" aria-label="Try the live BotSquirrel demo">
+            <div class="video-wrap">
+              <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="demo-poster-en.jpg" aria-hidden="true">
+                <source src="botsquirrel-demo-en.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="chat-input"><span>💬 Try the live demo — see how it answers</span><span class="send">➤</span></div>
+          </a>
+        </div>
 
         <!-- Each .sw-panel is a content-agnostic slot. To use a real product
              screenshot later, delete the .mock element inside the panel and
@@ -652,7 +661,7 @@
         <div>
           <p class="about-name">Sam Cheung</p>
           <p class="about-role">Software engineer · builds and supports BotSquirrel personally</p>
-          <p class="about-bio">I'm Sam, the software engineer behind BotSquirrel. I build your workspace, tune the assistant to sound like your business, and keep supporting it after it goes live. Before you commit, reach me anytime on LinkedIn or WhatsApp.</p>
+          <p class="about-bio">I'm Sam, the software engineer behind BotSquirrel. I build your workspace, tune the assistant to sound like your business, and keep supporting it after it goes live. And like a squirrel with its winter store, every enquiry is kept safe and organised until you're ready for it. Before you commit, reach me anytime on LinkedIn or WhatsApp.</p>
           <a class="btn btn-li" href="https://www.linkedin.com/in/sam-ki-cheung/" target="_blank" rel="noopener"><svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg><span>Find me on LinkedIn</span></a>
         </div>
       </div>
