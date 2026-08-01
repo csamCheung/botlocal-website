@@ -737,6 +737,38 @@ document.querySelectorAll(".wa-link").forEach(function(a){
   a.setAttribute("href", "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_MSG));
 });
 document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* product workspace switcher — upgrades the stacked panels into tabs */
+  (function(){
+    var tablist = document.getElementById('sw-tabs');
+    var stage   = document.getElementById('sw-stage');
+    var line    = document.getElementById('sw-line');
+    if(!tablist || !stage) return;
+
+    var tabs   = Array.prototype.slice.call(tablist.querySelectorAll('.sw-tab'));
+    var panels = Array.prototype.slice.call(stage.querySelectorAll('.sw-panel'));
+    if(!tabs.length || tabs.length !== panels.length) return;
+
+    function select(i, moveFocus){
+      for(var n = 0; n < tabs.length; n++){
+        var on = (n === i);
+        tabs[n].setAttribute('aria-selected', on ? 'true' : 'false');
+        tabs[n].tabIndex = on ? 0 : -1;
+        panels[n].hidden = !on;
+      }
+      if(line) line.textContent = tabs[i].getAttribute('data-line') || '';
+      if(moveFocus) tabs[i].focus();
+    }
+
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){ select(i, false); });
+    });
+
+    stage.classList.add('sw-ready');
+    tablist.hidden = false;
+    if(line) line.hidden = false;
+    select(0, false);
+  })();
 </script>
 <!-- ============ Floating chat widget: opens chat.html inside the page ============ -->
 <style>
