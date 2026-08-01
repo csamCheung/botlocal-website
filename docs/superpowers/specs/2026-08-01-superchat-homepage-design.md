@@ -31,7 +31,7 @@ NOT fabricate substitutes:
 nav                      unchanged
 hero                     centered (reworked)
 switcher                 moved up from #product, +1 tab (reworked)
-#who    positioning band restyled slim (replaces the social-proof slot)
+#who    positioning band moved (fills the social-proof slot; cards unchanged)
 #how    workflow         content unchanged
 #features 6-card grid    content unchanged
 #platforms               content unchanged
@@ -88,11 +88,14 @@ background.
   only the markup gains a tab/panel pair.
 - Panel heading for no-JS state: `<h3 class="sw-panel-h">See it answer a real
   enquiry</h3>`.
-- The `.sw-line` wrap backstop: the new data-line is 97 chars — longer than
-  the ~83-char budget recorded in the previous spec's implementation notes.
+- The `.sw-line` wrap backstop: the new data-line is 86 chars — longer than
+  the ~83-char budget recorded in the previous spec's implementation notes,
+  but not the longest string in the set. The measured ceiling is the
+  pre-existing Enquiries line at 88 chars, which is what the min-heights must
+  actually clear.
   The min-heights (3.2em desktop / 4.8em under 430px) must be re-verified
   with the five real strings at 1280, 431, 430, 390, 375, and 332px widths;
-  if the 97-char line needs 2 lines at desktop widths where others need 1,
+  if the 88-char line needs 2 lines at desktop widths where others need 1,
   either shorten it below the budget or raise the base min-height — measured,
   not guessed, at implementation time.
 - Mobile: five tabs no longer fit 2×2. Below 860px the tab row becomes a
@@ -166,3 +169,31 @@ iterates the live tabs array).
   exist.
 - Nav changes, chat-widget changes, JS logic changes beyond none.
 - Copy rewrites beyond the specified hero condensation and squirrel-line move.
+
+## Implementation notes (deviations from the design above)
+
+Recorded at final review, after the switcher shipped.
+
+**Per-panel captions instead of one shared note.** The single
+`Illustrative product view` note under the stage read as if it described
+whichever panel was open — including the video panel, which is not an
+illustration. The shared note was deleted and the caption moved into each
+panel: the four mock panels keep `Illustrative product view`, and the video
+panel carries its own `Demo conversation, recreated for video`.
+
+**Heading copy.** `See it answer a real enquiry` overclaimed. The video is
+not a screen recording: `render-demo-video.js` drives
+`demo-video-source.html` frame by frame through Playwright and stitches the
+frames with ffmpeg, so it is a stylised re-render of a demo-tenant
+conversation — real bot answers, a scripted enquiry, edited for length. The
+heading is now `See how it answers an enquiry`, which the caption backs up.
+
+**Stage proportion.** At desktop the video panel forced a 786px stage while
+the mocks were only 172–265px tall, so every mock floated at the top of a
+mostly empty box. Three changes: the chatcard is capped at 420px (was
+520px), `#sw-panel-0 .hero-video` is capped at 340px (the global 390px cap
+still applies elsewhere), and `.sw-stage.sw-ready .sw-panel` became a
+centring flex column so shorter panels sit in the middle of the shared grid
+cell rather than at its top. The `grid-area:1/1` stacking and the
+`[hidden]{display:block; visibility:hidden}` height reservation are
+unchanged, so stage top stays pinned across all five tabs.

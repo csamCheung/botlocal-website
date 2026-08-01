@@ -392,11 +392,14 @@ one `aria-selected="true"` tab (sw-tab-0).
   `section` elements inside `<main>` plus hero.
 - `grep -c 'Illustrative product view' index.html` → 1 (still under the
   stage, still accurate — the mocks remain illustrations; the video panel is
-  a real recording, which the note does not contradict, but confirm the note
-  visually reads as belonging to the mock panels, not the video. If it reads
-  wrong on the video tab, move the note INTO the four mock panels as a
-  per-panel caption and delete the shared one — then re-verify stage
-  stability, since panel heights change).
+  NOT a real recording but a stylised re-render of a demo-tenant conversation
+  (real bot answers, scripted enquiry, edited for length — see
+  `render-demo-video.js`, which screenshots `demo-video-source.html` frame by
+  frame), so it needs its own accurate caption rather than the mock note. But
+  confirm the note visually reads as belonging to the mock panels, not the
+  video. If it reads wrong on the video tab, move the note INTO the four mock
+  panels as a per-panel caption and delete the shared one — then re-verify
+  stage stability, since panel heights change).
 - `#about` contains "like a squirrel with its winter store" once; the hero
   does not contain it.
 
