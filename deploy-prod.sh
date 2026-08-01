@@ -36,6 +36,7 @@ cd "$(dirname "$0")"
 aws s3 sync . "s3://$BUCKET/" --delete \
   --exclude ".git/*" --exclude ".github/*" --exclude ".gstack/*" --exclude ".claude/*" \
   --exclude "d/*" --exclude "docs/*" --exclude "*/docs/*" \
+  --exclude ".superpowers/*" --exclude "*/.superpowers/*" \
   --exclude ".DS_Store" --exclude "*/.DS_Store" \
   --exclude "deploy-prod.sh" --exclude "*/deploy-prod.sh" \
   --exclude "render-demo-video.js" --exclude "*/render-demo-video.js" \
@@ -44,6 +45,7 @@ aws s3 sync . "s3://$BUCKET/" \
   --exclude "*" --include "*.html" \
   --exclude ".git/*" --exclude ".github/*" --exclude ".gstack/*" --exclude ".claude/*" \
   --exclude "d/*" --exclude "docs/*" --exclude "*/docs/*" \
+  --exclude ".superpowers/*" --exclude "*/.superpowers/*" \
   --exclude "demo-video-source.html" --exclude "*/demo-video-source.html" \
   --cache-control "public,max-age=300" --content-type "text/html; charset=utf-8"
 
