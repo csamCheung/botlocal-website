@@ -86,7 +86,23 @@ Two more, same dashboard, one click each:
 - top bar **App Mode → Live** (Advanced Access generally requires it)
 - WhatsApp Manager → rename WABA `988165394049282` from **BotLocal** to **BotSquirrel**
 
-## Step 1 — Open the onboarding tracker (2 min)
+## Step 1 — ENROLLED 2026-08-04 ✅
+
+App 1730934398098392 is now joined as an **Independent Tech Provider**
+(以獨立技術供應商的身分加入). Meta's own tracker shows **2 steps, 0 complete**:
+
+1. **商家驗證 / Verify your business** — badge **已被拒絕 (rejected)**. Resubmit;
+   only an ADMIN user can complete it.
+2. **應用程式審查 / App Review** — three sub-items: review app settings (done,
+   see Step 0), record video documentation, submit documentation. The submit
+   row currently carries a **審查中 (in review)** badge.
+
+The enrolment also unlocked new left-nav tools: **內嵌註冊建造工具** (Embedded
+Signup builder), **合作夥伴解決方案**, **轉移顧客** (migrate customers), plus a
+**Meta 代管的內嵌註冊** card with a 產生連結 button — a Meta-hosted Embedded
+Signup link, an alternative to our own in-console popup if we ever want it.
+
+### Original step-1 instructions (kept for reference)
 
 developers.facebook.com/apps → app **1730934398098392** → **Use cases →
 Customize** → left menu → **Tech Provider onboarding**.
