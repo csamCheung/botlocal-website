@@ -28,13 +28,42 @@ Facebook login, so it has to be you clicking. Work top to bottom.
 
 ---
 
+## Step 0 — Fix the app you're about to submit (30 min, do FIRST)
+
+Audited via the Graph API 2026-08-04. **There are three Meta apps**, and the
+one that owns the live number is not in a submittable state:
+
+| App | ID | Owns |
+| --- | --- | --- |
+| **Chatbot** | **1730934398098392** | **WABA 988165394049282 + the live number — THIS is the one to enrol** |
+| BotSquirrel Dev | 1010180585256848 | dev number 1191297624067005 |
+| BotSquirrel Dev B | 1083116494039742 | dev number 1237988176066284 |
+
+App **1730934398098392** currently reports:
+
+| Field | Now | Change to |
+| --- | --- | --- |
+| Name | `Chatbot` | `BotSquirrel` — **customer-facing**: this is the name in the Embedded Signup consent dialog ("Chatbot wants to manage your WhatsApp Business Account" reads like phishing) |
+| Privacy Policy URL | `csamcheung.github.io/botlocal-website/privacy.html` | `https://botsquirrel.com/privacy.html` — a github.io URL will not match the verified business domain |
+| Terms of Service URL | `https://www.facebook.com/` | `https://botsquirrel.com/terms.html` — currently a placeholder pointing at Facebook itself |
+| User Data Deletion | not set | `https://botsquirrel.com/data-deletion.html` |
+| App Domains | not set | `botsquirrel.com` |
+| Category | unset (its `link` resolves under `/games/`) | **Business and Pages** |
+| Icon | none | `website/app-icon-1024.png` (in this repo) |
+
+Also worth renaming while you are there: WABA 988165394049282 is still named
+**"BotLocal"**.
+
+All of these live in App Dashboard → **Settings → Basic**, are editable at any
+time, and none require re-review to change later.
+
 ## Step 1 — Open the onboarding tracker (2 min)
 
-developers.facebook.com/apps → **your existing WhatsApp app** → **Use cases →
+developers.facebook.com/apps → app **1730934398098392** → **Use cases →
 Customize** → left menu → **Tech Provider onboarding**.
 
-> Use the app that already owns WABA 988165394049282 and the live number. A new
-> app means re-pointing webhooks and redoing working setup.
+> Enrol the app that already owns WABA 988165394049282 and the live number. A
+> new app means re-pointing webhooks and redoing working setup.
 
 Meta shows a live checklist there; it supersedes this file if they disagree.
 
