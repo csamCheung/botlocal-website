@@ -96,7 +96,36 @@ Customize** → left menu → **Tech Provider onboarding**.
 
 Meta shows a live checklist there; it supersedes this file if they disagree.
 
-## Step 2 — Business Verification (start today; days-to-weeks)
+## Step 2 — Business Verification: this was ALREADY SUBMITTED AND REJECTED
+
+Discovered in Security Centre 2026-08-04. Status on portfolio `608783160000519`
+(display name **avel.hk**) reads **已拒絕 / rejected**: *"你提交的資料被拒。你可以
+上載新的文件或提交原本的資料,以再次進行審查。"* So this is a **resubmission**,
+not a first application.
+
+**Most likely cause, now fixed:** the website on the business record was
+`https://csamcheung.github.io/botlocal-website/` — a personal GitHub Pages URL
+branded "botlocal", with nothing on it tying the site to BOTSQUIRREL LTD. Meta's
+published rejection reasons include a website that fails to load or does not
+corroborate the business. Changed to `https://botsquirrel.com` on 2026-08-04,
+which now carries the legal name, company number and registered office.
+
+Also corrected the same day: the address was stored as city
+`Covent Garden London` / region `UNITED KINGDOM`, which does not line up with
+the Certificate of Incorporation. Now `71-75 Shelton Street` / `Covent Garden` /
+`London, London WC2H 9JQ` / United Kingdom.
+
+**Still open — your decision:** the portfolio's display name is **avel.hk**, a
+different brand from both BOTSQUIRREL LTD (its legal name) and BotSquirrel (the
+app). A reviewer sees three names. If this portfolio is meant to be
+BotSquirrel's, rename it in 商家資訊 → 編輯. If it genuinely belongs to the AVEL
+business, then verifying it as BOTSQUIRREL LTD is the mismatch and BotSquirrel
+needs its own portfolio. **Do not resubmit before settling this.**
+
+Then hit **開始驗證** in Security Centre and upload the Certificate of
+Incorporation for 17364331.
+
+### Original first-time guidance (kept for reference)
 
 business.facebook.com → **Settings → Security Centre → Business verification**,
 for the Business Portfolio that owns the app.
