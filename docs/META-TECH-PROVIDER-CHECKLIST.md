@@ -57,6 +57,35 @@ Also worth renaming while you are there: WABA 988165394049282 is still named
 All of these live in App Dashboard → **Settings → Basic**, are editable at any
 time, and none require re-review to change later.
 
+> **Why you have to click these yourself:** Graph API writes were attempted on
+> 2026-08-04 with a valid app access token and Meta refused every one —
+> `(#10) Changing app settings through API calls has been disabled for this app`.
+> Nothing was modified. The dashboard is the only route.
+
+### Paste sheet — App Dashboard → Settings → Basic, top to bottom
+
+Open https://developers.facebook.com/apps/1730934398098392/settings/basic/ and
+paste straight down the page. Nothing here needs a decision.
+
+```
+Display name:              BotSquirrel
+App contact email:         hello@botsquirrel.com
+Privacy Policy URL:        https://botsquirrel.com/privacy.html
+Terms of Service URL:      https://botsquirrel.com/terms.html
+User data deletion:        (choose "Data deletion instructions URL")
+                           https://botsquirrel.com/data-deletion.html
+App domains:               botsquirrel.com
+Category:                  Business and Pages
+App icon:                  upload website/app-icon-1024.png
+```
+
+Then **Save changes** at the bottom. Tell me when it's saved and I'll re-query
+the Graph API and confirm every field landed before you submit anything.
+
+Two more, same dashboard, one click each:
+- top bar **App Mode → Live** (Advanced Access generally requires it)
+- WhatsApp Manager → rename WABA `988165394049282` from **BotLocal** to **BotSquirrel**
+
 ## Step 1 — Open the onboarding tracker (2 min)
 
 developers.facebook.com/apps → app **1730934398098392** → **Use cases →
