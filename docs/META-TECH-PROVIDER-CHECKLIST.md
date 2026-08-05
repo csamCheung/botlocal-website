@@ -49,7 +49,7 @@ App **1730934398098392** currently reports:
 | User Data Deletion | not set | `https://botsquirrel.com/data-deletion.html` |
 | App Domains | not set | `botsquirrel.com` |
 | Category | unset (its `link` resolves under `/games/`) | **Business and Pages** |
-| Icon | none | `website/app-icon-1024.png` (in this repo) |
+| Icon | ~~none~~ **UPLOADED 2026-08-04** — the 'ineligible for submission' banner cleared | done |
 
 Also worth renaming while you are there: WABA 988165394049282 is still named
 **"BotLocal"**.
