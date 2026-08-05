@@ -1,5 +1,15 @@
 # Meta Tech Provider enrolment — paste-ready checklist
 
+> **STATUS 2026-08-05: Business Verification RESUBMITTED — 審查中, ~2 business
+> days per Meta.** Fix vs round 1: the address-proof slot got the full
+> Companies House incorporation filing (IN01 page shows name + registered
+> office; the bare certificate has no address). Icon uploaded, app enrolled as
+> Independent Tech Provider, review draft trimmed to the 3 WhatsApp/business
+> permissions. NEXT: record the two videos while waiting; when verification
+> clears, press 繼續 on App Review. Meta's codes/updates to
+> hello@botsquirrel.com land in Zoho's **Notification** folder (smart filter) —
+> look there, not the inbox.
+
 Everything machine-checkable is done and verified live. What remains needs your
 Facebook login, so it has to be you clicking. Work top to bottom.
 
