@@ -93,9 +93,15 @@ App 1730934398098392 is now joined as an **Independent Tech Provider**
 
 1. **商家驗證 / Verify your business** — badge **已被拒絕 (rejected)**. Resubmit;
    only an ADMIN user can complete it.
-2. **應用程式審查 / App Review** — three sub-items: review app settings (done,
-   see Step 0), record video documentation, submit documentation. The submit
-   row currently carries a **審查中 (in review)** badge.
+2. **應用程式審查 / App Review** — NOTHING IS SUBMITTED (the tracker's 審查中
+   badge was misleading; the submissions page says 未提交). The draft originally
+   held ELEVEN permissions (Instagram/Pages/Threads included); on 2026-08-04 it
+   was trimmed to exactly the three that Tech Provider needs:
+   `whatsapp_business_messaging`, `whatsapp_business_management`,
+   `business_management`. Removed items are NOT lost — re-add any time via the
+   permission's use case 自訂 page. Meta reviews EVERY item in a submission and
+   a submission cannot be edited or cancelled once sent — so upload the app
+   icon and have both videos ready BEFORE pressing 繼續 on the App Review page.
 
 The enrolment also unlocked new left-nav tools: **內嵌註冊建造工具** (Embedded
 Signup builder), **合作夥伴解決方案**, **轉移顧客** (migrate customers), plus a
