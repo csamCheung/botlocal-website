@@ -41,7 +41,7 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
 .p-head b{font-size:14.5px;display:block}
 .p-head small{font-size:11px;opacity:.9}
 .p-head button{margin-left:auto;border:none;background:rgba(255,255,255,.2);color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer}
-#panel iframe{flex:1;border:none;width:100%}
+#panel video{flex:1;border:none;width:100%;min-height:0;object-fit:contain;background:#000}
 .p-foot{font-size:10.5px;color:#98a;text-align:center;padding:5px;background:#f7f7fb}
 
 /* ── 底部渠道列 ── */
@@ -108,7 +108,7 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
 </div>
 
 
-<div id="hint">👋 試下問我：<br>「觀塘分校喺邊度？」</div>
+<div id="hint">👋 睇下 AI 客服示範</div>
 <button id="fab" aria-label="開啟 AI 客服">💬</button>
 
 <div id="panel" role="dialog" aria-label="AI 客服示範">
@@ -117,7 +117,7 @@ body{font-family:-apple-system,"PingFang HK","Noto Sans TC",sans-serif;backgroun
     <div><b>學習樂園教育中心 · AI 查詢助手</b><small>用官網資料訓練 · 唔會作嘢</small></div>
     <button id="p-close" aria-label="收埋">✕</button>
   </div>
-  <iframe src="https://rag-chatbot-production-5fcc.up.railway.app/c/studyparadise-demo" title="學習樂園教育中心 AI 查詢助手示範" loading="lazy"></iframe>
+  <video src="../botsquirrel-demo-zh.mp4" poster="../demo-poster-zh.jpg" controls playsinline preload="none" title="學習樂園教育中心 AI 查詢助手示範"></video>
   <div class="p-foot">由 BotSquirrel 提供 · Sam Cheung · <a href="https://wa.me/447472323783" target="_blank" rel="noopener" style="color:#0a7d3b;font-weight:700">+44 7472 323783</a></div>
 </div>
 
