@@ -184,7 +184,7 @@
   .step p{font-size:14.5px; color:var(--ink-soft); margin:0;}
 
   /* pricing teaser */
-  .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; max-width:940px; margin:0 auto;}
+  .pricing{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; align-items:stretch; max-width:720px; margin:0 auto;}
   @media(max-width:820px){ .pricing{grid-template-columns:1fr; max-width:420px;} }
   .price{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; position:relative;}
   .price.popular{border:2px solid var(--brand); box-shadow:var(--shadow-lg); transform:translateY(-4px);}
@@ -195,6 +195,8 @@
   .price-amount{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:6px;}
   .price-amount .now{font-size:36px; font-weight:700; letter-spacing:-.02em;}
   .price-amount .cur{font-size:14px; color:var(--ink-soft); font-weight:600;}
+  .price-amount .was{font-size:17px; color:var(--ink-faint); font-weight:600; text-decoration:line-through;}
+  .launch-tag{align-self:flex-start; background:var(--ok-soft); color:var(--ok); font-size:12px; font-weight:700; padding:4px 11px; border-radius:var(--radius-pill); letter-spacing:.02em; margin-bottom:10px;}
   .price ul{list-style:none; padding:0; margin:0 0 22px; flex:1;}
   .price li{font-size:14.5px; padding:7px 0 7px 26px; position:relative; color:var(--ink);}
   .price li::before{content:"✓"; position:absolute; left:0; top:7px; color:var(--wa-dark); font-weight:700;}
@@ -574,44 +576,34 @@
         <article class="price" aria-label="Basic plan">
           <h3>Basic</h3>
           <p class="desc">For sole traders — one person, one van.</p>
+          <span class="launch-tag">Launch offer</span>
           <div class="price-amount">
-            <span class="cur" style="font-size:18px;">£</span><span class="now">89</span><span class="cur" style="font-size:15px;">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);">+ VAT</span>
+            <span class="cur" style="font-size:18px;">£</span><span class="now">69</span><span class="cur" style="font-size:15px;">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);">+ VAT</span><span class="was">£99</span>
           </div>
           <ul>
-            <li>AI enquiry assistant on WhatsApp + your website</li>
-            <li>Enquiry dashboard &amp; customer records</li>
+            <li>800 WhatsApp messages · 100 voice minutes a month</li>
+            <li>AI enquiry assistant on WhatsApp, phone + your website</li>
             <li>3 team members · 1 WhatsApp number</li>
           </ul>
           <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login">Start free trial</a>
         </article>
-        <article class="price popular" aria-label="Professional plan">
+        <article class="price popular" aria-label="Team plan">
           <span class="price-badge">Most popular</span>
-          <h3>Professional</h3>
+          <h3>Team</h3>
           <p class="desc">For teams with engineers to schedule.</p>
+          <span class="launch-tag">Launch offer</span>
           <div class="price-amount">
-            <span class="cur" style="font-size:18px;">£</span><span class="now">129</span><span class="cur" style="font-size:15px;">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);">+ VAT</span>
+            <span class="cur" style="font-size:18px;">£</span><span class="now">199</span><span class="cur" style="font-size:15px;">/mo</span><span class="cur" style="font-size:13px; color:var(--ink-faint);">+ VAT</span><span class="was">£249</span>
           </div>
           <ul>
-            <li>Everything in Basic</li>
-            <li>Engineer scheduling &amp; assignment</li>
+            <li>3,000 WhatsApp messages · 500 voice minutes a month</li>
+            <li>Everything in Basic, plus engineer scheduling</li>
             <li>10 team members · 3 WhatsApp numbers</li>
           </ul>
           <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login">Start free trial</a>
         </article>
-        <article class="price" aria-label="Advanced plan">
-          <h3>Advanced</h3>
-          <p class="desc">For larger operations with multiple teams.</p>
-          <div class="price-amount">
-            <span class="now" style="font-size:26px;">On request</span>
-          </div>
-          <ul>
-            <li>Everything in Professional</li>
-            <li>25 team members · 5 WhatsApp numbers</li>
-            <li>Priority setup &amp; onboarding</li>
-          </ul>
-          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Book a call</span></a>
-        </article>
       </div>
+      <p style="text-align:center; margin:22px auto 0; max-width:44em; font-size:14px; color:var(--ink-faint);">Only messages we send count towards your allowance — what your customers send you is free and unlimited.</p>
       <p style="text-align:center; margin:30px auto 0;">
         <a class="see-full" href="pricing.html"><span>See full pricing &amp; comparison</span><span aria-hidden="true">→</span></a>
       </p>
@@ -648,7 +640,7 @@
         </details>
         <details>
           <summary>Any long contracts? How does pricing work?</summary>
-          <div class="ans">No contract — month-to-month, cancel anytime. Plans are Basic £89/mo and Professional £129/mo (+ VAT), with Advanced priced on request. Basic and Professional include a 14-day free trial, no card required. See our <a href="pricing.html" style="color:var(--brand);font-weight:600;">pricing page</a> for full details.</div>
+          <div class="ans">No contract — month-to-month, cancel anytime. Two plans: Basic £69/mo and Team £199/mo (+ VAT), launch offer prices while they last. Each includes a monthly allowance of WhatsApp messages and AI voice minutes, and only the messages we send count towards it — what your customers send you is free and unlimited. Both come with a 14-day free trial, no card required. See our <a href="pricing.html" style="color:var(--brand);font-weight:600;">pricing page</a> for full details.</div>
         </details>
       </div>
     </div>

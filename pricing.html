@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BF%EF%B8%8F%3C/text%3E%3C/svg%3E" />
 <title>Pricing · BotSquirrel</title>
-<meta name="description" content="BotSquirrel pricing for UK plumbing and heating businesses: Basic £89/mo, Professional £129/mo, + VAT. 14-day free trial, no card required, no lock-in." />
+<meta name="description" content="BotSquirrel pricing for UK plumbing and heating businesses: Basic £69/mo, Team £199/mo, + VAT (launch offer). WhatsApp messages and AI voice minutes included. 14-day free trial, no card required, no lock-in." />
 <style>
   :root{
     --bg:#ffffff; --bg-soft:#f6f7f9;
@@ -57,7 +57,7 @@
   .sec-head h2{font-size:28px; margin:0 0 10px; letter-spacing:-.01em;}
   .sec-head p{font-size:16px; color:var(--ink-soft); margin:0;}
 
-  .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; max-width:940px; margin:0 auto;}
+  .pricing{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; align-items:stretch; max-width:720px; margin:0 auto;}
   @media(max-width:820px){ .pricing{grid-template-columns:1fr; max-width:420px;} }
   .price{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; position:relative;}
   .price.popular{border:2px solid var(--brand); box-shadow:var(--shadow-lg);}
@@ -67,7 +67,10 @@
   .price-amount{display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; margin-bottom:4px;}
   .price-amount .now{font-size:36px; font-weight:700; letter-spacing:-.02em;}
   .price-amount .cur,.price-amount .per,.price-amount .vat{font-size:14px; color:var(--ink-soft); font-weight:600;}
+  .price-amount .was{font-size:17px; color:var(--ink-faint); font-weight:600; text-decoration:line-through;}
+  .launch-tag{align-self:flex-start; background:var(--ok-soft); color:var(--ok); font-size:12px; font-weight:700; padding:4px 11px; border-radius:var(--radius-pill); letter-spacing:.02em; margin-bottom:10px;}
   .billnote{font-size:13px; color:var(--ink-faint); margin:0 0 18px;}
+  .li-note{display:block; font-size:13px; color:var(--ink-soft); font-weight:400; margin-top:2px;}
   .price ul{list-style:none; padding:0; margin:0 0 22px; flex:1;}
   .price li{font-size:14.5px; padding:7px 0 7px 26px; position:relative; color:var(--ink);}
   .price li::before{content:"✓"; position:absolute; left:0; top:7px; color:var(--wa-dark); font-weight:700;}
@@ -143,7 +146,7 @@
     <div class="wrap">
       <span class="eyebrow">Pricing for UK plumbing &amp; heating businesses</span>
       <h1>Pay for a workspace, not a chatbot</h1>
-      <p class="sub">Every plan includes the AI enquiry assistant, the enquiry dashboard, customer records, and setup done for you. Pick the size that matches your team.</p>
+      <p class="sub">Both plans include the AI enquiry assistant on WhatsApp, the AI voice assistant that answers your phone, the enquiry dashboard, customer records, and setup done for you. Pick the size that matches your team.</p>
       <p class="trustline">14-day free trial · no card needed · no lock-in · all prices + VAT</p>
     </div>
   </section>
@@ -157,53 +160,41 @@
         <article class="price" aria-label="Basic plan">
           <h3>Basic</h3>
           <p class="desc">Sole traders — one person, one van.</p>
-          <div class="price-amount"><span class="cur">£</span><span class="now">89</span><span class="per">/mo</span><span class="vat">+ VAT</span></div>
+          <span class="launch-tag">Launch offer</span>
+          <div class="price-amount"><span class="cur">£</span><span class="now">69</span><span class="per">/mo</span><span class="vat">+ VAT</span><span class="was">£99</span></div>
           <p class="billnote">Billed monthly, cancel anytime</p>
           <ul>
+            <li>800 WhatsApp messages a month<span class="li-note">Only messages we send count — replies from the AI or your team. Messages your customers send you are free and unlimited.</span></li>
+            <li>100 voice-call minutes<span class="li-note">The AI answers your phone when you can't.</span></li>
+            <li>1 WhatsApp number</li>
+            <li>3 team members</li>
             <li>AI enquiry assistant on WhatsApp + website live chat</li>
             <li>Enquiry dashboard &amp; customer records</li>
-            <li>3 team members</li>
-            <li>1 WhatsApp number</li>
-            <li>Incoming WhatsApp conversations free</li>
             <li>Setup &amp; onboarding done for you</li>
           </ul>
           <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login">Start free trial</a>
         </article>
 
-        <article class="price popular" aria-label="Professional plan">
+        <article class="price popular" aria-label="Team plan">
           <span class="price-badge">Most popular</span>
-          <h3>Professional</h3>
+          <h3>Team</h3>
           <p class="desc">Teams with engineers to schedule.</p>
-          <div class="price-amount"><span class="cur">£</span><span class="now">129</span><span class="per">/mo</span><span class="vat">+ VAT</span></div>
+          <span class="launch-tag">Launch offer</span>
+          <div class="price-amount"><span class="cur">£</span><span class="now">199</span><span class="per">/mo</span><span class="vat">+ VAT</span><span class="was">£249</span></div>
           <p class="billnote">Billed monthly, cancel anytime</p>
           <ul>
+            <li>3,000 WhatsApp messages a month<span class="li-note">Only messages we send count — replies from the AI or your team. Messages your customers send you are free and unlimited.</span></li>
+            <li>500 voice-call minutes<span class="li-note">The AI answers your phone when you can't.</span></li>
+            <li>3 WhatsApp numbers</li>
+            <li>10 team members</li>
             <li>Everything in Basic</li>
             <li>Engineer scheduling &amp; assignment</li>
-            <li>10 team members</li>
-            <li>3 WhatsApp numbers</li>
-            <li>10 free outbound conversations / month</li>
             <li>Role-based access for the team</li>
           </ul>
           <a class="btn btn-brand btn-block" href="https://app.botsquirrel.com/login">Start free trial</a>
         </article>
-
-        <article class="price" aria-label="Advanced plan">
-          <h3>Advanced</h3>
-          <p class="desc">Larger operations, multiple teams.</p>
-          <div class="price-amount"><span class="now" style="font-size:26px;">On request</span></div>
-          <p class="billnote">Let's talk about what you need</p>
-          <ul>
-            <li>Everything in Professional</li>
-            <li>25 team members</li>
-            <li>5 WhatsApp numbers</li>
-            <li>40 free outbound conversations / month</li>
-            <li>2 AI agents</li>
-            <li>Priority setup &amp; onboarding</li>
-          </ul>
-          <a class="btn btn-wa btn-block wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Book a call</span></a>
-        </article>
       </div>
-      <p class="trustline" style="margin-top:22px">All prices are per month, plus VAT. Advanced is priced on request.</p>
+      <p class="trustline" style="margin-top:22px">All prices are per month, plus VAT. Launch offer — standard prices are £99 and £249.</p>
     </div>
   </section>
 
@@ -212,7 +203,7 @@
     <div class="wrap">
       <div class="sec-head">
         <h2 id="cmp-h">Compare plans</h2>
-        <p>Every plan includes the AI assistant, enquiry dashboard, customer records, and technical setup &amp; onboarding.</p>
+        <p>Both plans include the AI assistant, enquiry dashboard, customer records, and technical setup &amp; onboarding.</p>
       </div>
       <div class="table-scroll">
         <table class="cmp">
@@ -220,62 +211,58 @@
             <tr>
               <th class="feat-col"></th>
               <th class="plan">Basic</th>
-              <th class="plan pop">Professional</th>
-              <th class="plan">Advanced</th>
+              <th class="plan pop">Team</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="group"><td colspan="4">Usage &amp; pricing</td></tr>
-            <tr><td class="feat-col">Price per month (+ VAT)</td><td>£89</td><td>£129</td><td>On request</td></tr>
-            <tr><td class="feat-col">Free outbound conversations / month</td><td><span class="dash">—</span></td><td>10</td><td>40</td></tr>
-            <tr><td class="feat-col">Incoming WhatsApp conversations</td><td>Free</td><td>Free</td><td>Free</td></tr>
-            <tr><td class="feat-col">Outbound conversations you start</td><td>£0.04 each</td><td>£0.04 each</td><td>£0.04 each</td></tr>
-            <tr class="group"><td colspan="4">Enquiry &amp; job management</td></tr>
-            <tr><td class="feat-col">AI enquiry assistant (collects postcode, problem, photos, times)</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><td class="feat-col">Enquiry dashboard &amp; conversation inbox</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><td class="feat-col">Customer records &amp; history</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><td class="feat-col">Engineer scheduling &amp; assignment</td><td><span class="dash">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr class="group"><td colspan="4">WhatsApp &amp; channels</td></tr>
-            <tr><td class="feat-col">Integrated WhatsApp numbers</td><td>1</td><td>3</td><td>5</td></tr>
-            <tr><td class="feat-col">Additional WhatsApp number</td><td>£25/mo each</td><td>£25/mo each</td><td>£25/mo each</td></tr>
-            <tr><td class="feat-col">Website live chat widget</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr class="group"><td colspan="4">Team &amp; AI</td></tr>
-            <tr><td class="feat-col">Team members</td><td>3</td><td>10</td><td>25</td></tr>
-            <tr><td class="feat-col">AI agents</td><td>1</td><td>1</td><td>2</td></tr>
-            <tr><td class="feat-col">Role-based access</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr class="group"><td colspan="4">Setup &amp; support</td></tr>
-            <tr><td class="feat-col">Technical setup + onboarding</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><td class="feat-col">14-day free trial (no card)</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td>Book a call</td></tr>
+            <tr class="group"><td colspan="3">Usage &amp; pricing</td></tr>
+            <tr><td class="feat-col">Price per month (+ VAT)</td><td>£69 <span class="dash" style="text-decoration:line-through;">£99</span></td><td>£199 <span class="dash" style="text-decoration:line-through;">£249</span></td></tr>
+            <tr><td class="feat-col">WhatsApp messages included / month</td><td>800</td><td>3,000</td></tr>
+            <tr><td class="feat-col">Voice-call minutes included / month</td><td>100</td><td>500</td></tr>
+            <tr><td class="feat-col">Messages your customers send you</td><td>Free &amp; unlimited</td><td>Free &amp; unlimited</td></tr>
+            <tr><td class="feat-col">Extra messages (top-up)</td><td>£3 per 100</td><td>£3 per 100</td></tr>
+            <tr><td class="feat-col">Extra voice minutes (top-up)</td><td>£12 per 100</td><td>£12 per 100</td></tr>
+            <tr class="group"><td colspan="3">Enquiry &amp; job management</td></tr>
+            <tr><td class="feat-col">AI enquiry assistant (collects postcode, problem, photos, times)</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td class="feat-col">Enquiry dashboard &amp; conversation inbox</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td class="feat-col">Customer records &amp; history</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td class="feat-col">Engineer scheduling &amp; assignment</td><td><span class="dash">—</span></td><td><span class="yes">✓</span></td></tr>
+            <tr class="group"><td colspan="3">Channels</td></tr>
+            <tr><td class="feat-col">Integrated WhatsApp numbers</td><td>1</td><td>3</td></tr>
+            <tr><td class="feat-col">AI voice assistant answers your phone</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td class="feat-col">Website live chat widget</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr class="group"><td colspan="3">Team &amp; AI</td></tr>
+            <tr><td class="feat-col">Team members</td><td>3</td><td>10</td></tr>
+            <tr><td class="feat-col">Role-based access</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr class="group"><td colspan="3">Setup &amp; support</td></tr>
+            <tr><td class="feat-col">Technical setup + onboarding</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td class="feat-col">14-day free trial (no card)</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- ADD-ONS -->
-  <section class="section" aria-labelledby="addon-h">
+  <!-- TOP-UPS -->
+  <section class="section" aria-labelledby="topup-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="addon-h">Add-ons</h2>
-        <p>Add what you need — available on every plan.</p>
+        <h2 id="topup-h">Top-ups</h2>
+        <p>A busy month? Add more on either plan — no price change, no upgrade needed.</p>
       </div>
       <div class="addons">
         <div class="addon">
-          <div class="a-ico" aria-hidden="true">🟢</div>
-          <h3>Additional WhatsApp number</h3>
-          <p>£25/mo each, on any plan.</p>
-        </div>
-        <div class="addon">
           <div class="a-ico" aria-hidden="true">💬</div>
-          <h3>Outbound conversations you start</h3>
-          <p>£0.04 each (Meta pass-through). Conversations customers start with you are always free.</p>
+          <h3>Extra messages</h3>
+          <p>£3 per 100 messages. Added to your current month.</p>
         </div>
         <div class="addon">
-          <div class="a-ico" aria-hidden="true">📥</div>
-          <h3>Incoming conversations</h3>
-          <p>Conversations a customer starts with you are free on every plan.</p>
+          <div class="a-ico" aria-hidden="true">📞</div>
+          <h3>Extra voice minutes</h3>
+          <p>£12 per 100 minutes. Added to your current month.</p>
         </div>
       </div>
+      <p class="trustline" style="margin-top:22px">Messages your customers send you never use your allowance — they're free and unlimited on both plans.</p>
     </div>
   </section>
 
@@ -288,12 +275,24 @@
       </div>
       <div class="faq">
         <details>
+          <summary>What counts as a message?</summary>
+          <div class="ans">Only the messages <em>we</em> send count — a reply from the AI assistant, or a message someone on your team sends from the dashboard. Messages your customers send you are free and unlimited, and they never touch your allowance. (From 1 October 2026 Meta charges us per message sent rather than per conversation, which is why the allowance is counted this way.) Messages on your website live chat widget don't count either.</div>
+        </details>
+        <details>
+          <summary>How do the voice minutes work?</summary>
+          <div class="ans">Your plan includes an AI voice assistant that answers your phone when you can't — it takes the job details and logs the enquiry like any other. Minutes are counted from the length of each answered call, rounded up to the next minute. Basic includes 100 minutes a month, Team includes 500. Need more? Top up at £12 per 100 minutes.</div>
+        </details>
+        <details>
+          <summary>What happens if I run out of messages or minutes?</summary>
+          <div class="ans">Nothing breaks. We'll let you know when you're at 80% and again at 100%, and you can top up (£3 per 100 messages, £12 per 100 minutes) or move up a plan. We never cut you off in the middle of a conversation or a call — no customer of yours will ever hit a wall because of your allowance.</div>
+        </details>
+        <details>
           <summary>How does the free trial work?</summary>
-          <div class="ans">Basic and Professional both come with a 14-day free trial — no credit card required to start. During the trial you use the real thing: the AI assistant, the enquiry dashboard and customer records. For Advanced, book a call with us first.</div>
+          <div class="ans">Basic and Team both come with a 14-day free trial — no credit card required to start. During the trial you use the real thing: the AI assistant, the enquiry dashboard and customer records.</div>
         </details>
         <details>
           <summary>What happens after the trial?</summary>
-          <div class="ans">After 14 days, if you decide to continue, your chosen plan starts billing (Basic £89/mo, Professional £129/mo, + VAT). No contract — it's month-to-month, and you can cancel anytime from your dashboard.</div>
+          <div class="ans">After 14 days, if you decide to continue, your chosen plan starts billing (Basic £69/mo, Team £199/mo, + VAT — launch offer prices; standard prices are £99 and £249). No contract — it's month-to-month, and you can cancel anytime from your dashboard.</div>
         </details>
         <details>
           <summary>Do prices include VAT?</summary>
@@ -302,10 +301,6 @@
         <details>
           <summary>Can I cancel anytime? Is there any lock-in?</summary>
           <div class="ans">No contract, no lock-in. Billing is month-to-month, so you can cancel anytime and you won't be charged for the next billing cycle.</div>
-        </details>
-        <details>
-          <summary>What counts as an outbound (company-initiated) conversation?</summary>
-          <div class="ans">It's a WhatsApp conversation your business starts — for example, when you message a customer first. These carry a Meta fee that we pass through at cost, £0.04 each. Conversations a customer starts with you (incoming) are always free.</div>
         </details>
         <details>
           <summary>Is setup really included?</summary>
@@ -320,10 +315,10 @@
     <div class="wrap">
       <div class="band">
         <h2>Ready to try it?</h2>
-        <p>Start Basic or Professional free today; for larger needs, book a call with us.</p>
+        <p>Start Basic or Team free for 14 days — no card needed. Not sure which one fits? Message us and we'll help you pick.</p>
         <div class="btn-row">
           <a class="btn btn-brand" href="https://app.botsquirrel.com/login">Start free trial</a>
-          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Book a call</span></a>
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><span class="wa-ico" aria-hidden="true">🟢</span><span>Ask us on WhatsApp</span></a>
         </div>
       </div>
     </div>
