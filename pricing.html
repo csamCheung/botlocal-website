@@ -31,7 +31,9 @@
   header.nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
   .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px; gap:14px;}
   .logo{display:flex; align-items:center; gap:9px; font-weight:600; font-size:18px;}
-  .logo .mark{width:30px; height:30px; border-radius:9px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:18px;}
+  .logo .mark{width:34px; height:34px; border-radius:9px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:18px;}
+  .logo .mark:has(img){background:transparent; border-radius:0;}
+  .logo .mark img{width:34px; height:34px;}
   .nav-links{display:flex; gap:20px; font-size:14px; color:var(--ink-soft);}
   .nav-links a:hover{color:var(--ink);}
   .nav-right{display:flex; align-items:center; gap:10px;}
@@ -126,7 +128,7 @@
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="logo" href="index.html" aria-label="BotSquirrel"><span class="mark" aria-hidden="true"><img src="favicon-192.png?v=3" alt="" style="width:22px;height:22px;display:block"></span><span>BotSquirrel</span></a>
+    <a class="logo" href="index.html" aria-label="BotSquirrel"><span class="mark" aria-hidden="true"><img src="favicon-192.png?v=3" alt="" style="display:block"></span><span>BotSquirrel</span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html#product">Product</a>
       <a href="index.html#how">How it works</a>
