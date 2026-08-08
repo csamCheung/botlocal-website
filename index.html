@@ -101,6 +101,8 @@
   .sw-tabs{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:760px; margin:0 auto 24px;}
   .sw-tabs[hidden]{display:none;} /* author display:grid would otherwise beat the UA [hidden] rule */
   .sw-tab{display:flex; flex-direction:column; align-items:center; gap:9px; background:transparent; border:1px solid transparent; border-radius:var(--radius); padding:14px 8px 12px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; line-height:1.25; color:var(--ink-soft); text-align:center; transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .sw-tab .ico{position:relative;}
+  .sw-tab .num{position:absolute; top:-7px; left:-7px; width:19px; height:19px; border-radius:50%; background:var(--brand); color:#fff; border:2px solid #fff; display:grid; place-items:center; font-size:11px; font-weight:700; line-height:1;}
   .sw-tab .ico{width:44px; height:44px; border-radius:11px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:22px; transition:background .15s ease, color .15s ease;}
   .sw-tab:hover{color:var(--ink); background:var(--bg-soft); border-color:var(--line);}
   .sw-tab[aria-selected="true"]{color:var(--brand-dark); background:var(--brand-soft); border-color:transparent;}
@@ -299,29 +301,26 @@
   </section>
 
   <!-- PRODUCT SCREENS -->
-  <section class="section" id="product" aria-labelledby="product-h">
+  <section class="section" id="product" aria-label="How BotSquirrel works">
     <div class="wrap">
-      <div class="sec-head" id="how" style="scroll-margin-top:90px">
-        <h2 id="product-h">Not just a chatbot — the whole enquiry-to-booking workflow</h2>
-        <p>The AI handles the front door. Your team runs the job from one workspace.</p>
-      </div>
+      <span id="how" style="scroll-margin-top:90px"></span>
 
       <div class="sw-tabs" id="sw-tabs" role="tablist" aria-label="How it works, step by step" hidden>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-0" aria-controls="sw-panel-0" aria-selected="true" tabindex="0"
                 data-line="Try it live — the assistant answers from your own prices and policies, never guessing.">
-          <span class="ico" aria-hidden="true">1</span>Live chat
+          <span class="ico" aria-hidden="true"><span class="num">1</span>💬</span>Live chat
         </button>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-1" aria-controls="sw-panel-1" aria-selected="false" tabindex="-1"
                 data-line="It answers from your approved business info — prices, services and policies.">
-          <span class="ico" aria-hidden="true">2</span>Bot replies from your info
+          <span class="ico" aria-hidden="true"><span class="num">2</span>🤖</span>Bot replies from your info
         </button>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-2" aria-controls="sw-panel-2" aria-selected="false" tabindex="-1"
                 data-line="Every conversation becomes a structured enquiry in one inbox.">
-          <span class="ico" aria-hidden="true">3</span>All info in one inbox
+          <span class="ico" aria-hidden="true"><span class="num">3</span>📥</span>All info in one inbox
         </button>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-3" aria-controls="sw-panel-3" aria-selected="false" tabindex="-1"
                 data-line="Review, assign an engineer and confirm the booking — real slots your team controls.">
-          <span class="ico" aria-hidden="true">4</span>Confirm the job
+          <span class="ico" aria-hidden="true"><span class="num">4</span>✅</span>Confirm the job
         </button>
       </div>
 
