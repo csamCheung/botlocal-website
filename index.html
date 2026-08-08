@@ -320,7 +320,36 @@
   <!-- PRODUCT SCREENS -->
   <section class="section" id="product" aria-labelledby="product-h">
     <div class="wrap">
-      <div class="sec-head" style="margin-bottom:24px">
+      <div class="sec-head" id="how" style="scroll-margin-top:90px">
+        <h2 id="how-h">Not just a chatbot — the whole enquiry-to-booking workflow</h2>
+        <p>The AI handles the front door. Your team runs the job from one workspace.</p>
+      </div>
+      <div class="steps-bar" role="list" aria-label="How it works, steps 1 to 7">
+        <button class="st" type="button" role="listitem" aria-current="step" data-step="1"><span class="st-dot">1</span><span class="st-label">Enquiry arrives</span></button>
+        <button class="st" type="button" role="listitem" data-step="2"><span class="st-dot">2</span><span class="st-label">AI collects info</span></button>
+        <button class="st" type="button" role="listitem" data-step="3"><span class="st-dot">3</span><span class="st-label">In your dashboard</span></button>
+        <button class="st" type="button" role="listitem" data-step="4"><span class="st-dot">4</span><span class="st-label">Missing info</span></button>
+        <button class="st" type="button" role="listitem" data-step="5"><span class="st-dot">5</span><span class="st-label">Assign engineer</span></button>
+        <button class="st" type="button" role="listitem" data-step="6"><span class="st-dot">6</span><span class="st-label">Book a real slot</span></button>
+        <button class="st" type="button" role="listitem" data-step="7"><span class="st-dot">7</span><span class="st-label">Customer updated</span></button>
+      </div>
+
+      <div class="st-descs">
+        <p class="st-desc" data-step="1"><span class="flow-tag ai">AI</span> On WhatsApp or your website — a burst pipe at 11pm still gets an instant reply.</p>
+        <p class="st-desc" data-step="2" hidden><span class="flow-tag ai">AI</span> Postcode, the problem, photos, urgency and preferred times — asked for naturally, in your business's voice.</p>
+        <p class="st-desc" data-step="3" hidden><span class="flow-tag ai">AI</span> The enquiry appears structured and ready to act on — not buried in a message thread.</p>
+        <p class="st-desc" data-step="4" hidden><span class="flow-tag team">Your team</span> BotSquirrel highlights what's missing — a phone number, an access note — and helps you ask for it.</p>
+        <p class="st-desc" data-step="5" hidden><span class="flow-tag team">Your team</span> Pick the right person for the job before confirming anything with the customer.</p>
+        <p class="st-desc" data-step="6" hidden><span class="flow-tag team">Your team</span> Appointments go in the calendar — the AI never promises times on its own.</p>
+        <p class="st-desc" data-step="7" hidden><span class="flow-tag ai">AI</span> Confirmations and follow-ups go out, and the whole history stays on the customer's record.</p>
+      </div>
+
+      <!-- Per-step demo media goes here: when a video/photo per step exists, add
+           <div class="st-media" data-step="N"><video ...> or <img ...></div> for each
+           step and the stepper JS will swap them with the descriptions. Until then
+           the stepper is text-only by design. -->
+
+      <div class="sec-head" style="margin-top:72px; margin-bottom:24px">
         <h2 id="product-h" style="font-size:22px">One workspace for every job enquiry</h2>
       </div>
 
@@ -425,34 +454,6 @@
 
       </div>
 
-      <div class="sec-head" id="how" style="margin-top:72px; scroll-margin-top:90px">
-        <h2 id="how-h">Not just a chatbot — the whole enquiry-to-booking workflow</h2>
-        <p>The AI handles the front door. Your team runs the job from one workspace.</p>
-      </div>
-      <div class="steps-bar" role="list" aria-label="How it works, steps 1 to 7">
-        <button class="st" type="button" role="listitem" aria-current="step" data-step="1"><span class="st-dot">1</span><span class="st-label">Enquiry arrives</span></button>
-        <button class="st" type="button" role="listitem" data-step="2"><span class="st-dot">2</span><span class="st-label">AI collects info</span></button>
-        <button class="st" type="button" role="listitem" data-step="3"><span class="st-dot">3</span><span class="st-label">In your dashboard</span></button>
-        <button class="st" type="button" role="listitem" data-step="4"><span class="st-dot">4</span><span class="st-label">Missing info</span></button>
-        <button class="st" type="button" role="listitem" data-step="5"><span class="st-dot">5</span><span class="st-label">Assign engineer</span></button>
-        <button class="st" type="button" role="listitem" data-step="6"><span class="st-dot">6</span><span class="st-label">Book a real slot</span></button>
-        <button class="st" type="button" role="listitem" data-step="7"><span class="st-dot">7</span><span class="st-label">Customer updated</span></button>
-      </div>
-
-      <div class="st-descs">
-        <p class="st-desc" data-step="1"><span class="flow-tag ai">AI</span> On WhatsApp or your website — a burst pipe at 11pm still gets an instant reply.</p>
-        <p class="st-desc" data-step="2" hidden><span class="flow-tag ai">AI</span> Postcode, the problem, photos, urgency and preferred times — asked for naturally, in your business's voice.</p>
-        <p class="st-desc" data-step="3" hidden><span class="flow-tag ai">AI</span> The enquiry appears structured and ready to act on — not buried in a message thread.</p>
-        <p class="st-desc" data-step="4" hidden><span class="flow-tag team">Your team</span> BotSquirrel highlights what's missing — a phone number, an access note — and helps you ask for it.</p>
-        <p class="st-desc" data-step="5" hidden><span class="flow-tag team">Your team</span> Pick the right person for the job before confirming anything with the customer.</p>
-        <p class="st-desc" data-step="6" hidden><span class="flow-tag team">Your team</span> Appointments go in the calendar — the AI never promises times on its own.</p>
-        <p class="st-desc" data-step="7" hidden><span class="flow-tag ai">AI</span> Confirmations and follow-ups go out, and the whole history stays on the customer's record.</p>
-      </div>
-
-      <!-- Per-step demo media goes here: when a video/photo per step exists, add
-           <div class="st-media" data-step="N"><video ...> or <img ...></div> for each
-           step and the stepper JS will swap them with the descriptions. Until then
-           the stepper is text-only by design. -->
     </div>
   </section>
 
