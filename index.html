@@ -101,6 +101,9 @@
   .sw-tabs{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:760px; margin:0 auto 24px;}
   .sw-tabs[hidden]{display:none;} /* author display:grid would otherwise beat the UA [hidden] rule */
   .sw-tab{display:flex; flex-direction:column; align-items:center; gap:9px; background:transparent; border:1px solid transparent; border-radius:var(--radius); padding:14px 8px 12px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; line-height:1.25; color:var(--ink-soft); text-align:center; transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .sw-tab{position:relative;}
+  .sw-tab + .sw-tab::before{content:""; position:absolute; top:36px; height:2px; right:calc(50% + 30px); left:calc(-50% + 18px); background:var(--line2); border-radius:1px;}
+  .sw-tab.sw-reached::before{background:var(--brand);}
   .sw-tab .ico{position:relative;}
   .sw-tab .num{position:absolute; top:-7px; left:-7px; width:19px; height:19px; border-radius:50%; background:var(--brand); color:#fff; border:2px solid #fff; display:grid; place-items:center; font-size:11px; font-weight:700; line-height:1;}
   .sw-tab .ico{width:44px; height:44px; border-radius:11px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:22px; transition:background .15s ease, color .15s ease;}
@@ -129,6 +132,7 @@
 
   @media(max-width:860px){
     .sw-tabs{grid-template-columns:repeat(2,1fr); gap:10px; max-width:420px;}
+    .sw-tab + .sw-tab::before{display:none;}
     .sw-panel-h{font-size:20px;}
   }
   /* below ~428px the longest supporting line needs a 3rd line-box; reserve it so
@@ -700,6 +704,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
     for(var n = 0; n < tabs.length; n++){
       var on = (n === i);
       tabs[n].setAttribute('aria-selected', on ? 'true' : 'false');
+      tabs[n].classList.toggle('sw-reached', n <= i);
       tabs[n].tabIndex = on ? 0 : -1;
       panels[n].hidden = !on;
     }
