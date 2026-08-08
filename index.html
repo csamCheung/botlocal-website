@@ -84,15 +84,6 @@
   .sec-head h2{font-size:32px; margin:0 0 12px; letter-spacing:-.01em;}
   .sec-head p{font-size:17px; color:var(--ink-soft); margin:0;}
 
-  /* features grid */
-  .grid-3{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;}
-  .feat{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px; transition:transform .15s ease, box-shadow .15s ease;}
-  .feat:hover{transform:translateY(-2px); box-shadow:var(--shadow);}
-  .feat .ico{width:44px; height:44px; border-radius:11px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:22px; margin-bottom:14px;}
-  .feat h3{font-size:17px; margin:0 0 8px;}
-  .feat p{font-size:14.5px; color:var(--ink-soft); margin:0;}
-
-
   /* product screens */
   .shot-note{font-size:12px; color:var(--ink-faint); margin-top:10px;}
   .sw-note{text-align:center; margin-top:16px;}
@@ -167,13 +158,6 @@
   .m-log{display:flex; gap:10px; padding:7px 0; border-bottom:1px dashed var(--line); align-items:baseline;}
   .m-log:last-child{border-bottom:none;}
   .m-log .d{color:var(--ink-faint); font-size:11px; white-space:nowrap; min-width:56px;}
-
-  /* steps */
-  .steps{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:24px; counter-reset:step;}
-  .step{position:relative; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px 24px; counter-increment:step;}
-  .step::before{content:counter(step); position:absolute; top:-18px; left:24px; width:36px; height:36px; border-radius:50%; background:var(--brand); color:#fff; display:grid; place-items:center; font-weight:700; font-size:16px; box-shadow:0 4px 10px rgba(47,109,240,.3);}
-  .step h3{font-size:18px; margin:6px 0 8px;}
-  .step p{font-size:14.5px; color:var(--ink-soft); margin:0;}
 
   /* pricing teaser */
   .pricing{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; align-items:stretch; max-width:720px; margin:0 auto;}
@@ -393,111 +377,10 @@
     </div>
   </section>
 
-  <!-- BUILT FOR PLUMBING & HEATING -->
-  <section class="section alt" id="who" aria-labelledby="who-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="who-h">Built for plumbing &amp; heating — not "any business"</h2>
-        <p>The workflows, questions and job types are the ones your trade actually deals with.</p>
-      </div>
-      <div class="grid-3">
-        <article class="feat"><div class="ico" aria-hidden="true">🔥</div><h3>Boiler breakdowns &amp; servicing</h3><p>Fields breakdown enquiries with urgency and symptoms, and handles annual service requests day or night.</p></article>
-        <article class="feat"><div class="ico" aria-hidden="true">💧</div><h3>Leaks, drains &amp; emergencies</h3><p>Captures the address, access details and photos for urgent call-outs — the details your engineer needs before setting off.</p></article>
-        <article class="feat"><div class="ico" aria-hidden="true">🛁</div><h3>Installations &amp; quotes</h3><p>Collects what a bathroom, boiler swap or heating job involves so you can quote from real information, not a one-line text.</p></article>
-      </div>
-    </div>
-  </section>
 
 
-  <!-- FEATURES -->
-  <section class="section" id="features" aria-labelledby="features-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="features-h">What it does for your business</h2>
-        <p>From the first message to the booked job — and everything your team needs in between.</p>
-      </div>
-      <div class="grid-3">
-        <article class="feat">
-          <div class="ico" aria-hidden="true">⏰</div>
-          <h3>Answers 24/7, even on the tools</h3>
-          <p>A boiler packs up at 11pm? The assistant replies straight away and starts collecting the job details — you don't stop the job or wake up for it.</p>
-        </article>
-        <article class="feat">
-          <div class="ico" aria-hidden="true">📥</div>
-          <h3>Structured job enquiries</h3>
-          <p>Name, number, postcode, the problem, photos and preferred times — collected in conversation and organised into an enquiry, not a scroll-back exercise.</p>
-        </article>
-        <article class="feat">
-          <div class="ico" aria-hidden="true">👤</div>
-          <h3>Customer records that build up</h3>
-          <p>Every conversation, job and note stays attached to the customer — so the second call-out starts with the full history.</p>
-        </article>
-        <article class="feat">
-          <div class="ico" aria-hidden="true">📅</div>
-          <h3>Engineer scheduling</h3>
-          <p>Assign the right engineer and book real slots from the calendar. The AI never invents availability or confirms times on its own.</p>
-        </article>
-        <article class="feat">
-          <div class="ico" aria-hidden="true">🤝</div>
-          <h3>Human handover built in</h3>
-          <p>When a conversation needs a person — a complaint, a complex quote, anything uncertain — it hands over to your team with the full context, instead of guessing.</p>
-        </article>
-        <article class="feat">
-          <div class="ico" aria-hidden="true">📚</div>
-          <h3>Answers from your approved info</h3>
-          <p>Built from your call-out charges, services and policies. It quotes only prices that appear in your business information — no made-up figures.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- CHANNELS -->
-  <section class="section alt" id="platforms" aria-labelledby="platforms-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="platforms-h">Where your customers already are</h2>
-        <p>The same assistant on the channels UK customers actually use.</p>
-      </div>
-      <div class="grid-3" style="grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); max-width:720px; margin:0 auto;">
-        <div class="feat">
-          <div class="ico" aria-hidden="true">🟢</div>
-          <h3>WhatsApp Business</h3>
-          <p>Customers message your assistant straight from WhatsApp — where most call-out enquiries start.</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:var(--ok-soft);color:var(--ok);">✓ Included in all plans</span>
-        </div>
-        <div class="feat">
-          <div class="ico" aria-hidden="true">💬</div>
-          <h3>Your website</h3>
-          <p>A small snippet drops a live-chat widget into your existing site — Wix, WordPress or custom.</p>
-          <span style="display:inline-block;margin-top:12px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:var(--ok-soft);color:var(--ok);">✓ Included in all plans</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- HOW TO GET STARTED -->
-  <section class="section" id="start" aria-labelledby="start-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="start-h">How to get started</h2>
-        <p>Three steps — usually live in 14–21 days, depending on how much info you have and which channels we connect.</p>
-      </div>
-      <div class="steps">
-        <article class="step">
-          <h3>Tell us about your business</h3>
-          <p>A 15-minute WhatsApp chat — what you do, your prices, coverage area, and what customers ask you most.</p>
-        </article>
-        <article class="step">
-          <h3>We set up your workspace</h3>
-          <p>We build the assistant from your info, tune it to sound like you, and set up your enquiry dashboard, customer records and calendar.</p>
-        </article>
-        <article class="step">
-          <h3>Go live and stop missing work</h3>
-          <p>We connect your WhatsApp and website. Enquiries start arriving organised — and nothing gets dropped.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
   <!-- PRICING (teaser — full details on pricing.html) -->
   <section class="section alt" id="pricing" aria-labelledby="pricing-h">
