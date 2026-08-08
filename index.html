@@ -93,15 +93,20 @@
   .feat p{font-size:14.5px; color:var(--ink-soft); margin:0;}
 
   /* workflow rail */
-  .flow{max-width:560px; margin:0 auto; display:flex; flex-direction:column;}
-  .flow-step{display:flex; gap:18px;}
-  .flow-num{display:flex; flex-direction:column; align-items:center;}
-  .flow-dot{width:38px; height:38px; border-radius:50%; background:var(--brand); color:#fff; display:grid; place-items:center; font-weight:700; font-size:15px; box-shadow:0 4px 10px rgba(47,109,240,.3); flex-shrink:0;}
-  .flow-line{width:2px; flex:1; background:var(--line2); min-height:26px; margin:6px 0;}
-  .flow-step:last-child .flow-line{display:none;}
-  .flow-body{padding:6px 0 26px;}
-  .flow-body h3{font-size:17px; margin:0 0 4px;}
-  .flow-body p{font-size:14.5px; color:var(--ink-soft); margin:0;}
+  .steps-bar{display:flex; flex-wrap:wrap; justify-content:center; gap:6px 4px; margin:0 auto 18px;}
+  .st{display:flex; align-items:center; gap:6px; background:transparent; border:1px solid transparent; border-radius:var(--radius-pill); padding:7px 8px 7px 7px; cursor:pointer; font:inherit; font-size:12.4px; font-weight:600; color:var(--ink-soft); white-space:nowrap; transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .st:hover{background:var(--bg-soft); border-color:var(--line); color:var(--ink);}
+  .st-dot{width:28px; height:28px; border-radius:50%; background:var(--brand-soft); color:var(--brand-dark); display:grid; place-items:center; font-weight:700; font-size:14px; flex-shrink:0; transition:background .15s ease, color .15s ease;}
+  .st[aria-current="step"]{color:var(--brand-dark); background:var(--brand-soft);}
+  .st[aria-current="step"] .st-dot{background:var(--brand); color:#fff; box-shadow:0 4px 10px rgba(47,109,240,.3);}
+  .st-descs{text-align:center; max-width:44em; margin:0 auto; min-height:4.2em;}
+  .st-desc{font-size:16px; color:var(--ink-soft); margin:0;}
+  .st-desc .flow-tag{margin:0 6px 0 0; vertical-align:1px;}
+  @media(max-width:860px){
+    .st{font-size:12.5px; padding:6px 10px 6px 6px;}
+    .st-dot{width:26px; height:26px; font-size:12.5px;}
+    .st-descs{min-height:5.5em;}
+  }
   .flow-tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; padding:3px 10px; border-radius:var(--radius-pill); margin-bottom:6px;}
   .flow-tag.ai{background:var(--brand-soft); color:var(--brand-dark);}
   .flow-tag.team{background:var(--warn-soft); color:var(--warn);}
@@ -424,36 +429,30 @@
         <h2 id="how-h">Not just a chatbot — the whole enquiry-to-booking workflow</h2>
         <p>The AI handles the front door. Your team runs the job from one workspace.</p>
       </div>
-      <div class="flow">
-        <div class="flow-step">
-          <div class="flow-num"><div class="flow-dot">1</div><div class="flow-line"></div></div>
-          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>Customer sends an enquiry</h3><p>On WhatsApp or your website — a burst pipe at 11pm still gets an instant reply.</p></div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num"><div class="flow-dot">2</div><div class="flow-line"></div></div>
-          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>AI collects the job information</h3><p>Postcode, the problem, photos, urgency and preferred times — asked for naturally, in your business's voice.</p></div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num"><div class="flow-dot">3</div><div class="flow-line"></div></div>
-          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>The enquiry appears in your dashboard</h3><p>Structured and ready to act on — not buried in a message thread.</p></div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num"><div class="flow-dot">4</div><div class="flow-line"></div></div>
-          <div class="flow-body"><span class="flow-tag team">Your team</span><h3>Review and request missing details</h3><p>BotSquirrel highlights what's missing — a phone number, an access note — and helps you ask for it.</p></div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num"><div class="flow-dot">5</div><div class="flow-line"></div></div>
-          <div class="flow-body"><span class="flow-tag team">Your team</span><h3>Assign an engineer</h3><p>Pick the right person for the job before confirming anything with the customer.</p></div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num"><div class="flow-dot">6</div><div class="flow-line"></div></div>
-          <div class="flow-body"><span class="flow-tag team">Your team</span><h3>Book a genuine available slot</h3><p>Appointments go in the calendar — the AI never promises times on its own.</p></div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num"><div class="flow-dot">7</div></div>
-          <div class="flow-body"><span class="flow-tag ai">AI</span><h3>Keep the customer updated</h3><p>Confirmations and follow-ups go out, and the whole history stays on the customer's record.</p></div>
-        </div>
+      <div class="steps-bar" role="list" aria-label="How it works, steps 1 to 7">
+        <button class="st" type="button" role="listitem" aria-current="step" data-step="1"><span class="st-dot">1</span><span class="st-label">Enquiry arrives</span></button>
+        <button class="st" type="button" role="listitem" data-step="2"><span class="st-dot">2</span><span class="st-label">AI collects info</span></button>
+        <button class="st" type="button" role="listitem" data-step="3"><span class="st-dot">3</span><span class="st-label">In your dashboard</span></button>
+        <button class="st" type="button" role="listitem" data-step="4"><span class="st-dot">4</span><span class="st-label">Missing info</span></button>
+        <button class="st" type="button" role="listitem" data-step="5"><span class="st-dot">5</span><span class="st-label">Assign engineer</span></button>
+        <button class="st" type="button" role="listitem" data-step="6"><span class="st-dot">6</span><span class="st-label">Book a real slot</span></button>
+        <button class="st" type="button" role="listitem" data-step="7"><span class="st-dot">7</span><span class="st-label">Customer updated</span></button>
       </div>
+
+      <div class="st-descs">
+        <p class="st-desc" data-step="1"><span class="flow-tag ai">AI</span> On WhatsApp or your website — a burst pipe at 11pm still gets an instant reply.</p>
+        <p class="st-desc" data-step="2" hidden><span class="flow-tag ai">AI</span> Postcode, the problem, photos, urgency and preferred times — asked for naturally, in your business's voice.</p>
+        <p class="st-desc" data-step="3" hidden><span class="flow-tag ai">AI</span> The enquiry appears structured and ready to act on — not buried in a message thread.</p>
+        <p class="st-desc" data-step="4" hidden><span class="flow-tag team">Your team</span> BotSquirrel highlights what's missing — a phone number, an access note — and helps you ask for it.</p>
+        <p class="st-desc" data-step="5" hidden><span class="flow-tag team">Your team</span> Pick the right person for the job before confirming anything with the customer.</p>
+        <p class="st-desc" data-step="6" hidden><span class="flow-tag team">Your team</span> Appointments go in the calendar — the AI never promises times on its own.</p>
+        <p class="st-desc" data-step="7" hidden><span class="flow-tag ai">AI</span> Confirmations and follow-ups go out, and the whole history stays on the customer's record.</p>
+      </div>
+
+      <!-- Per-step demo media goes here: when a video/photo per step exists, add
+           <div class="st-media" data-step="N"><video ...> or <img ...></div> for each
+           step and the stepper JS will swap them with the descriptions. Until then
+           the stepper is text-only by design. -->
     </div>
   </section>
 
@@ -823,6 +822,23 @@ document.getElementById("year").textContent = new Date().getFullYear();
       panel.style.display==='block' ? closeChat() : openChat();
     });
   })();
+
+/* workflow stepper — step 1..7 swaps the description (and media, once added) */
+(function(){
+var bar = document.querySelector('.steps-bar');
+if(!bar) return;
+var steps = Array.prototype.slice.call(bar.querySelectorAll('.st'));
+var descs = Array.prototype.slice.call(document.querySelectorAll('.st-desc'));
+var medias = Array.prototype.slice.call(document.querySelectorAll('.st-media'));
+steps.forEach(function(st){
+  st.addEventListener('click', function(){
+    var n = st.getAttribute('data-step');
+    steps.forEach(function(x){ if(x===st){ x.setAttribute('aria-current','step'); } else { x.removeAttribute('aria-current'); } });
+    descs.forEach(function(d){ d.hidden = d.getAttribute('data-step') !== n; });
+    medias.forEach(function(m){ m.hidden = m.getAttribute('data-step') !== n; });
+  });
+});
+})();
 </script>
 </body>
 </html>
