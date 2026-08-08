@@ -98,7 +98,7 @@
   .sw-note{text-align:center; margin-top:16px;}
 
   /* tab row */
-  .sw-tabs{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; max-width:900px; margin:0 auto 24px;}
+  .sw-tabs{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:760px; margin:0 auto 24px;}
   .sw-tabs[hidden]{display:none;} /* author display:grid would otherwise beat the UA [hidden] rule */
   .sw-tab{display:flex; flex-direction:column; align-items:center; gap:9px; background:transparent; border:1px solid transparent; border-radius:var(--radius); padding:14px 8px 12px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; line-height:1.25; color:var(--ink-soft); text-align:center; transition:background .15s ease, color .15s ease, border-color .15s ease;}
   .sw-tab .ico{width:44px; height:44px; border-radius:11px; background:var(--brand-soft); color:var(--brand); display:grid; place-items:center; font-size:22px; transition:background .15s ease, color .15s ease;}
@@ -127,7 +127,6 @@
 
   @media(max-width:860px){
     .sw-tabs{grid-template-columns:repeat(2,1fr); gap:10px; max-width:420px;}
-    .sw-tabs .sw-tab:first-child{grid-column:1/-1;}
     .sw-panel-h{font-size:20px;}
   }
   /* below ~428px the longest supporting line needs a 3rd line-box; reserve it so
@@ -307,26 +306,22 @@
         <p>The AI handles the front door. Your team runs the job from one workspace.</p>
       </div>
 
-      <div class="sw-tabs" id="sw-tabs" role="tablist" aria-label="Workspace views" hidden>
+      <div class="sw-tabs" id="sw-tabs" role="tablist" aria-label="How it works, step by step" hidden>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-0" aria-controls="sw-panel-0" aria-selected="true" tabindex="0"
                 data-line="Try it live — the assistant answers from your own prices and policies, never guessing.">
-          <span class="ico" aria-hidden="true">💬</span>Live chat
+          <span class="ico" aria-hidden="true">1</span>Live chat
         </button>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-1" aria-controls="sw-panel-1" aria-selected="false" tabindex="-1"
-                data-line="Customer, postcode, issue, urgency and preferred time — every enquiry arrives organised.">
-          <span class="ico" aria-hidden="true">📥</span>Enquiries
+                data-line="It answers from your approved business info — prices, services and policies.">
+          <span class="ico" aria-hidden="true">2</span>Bot replies from your info
         </button>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-2" aria-controls="sw-panel-2" aria-selected="false" tabindex="-1"
-                data-line="Missing contact or job info gets flagged, so no one turns up to a job half-briefed.">
-          <span class="ico" aria-hidden="true">⚠️</span>Missing details
+                data-line="Every conversation becomes a structured enquiry in one inbox.">
+          <span class="ico" aria-hidden="true">3</span>All info in one inbox
         </button>
         <button class="sw-tab" type="button" role="tab" id="sw-tab-3" aria-controls="sw-panel-3" aria-selected="false" tabindex="-1"
-                data-line="Book real slots your team controls — the AI never invents availability.">
-          <span class="ico" aria-hidden="true">📅</span>Scheduling
-        </button>
-        <button class="sw-tab" type="button" role="tab" id="sw-tab-4" aria-controls="sw-panel-4" aria-selected="false" tabindex="-1"
-                data-line="Conversations, visits, notes and photos stay attached to the same customer.">
-          <span class="ico" aria-hidden="true">👤</span>Customer history
+                data-line="Review, assign an engineer and confirm the booking — real slots your team controls.">
+          <span class="ico" aria-hidden="true">4</span>Confirm the job
         </button>
       </div>
 
@@ -347,23 +342,10 @@
         </div>
 
         <!-- Each mock .sw-panel below is a content-agnostic slot. To use a real product
-             screenshot later, delete the .mock element inside the panel and
-             drop in <img src="..." alt="..."> — no CSS or JS change needed. -->
+             screenshot or demo video later, delete the .mock element inside the panel and
+             drop in an <img> or <video> — no CSS or JS change needed. -->
         <div class="sw-panel" id="sw-panel-1" role="tabpanel" aria-labelledby="sw-tab-1" tabindex="0">
-          <h3 class="sw-panel-h">Every enquiry arrives organised</h3>
-          <div class="mock" role="img" aria-label="Illustration of the enquiry inbox">
-            <div class="mock-bar"><i></i><i></i><i></i><span>Enquiries</span></div>
-            <div class="mock-body">
-              <div class="m-row"><div><div class="who">Sarah W. · SW11 4EX</div><div class="meta">Boiler losing pressure · photos ×2 · prefers Thu AM</div></div><span class="m-pill new">New</span></div>
-              <div class="m-row"><div><div class="who">Tom H. · CR0 2RD</div><div class="meta">Leak under kitchen sink · urgent</div></div><span class="m-pill warn">Needs details</span></div>
-              <div class="m-row"><div><div class="who">Priya N. · SE15 3AB</div><div class="meta">Annual boiler service · flexible</div></div><span class="m-pill ok">Booked</span></div>
-            </div>
-          </div>
-          <p class="shot-note sw-note">Illustrative product view</p>
-        </div>
-
-        <div class="sw-panel" id="sw-panel-2" role="tabpanel" aria-labelledby="sw-tab-2" tabindex="0">
-          <h3 class="sw-panel-h">Know what's missing</h3>
+          <h3 class="sw-panel-h">Answers built from your business info</h3>
           <div class="mock" role="img" aria-label="Illustration of an enquiry detail view">
             <div class="mock-bar"><i></i><i></i><i></i><span>Enquiry · Tom H.</span></div>
             <div class="mock-body">
@@ -377,8 +359,21 @@
           <p class="shot-note sw-note">Illustrative product view</p>
         </div>
 
+        <div class="sw-panel" id="sw-panel-2" role="tabpanel" aria-labelledby="sw-tab-2" tabindex="0">
+          <h3 class="sw-panel-h">Everything lands in one inbox</h3>
+          <div class="mock" role="img" aria-label="Illustration of the enquiry inbox">
+            <div class="mock-bar"><i></i><i></i><i></i><span>Enquiries</span></div>
+            <div class="mock-body">
+              <div class="m-row"><div><div class="who">Sarah W. · SW11 4EX</div><div class="meta">Boiler losing pressure · photos ×2 · prefers Thu AM</div></div><span class="m-pill new">New</span></div>
+              <div class="m-row"><div><div class="who">Tom H. · CR0 2RD</div><div class="meta">Leak under kitchen sink · urgent</div></div><span class="m-pill warn">Needs details</span></div>
+              <div class="m-row"><div><div class="who">Priya N. · SE15 3AB</div><div class="meta">Annual boiler service · flexible</div></div><span class="m-pill ok">Booked</span></div>
+            </div>
+          </div>
+          <p class="shot-note sw-note">Illustrative product view</p>
+        </div>
+
         <div class="sw-panel" id="sw-panel-3" role="tabpanel" aria-labelledby="sw-tab-3" tabindex="0">
-          <h3 class="sw-panel-h">Schedule the right engineer</h3>
+          <h3 class="sw-panel-h">Confirm the job with a real slot</h3>
           <div class="mock" role="img" aria-label="Illustration of the engineer calendar">
             <div class="mock-bar"><i></i><i></i><i></i><span>Thursday · Engineers</span></div>
             <div class="mock-body">
@@ -388,19 +383,6 @@
                 <div class="t">13:30</div><div><div class="m-slot b">Aiden — Leak repair, CR0</div></div>
                 <div class="t">16:00</div><div><div class="m-slot free">Available</div></div>
               </div>
-            </div>
-          </div>
-          <p class="shot-note sw-note">Illustrative product view</p>
-        </div>
-
-        <div class="sw-panel" id="sw-panel-4" role="tabpanel" aria-labelledby="sw-tab-4" tabindex="0">
-          <h3 class="sw-panel-h">Keep the full customer history</h3>
-          <div class="mock" role="img" aria-label="Illustration of a customer record">
-            <div class="mock-bar"><i></i><i></i><i></i><span>Customer · Sarah W.</span></div>
-            <div class="mock-body">
-              <div class="m-log"><span class="d">Today</span><span>Enquiry: boiler losing pressure · photos attached</span></div>
-              <div class="m-log"><span class="d">Mar 2026</span><span>Job completed: radiator valve replacement</span></div>
-              <div class="m-log"><span class="d">Nov 2025</span><span>Annual boiler service · reminder scheduled</span></div>
             </div>
           </div>
           <p class="shot-note sw-note">Illustrative product view</p>
